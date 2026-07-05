@@ -72,6 +72,3 @@ Thumbs.db
 .mypy_cache/
 .dmypy.json
 dmypy.json
-
-# AetherOS specific temporary scripts
-generator_phase*.py
