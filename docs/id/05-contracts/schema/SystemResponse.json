@@ -1,0 +1,36 @@
+{
+  "additionalProperties": false,
+  "description": "Hasil balasan dari SystemCommand atau SystemQuery.",
+  "properties": {
+    "correlation_id": {
+      "description": "ID of the original Command or Query",
+      "format": "uuid",
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "success": {
+      "description": "Whether the operation was successful",
+      "title": "Success",
+      "type": "boolean"
+    },
+    "data": {
+      "default": null,
+      "description": "Response payload",
+      "title": "Data"
+    },
+    "errors": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Error details if success=False",
+      "title": "Errors",
+      "type": "object"
+    }
+  },
+  "required": [
+    "correlation_id",
+    "success"
+  ],
+  "title": "SystemResponse",
+  "type": "object"
+}

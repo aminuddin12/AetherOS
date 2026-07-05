@@ -1,0 +1,84 @@
+{
+  "$defs": {
+    "TraceSpan": {
+      "additionalProperties": false,
+      "description": "Unit dasar dalam OpenTelemetry-style tracing.",
+      "properties": {
+        "span_id": {
+          "description": "Unique ID for this span",
+          "format": "uuid",
+          "title": "Span Id",
+          "type": "string"
+        },
+        "parent_span_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "ID of the parent span",
+          "title": "Parent Span Id"
+        },
+        "name": {
+          "description": "Name of the operation",
+          "title": "Name",
+          "type": "string"
+        },
+        "started_at": {
+          "description": "Span start time",
+          "format": "date-time",
+          "title": "Started At",
+          "type": "string"
+        },
+        "ended_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Span end time",
+          "title": "Ended At"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "TraceSpan",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Konteks pelacakan eksekusi untuk observability.",
+  "properties": {
+    "trace_id": {
+      "description": "Global trace identifier",
+      "format": "uuid",
+      "title": "Trace Id",
+      "type": "string"
+    },
+    "current_span": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/TraceSpan"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Active span in this context"
+    }
+  },
+  "title": "TraceContext",
+  "type": "object"
+}

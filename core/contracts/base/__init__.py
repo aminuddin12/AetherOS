@@ -1,3 +1,5 @@
+from .contract import BaseContract
+from .reference import ResourceReference
 from .value_object import ValueObject
 from .entity import Entity
 from .aggregate import AggregateRoot
@@ -7,6 +9,8 @@ from .query import Query
 from .protocol import ContractProtocol
 
 __all__ = [
+    "BaseContract",
+    "ResourceReference",
     "ValueObject",
     "Entity",
     "AggregateRoot",

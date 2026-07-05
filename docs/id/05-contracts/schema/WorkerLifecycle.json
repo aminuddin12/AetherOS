@@ -1,0 +1,42 @@
+{
+  "$defs": {
+    "LifecyclePhase": {
+      "enum": [
+        "created",
+        "training",
+        "certification",
+        "assigned",
+        "working",
+        "review",
+        "promotion",
+        "mentor",
+        "retired"
+      ],
+      "title": "LifecyclePhase",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Status agen saat ini dalam Lifecycle AetherOS.",
+  "properties": {
+    "current_phase": {
+      "$ref": "#/$defs/LifecyclePhase",
+      "default": "created",
+      "description": "Current lifecycle stage"
+    },
+    "tasks_completed": {
+      "default": 0,
+      "description": "Total tasks completed",
+      "title": "Tasks Completed",
+      "type": "integer"
+    },
+    "is_cleared_for_production": {
+      "default": false,
+      "description": "Has passed certification",
+      "title": "Is Cleared For Production",
+      "type": "boolean"
+    }
+  },
+  "title": "WorkerLifecycle",
+  "type": "object"
+}

@@ -1,0 +1,20 @@
+{
+  "additionalProperties": false,
+  "description": "Mewakili permintaan untuk mengambil data tanpa memodifikasi state (side-effect free).",
+  "properties": {
+    "query_id": {
+      "description": "Unique identifier for the query",
+      "format": "uuid",
+      "title": "Query Id",
+      "type": "string"
+    },
+    "issued_at": {
+      "description": "When the query was issued",
+      "format": "date-time",
+      "title": "Issued At",
+      "type": "string"
+    }
+  },
+  "title": "Query",
+  "type": "object"
+}

@@ -1,6 +1,6 @@
 from enum import StrEnum
 from pydantic import Field
-from ..base import DomainEvent
+from ..base import DomainEvent, ResourceReference
 
 class DeploymentStatus(StrEnum):
     PENDING = "pending"
@@ -13,6 +13,6 @@ class Deployment(DomainEvent):
     """
     Catatan pengiriman kode/artefak ke environment.
     """
-    environment_id: str = Field(..., description="Target environment")
-    commit_sha: str = Field(..., description="What was deployed")
+    environment_ref: ResourceReference = Field(..., description="Target environment")
+    commit_ref: ResourceReference = Field(..., description="What was deployed")
     status: DeploymentStatus = Field(default=DeploymentStatus.PENDING)

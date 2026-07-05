@@ -1,0 +1,260 @@
+{
+  "$defs": {
+    "Extension": {
+      "additionalProperties": false,
+      "description": "Representasi dari komponen (apa pun jenisnya) yang diekspor oleh Plugin.",
+      "properties": {
+        "name": {
+          "description": "Extension name",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/ExtensionType",
+          "description": "Type of extension"
+        },
+        "entrypoint": {
+          "description": "Python module path or reference",
+          "title": "Entrypoint",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "entrypoint"
+      ],
+      "title": "Extension",
+      "type": "object"
+    },
+    "ExtensionManifest": {
+      "additionalProperties": false,
+      "description": "Deklarasi paket (Plugin/Distribution) yang mendaftarkan sekumpulan Extension.\nMemiliki mekanisme dependency management untuk Marketplace.",
+      "properties": {
+        "pack_name": {
+          "description": "E.g., 'CyberSecurityPack'",
+          "title": "Pack Name",
+          "type": "string"
+        },
+        "version": {
+          "description": "SemVer version",
+          "title": "Version",
+          "type": "string"
+        },
+        "author": {
+          "description": "Vendor/Author name",
+          "title": "Author",
+          "type": "string"
+        },
+        "dependencies": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required plugins and versions",
+          "title": "Dependencies",
+          "type": "object"
+        },
+        "conflicts": {
+          "description": "Plugins that cannot run together with this",
+          "items": {
+            "type": "string"
+          },
+          "title": "Conflicts",
+          "type": "array"
+        },
+        "compatibility": {
+          "description": "Supported AetherOS components",
+          "items": {
+            "type": "string"
+          },
+          "title": "Compatibility",
+          "type": "array"
+        },
+        "minimum_kernel_version": {
+          "default": "1.0.0",
+          "description": "Minimum AetherOS version required",
+          "title": "Minimum Kernel Version",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Provided components",
+          "items": {
+            "$ref": "#/$defs/Extension"
+          },
+          "title": "Extensions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "pack_name",
+        "version",
+        "author"
+      ],
+      "title": "ExtensionManifest",
+      "type": "object"
+    },
+    "ExtensionType": {
+      "enum": [
+        "agent",
+        "provider",
+        "tool",
+        "skill",
+        "workflow",
+        "dashboard_widget",
+        "distribution",
+        "cli"
+      ],
+      "title": "ExtensionType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Entitas instalasi nyata dari sebuah Plugin/Pack di dalam tenant AetherOS.",
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "description": "Schema version of this contract",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "contract_version": {
+      "default": "1.0",
+      "description": "Data contract compatibility version",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "api_version": {
+      "default": "v1",
+      "description": "API route version",
+      "title": "Api Version",
+      "type": "string"
+    },
+    "spec_version": {
+      "default": "1.0",
+      "description": "Specification/Behavioral version",
+      "title": "Spec Version",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "description": "Generic metadata",
+      "title": "Metadata",
+      "type": "object"
+    },
+    "labels": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Identifying labels (e.g., tier: backend)",
+      "title": "Labels",
+      "type": "object"
+    },
+    "annotations": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Non-identifying metadata",
+      "title": "Annotations",
+      "type": "object"
+    },
+    "tags": {
+      "description": "Categorization tags",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "extensions": {
+      "additionalProperties": true,
+      "description": "Plugin specific extensions",
+      "title": "Extensions",
+      "type": "object"
+    },
+    "owner": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Resource owner reference",
+      "title": "Owner"
+    },
+    "created_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Who created this resource",
+      "title": "Created By"
+    },
+    "managed_by": {
+      "default": "aether-kernel",
+      "description": "Controller managing this resource",
+      "title": "Managed By",
+      "type": "string"
+    },
+    "id": {
+      "description": "Global unique identifier for this entity",
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+    },
+    "namespace": {
+      "default": "default",
+      "description": "Namespace isolating this entity",
+      "title": "Namespace",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "Creation timestamp",
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "updated_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Last modification timestamp",
+      "title": "Updated At"
+    },
+    "manifest": {
+      "$ref": "#/$defs/ExtensionManifest",
+      "description": "The parsed manifest details"
+    },
+    "is_enabled": {
+      "default": true,
+      "description": "Whether this plugin is active",
+      "title": "Is Enabled",
+      "type": "boolean"
+    },
+    "installed_by": {
+      "description": "Identity ID of the installer",
+      "title": "Installed By",
+      "type": "string"
+    }
+  },
+  "required": [
+    "manifest",
+    "installed_by"
+  ],
+  "title": "Plugin",
+  "type": "object"
+}

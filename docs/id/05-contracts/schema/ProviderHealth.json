@@ -1,0 +1,35 @@
+{
+  "$defs": {
+    "ProviderStatus": {
+      "enum": [
+        "online",
+        "degraded",
+        "offline"
+      ],
+      "title": "ProviderStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Status ketersediaan provider untuk routing dinamis.",
+  "properties": {
+    "status": {
+      "$ref": "#/$defs/ProviderStatus",
+      "default": "online"
+    },
+    "latency_ms": {
+      "default": 0.0,
+      "description": "Average response latency",
+      "title": "Latency Ms",
+      "type": "number"
+    },
+    "error_rate": {
+      "default": 0.0,
+      "description": "Failure percentage (0.0 - 1.0)",
+      "title": "Error Rate",
+      "type": "number"
+    }
+  },
+  "title": "ProviderHealth",
+  "type": "object"
+}

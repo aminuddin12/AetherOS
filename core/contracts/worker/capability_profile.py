@@ -1,16 +1,32 @@
 from typing import List
+from enum import StrEnum
 from pydantic import Field
-from ..base import ValueObject
+from ..base import ValueObject, Entity
 
-class Capability(ValueObject):
+class ProficiencyLevel(StrEnum):
+    BEGINNER = "beginner"
+    INTERMEDIATE = "intermediate"
+    ADVANCED = "advanced"
+    EXPERT = "expert"
+
+class Capability(Entity):
     """
-    Kemampuan spesifik yang dikuasai agen (mis: 'Python', 'Vue3', 'PostgreSQL').
+    Kemampuan/Skill absolut yang immutable (mis: 'Python', 'Vue3').
     """
-    name: str = Field(..., description="Skill or tool name")
-    proficiency: float = Field(default=1.0, description="Proficiency level (0.0 to 1.0)")
+    name: str = Field(..., description="Skill name")
+    category: str = Field(default="general", description="Skill category")
+
+class CapabilityRecord(ValueObject):
+    """
+    Rekaman penguasaan suatu skill oleh agent tertentu (Mutable state).
+    """
+    skill: Capability = Field(..., description="The immutable skill")
+    level: ProficiencyLevel = Field(default=ProficiencyLevel.BEGINNER)
+    confidence: float = Field(default=0.5, description="Confidence score (0.0 to 1.0)")
+    version: str | None = Field(default=None, description="Specific tool/skill version (e.g. '3.12')")
 
 class CapabilityProfile(ValueObject):
     """
-    Kumpulan kemampuan agen yang membedakannya dengan agen lain.
+    Kumpulan rekaman kemampuan agen.
     """
-    capabilities: List[Capability] = Field(default_factory=list)
+    records: List[CapabilityRecord] = Field(default_factory=list)

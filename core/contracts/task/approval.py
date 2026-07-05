@@ -1,7 +1,6 @@
 from enum import StrEnum
 from pydantic import Field
-from ..base import ValueObject
-from ..identity import Principal
+from ..base import ValueObject, ResourceReference
 
 class ApprovalStatus(StrEnum):
     PENDING = "pending"
@@ -14,4 +13,4 @@ class Approval(ValueObject):
     """
     required_role: str = Field(..., description="Role required to approve")
     status: ApprovalStatus = Field(default=ApprovalStatus.PENDING)
-    approved_by: Principal | None = Field(default=None)
+    approved_by_ref: ResourceReference | None = Field(default=None, description="Who approved it")

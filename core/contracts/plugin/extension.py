@@ -9,6 +9,8 @@ class ExtensionType(StrEnum):
     SKILL = "skill"
     WORKFLOW = "workflow"
     DASHBOARD_WIDGET = "dashboard_widget"
+    DISTRIBUTION = "distribution"
+    CLI = "cli"
 
 class Extension(ValueObject):
     """

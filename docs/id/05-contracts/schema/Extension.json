@@ -1,0 +1,43 @@
+{
+  "$defs": {
+    "ExtensionType": {
+      "enum": [
+        "agent",
+        "provider",
+        "tool",
+        "skill",
+        "workflow",
+        "dashboard_widget",
+        "distribution",
+        "cli"
+      ],
+      "title": "ExtensionType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Representasi dari komponen (apa pun jenisnya) yang diekspor oleh Plugin.",
+  "properties": {
+    "name": {
+      "description": "Extension name",
+      "title": "Name",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/$defs/ExtensionType",
+      "description": "Type of extension"
+    },
+    "entrypoint": {
+      "description": "Python module path or reference",
+      "title": "Entrypoint",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "type",
+    "entrypoint"
+  ],
+  "title": "Extension",
+  "type": "object"
+}

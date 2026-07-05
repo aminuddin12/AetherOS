@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "description": "Perubahan atomik (VCS commit).",
+  "properties": {
+    "repository_id": {
+      "description": "The repository",
+      "title": "Repository Id",
+      "type": "string"
+    },
+    "sha": {
+      "description": "Commit hash",
+      "title": "Sha",
+      "type": "string"
+    },
+    "message": {
+      "description": "Commit message",
+      "title": "Message",
+      "type": "string"
+    },
+    "author_identity_id": {
+      "description": "Who authored it",
+      "title": "Author Identity Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "repository_id",
+    "sha",
+    "message",
+    "author_identity_id"
+  ],
+  "title": "Commit",
+  "type": "object"
+}

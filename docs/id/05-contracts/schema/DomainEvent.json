@@ -1,0 +1,20 @@
+{
+  "additionalProperties": false,
+  "description": "Mewakili sesuatu yang telah terjadi di masa lalu di dalam domain.",
+  "properties": {
+    "event_id": {
+      "description": "Unique identifier for the event",
+      "format": "uuid",
+      "title": "Event Id",
+      "type": "string"
+    },
+    "occurred_on": {
+      "description": "When the event occurred",
+      "format": "date-time",
+      "title": "Occurred On",
+      "type": "string"
+    }
+  },
+  "title": "DomainEvent",
+  "type": "object"
+}

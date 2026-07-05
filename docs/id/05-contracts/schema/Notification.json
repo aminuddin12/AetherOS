@@ -1,0 +1,51 @@
+{
+  "$defs": {
+    "NotificationPriority": {
+      "enum": [
+        "low",
+        "normal",
+        "high",
+        "critical"
+      ],
+      "title": "NotificationPriority",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Pesan informasi satu arah yang ditujukan kepada manusia (User).",
+  "properties": {
+    "recipient_id": {
+      "description": "Identity ID of the recipient",
+      "title": "Recipient Id",
+      "type": "string"
+    },
+    "title": {
+      "description": "Notification title",
+      "title": "Title",
+      "type": "string"
+    },
+    "body": {
+      "description": "Detailed message",
+      "title": "Body",
+      "type": "string"
+    },
+    "priority": {
+      "$ref": "#/$defs/NotificationPriority",
+      "default": "normal",
+      "description": "Urgency level"
+    },
+    "read": {
+      "default": false,
+      "description": "Whether it has been read",
+      "title": "Read",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "recipient_id",
+    "title",
+    "body"
+  ],
+  "title": "Notification",
+  "type": "object"
+}

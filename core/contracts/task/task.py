@@ -1,8 +1,7 @@
 from enum import StrEnum
 from typing import List
 from pydantic import Field
-from ..base import AggregateRoot
-from ..identity import Principal
+from ..base import AggregateRoot, ResourceReference
 
 class TaskStatus(StrEnum):
     PENDING = "pending"
@@ -19,5 +18,5 @@ class Task(AggregateRoot):
     title: str = Field(..., description="Task title")
     description: str = Field(..., description="Detailed instructions")
     status: TaskStatus = Field(default=TaskStatus.PENDING, description="Current execution status")
-    creator: Principal = Field(..., description="Who created the task")
-    dependencies: List[str] = Field(default_factory=list, description="IDs of tasks that must finish first")
+    creator_ref: ResourceReference = Field(..., description="Reference to who created the task (Principal/User)")
+    dependencies: List[ResourceReference] = Field(default_factory=list, description="References to blocking tasks")

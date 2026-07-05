@@ -1,0 +1,57 @@
+{
+  "$defs": {
+    "ApprovalStatus": {
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "title": "ApprovalStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Keputusan konkrit yang diambil oleh manusia saat Approval Gate.",
+  "properties": {
+    "command_id": {
+      "description": "Unique identifier for the command",
+      "format": "uuid",
+      "title": "Command Id",
+      "type": "string"
+    },
+    "issued_at": {
+      "description": "When the command was issued",
+      "format": "date-time",
+      "title": "Issued At",
+      "type": "string"
+    },
+    "approval_id": {
+      "description": "Reference to the Approval requested",
+      "title": "Approval Id",
+      "type": "string"
+    },
+    "decision": {
+      "$ref": "#/$defs/ApprovalStatus",
+      "description": "The verdict"
+    },
+    "reasoning": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Explanation for rejection/approval",
+      "title": "Reasoning"
+    }
+  },
+  "required": [
+    "approval_id",
+    "decision"
+  ],
+  "title": "Decision",
+  "type": "object"
+}

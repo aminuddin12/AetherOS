@@ -1,0 +1,665 @@
+{
+  "$defs": {
+    "Capability": {
+      "additionalProperties": false,
+      "description": "Kemampuan/Skill absolut yang immutable (mis: 'Python', 'Vue3').",
+      "properties": {
+        "schema_version": {
+          "default": "1.0",
+          "description": "Schema version of this contract",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "contract_version": {
+          "default": "1.0",
+          "description": "Data contract compatibility version",
+          "title": "Contract Version",
+          "type": "string"
+        },
+        "api_version": {
+          "default": "v1",
+          "description": "API route version",
+          "title": "Api Version",
+          "type": "string"
+        },
+        "spec_version": {
+          "default": "1.0",
+          "description": "Specification/Behavioral version",
+          "title": "Spec Version",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "description": "Generic metadata",
+          "title": "Metadata",
+          "type": "object"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Identifying labels (e.g., tier: backend)",
+          "title": "Labels",
+          "type": "object"
+        },
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Non-identifying metadata",
+          "title": "Annotations",
+          "type": "object"
+        },
+        "tags": {
+          "description": "Categorization tags",
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "description": "Plugin specific extensions",
+          "title": "Extensions",
+          "type": "object"
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Resource owner reference",
+          "title": "Owner"
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Who created this resource",
+          "title": "Created By"
+        },
+        "managed_by": {
+          "default": "aether-kernel",
+          "description": "Controller managing this resource",
+          "title": "Managed By",
+          "type": "string"
+        },
+        "id": {
+          "description": "Global unique identifier for this entity",
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "namespace": {
+          "default": "default",
+          "description": "Namespace isolating this entity",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "Creation timestamp",
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "updated_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Last modification timestamp",
+          "title": "Updated At"
+        },
+        "name": {
+          "description": "Skill name",
+          "title": "Name",
+          "type": "string"
+        },
+        "category": {
+          "default": "general",
+          "description": "Skill category",
+          "title": "Category",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "Capability",
+      "type": "object"
+    },
+    "CapabilityProfile": {
+      "additionalProperties": false,
+      "description": "Kumpulan rekaman kemampuan agen.",
+      "properties": {
+        "records": {
+          "items": {
+            "$ref": "#/$defs/CapabilityRecord"
+          },
+          "title": "Records",
+          "type": "array"
+        }
+      },
+      "title": "CapabilityProfile",
+      "type": "object"
+    },
+    "CapabilityRecord": {
+      "additionalProperties": false,
+      "description": "Rekaman penguasaan suatu skill oleh agent tertentu (Mutable state).",
+      "properties": {
+        "skill": {
+          "$ref": "#/$defs/Capability",
+          "description": "The immutable skill"
+        },
+        "level": {
+          "$ref": "#/$defs/ProficiencyLevel",
+          "default": "beginner"
+        },
+        "confidence": {
+          "default": 0.5,
+          "description": "Confidence score (0.0 to 1.0)",
+          "title": "Confidence",
+          "type": "number"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Specific tool/skill version (e.g. '3.12')",
+          "title": "Version"
+        }
+      },
+      "required": [
+        "skill"
+      ],
+      "title": "CapabilityRecord",
+      "type": "object"
+    },
+    "LifecyclePhase": {
+      "enum": [
+        "created",
+        "training",
+        "certification",
+        "assigned",
+        "working",
+        "review",
+        "promotion",
+        "mentor",
+        "retired"
+      ],
+      "title": "LifecyclePhase",
+      "type": "string"
+    },
+    "ProficiencyLevel": {
+      "enum": [
+        "beginner",
+        "intermediate",
+        "advanced",
+        "expert"
+      ],
+      "title": "ProficiencyLevel",
+      "type": "string"
+    },
+    "ReputationScore": {
+      "additionalProperties": false,
+      "description": "Metrik kinerja agen (Agent Reputation) untuk auto-routing.",
+      "properties": {
+        "performance": {
+          "default": 0.0,
+          "description": "Task success rate",
+          "title": "Performance",
+          "type": "number"
+        },
+        "reliability": {
+          "default": 0.0,
+          "description": "Failure/Loop rate",
+          "title": "Reliability",
+          "type": "number"
+        },
+        "security": {
+          "default": 0.0,
+          "description": "Security vulnerability rate",
+          "title": "Security",
+          "type": "number"
+        },
+        "speed": {
+          "default": 0.0,
+          "description": "Task execution latency",
+          "title": "Speed",
+          "type": "number"
+        },
+        "cost_efficiency": {
+          "default": 0.0,
+          "description": "Token usage efficiency",
+          "title": "Cost Efficiency",
+          "type": "number"
+        },
+        "teamwork": {
+          "default": 0.0,
+          "description": "Handover success rate",
+          "title": "Teamwork",
+          "type": "number"
+        }
+      },
+      "title": "ReputationScore",
+      "type": "object"
+    },
+    "ResourceReference": {
+      "additionalProperties": false,
+      "description": "Pointers ke resource lain untuk mencegah deep object graph.\nSangat cocok untuk Event Sourcing dan penyimpanan relasional.",
+      "properties": {
+        "id": {
+          "description": "Unique ID of the referenced resource",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Type of the resource (e.g., 'Worker', 'Task')",
+          "title": "Kind",
+          "type": "string"
+        },
+        "namespace": {
+          "default": "default",
+          "description": "Resource namespace",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Human readable name",
+          "title": "Name"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Specific version if applicable",
+          "title": "Version"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cached labels for fast filtering",
+          "title": "Labels",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "kind"
+      ],
+      "title": "ResourceReference",
+      "type": "object"
+    },
+    "Role": {
+      "additionalProperties": false,
+      "description": "Definisi persona agen (mis: 'Senior Backend Developer', 'QA Tester').",
+      "properties": {
+        "schema_version": {
+          "default": "1.0",
+          "description": "Schema version of this contract",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "contract_version": {
+          "default": "1.0",
+          "description": "Data contract compatibility version",
+          "title": "Contract Version",
+          "type": "string"
+        },
+        "api_version": {
+          "default": "v1",
+          "description": "API route version",
+          "title": "Api Version",
+          "type": "string"
+        },
+        "spec_version": {
+          "default": "1.0",
+          "description": "Specification/Behavioral version",
+          "title": "Spec Version",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "description": "Generic metadata",
+          "title": "Metadata",
+          "type": "object"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Identifying labels (e.g., tier: backend)",
+          "title": "Labels",
+          "type": "object"
+        },
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Non-identifying metadata",
+          "title": "Annotations",
+          "type": "object"
+        },
+        "tags": {
+          "description": "Categorization tags",
+          "items": {
+            "type": "string"
+          },
+          "title": "Tags",
+          "type": "array"
+        },
+        "extensions": {
+          "additionalProperties": true,
+          "description": "Plugin specific extensions",
+          "title": "Extensions",
+          "type": "object"
+        },
+        "owner": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Resource owner reference",
+          "title": "Owner"
+        },
+        "created_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Who created this resource",
+          "title": "Created By"
+        },
+        "managed_by": {
+          "default": "aether-kernel",
+          "description": "Controller managing this resource",
+          "title": "Managed By",
+          "type": "string"
+        },
+        "id": {
+          "description": "Global unique identifier for this entity",
+          "format": "uuid",
+          "title": "Id",
+          "type": "string"
+        },
+        "namespace": {
+          "default": "default",
+          "description": "Namespace isolating this entity",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "created_at": {
+          "description": "Creation timestamp",
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "updated_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Last modification timestamp",
+          "title": "Updated At"
+        },
+        "title": {
+          "description": "Job title",
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "description": "Role responsibilities",
+          "title": "Description",
+          "type": "string"
+        },
+        "system_prompt_template": {
+          "description": "Base system prompt for LLM",
+          "title": "System Prompt Template",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "system_prompt_template"
+      ],
+      "title": "Role",
+      "type": "object"
+    },
+    "WorkerLifecycle": {
+      "additionalProperties": false,
+      "description": "Status agen saat ini dalam Lifecycle AetherOS.",
+      "properties": {
+        "current_phase": {
+          "$ref": "#/$defs/LifecyclePhase",
+          "default": "created",
+          "description": "Current lifecycle stage"
+        },
+        "tasks_completed": {
+          "default": 0,
+          "description": "Total tasks completed",
+          "title": "Tasks Completed",
+          "type": "integer"
+        },
+        "is_cleared_for_production": {
+          "default": false,
+          "description": "Has passed certification",
+          "title": "Is Cleared For Production",
+          "type": "boolean"
+        }
+      },
+      "title": "WorkerLifecycle",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Entitas utama (Aggregate) yang mewakili satu Agent di AetherOS.",
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "description": "Schema version of this contract",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "contract_version": {
+      "default": "1.0",
+      "description": "Data contract compatibility version",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "api_version": {
+      "default": "v1",
+      "description": "API route version",
+      "title": "Api Version",
+      "type": "string"
+    },
+    "spec_version": {
+      "default": "1.0",
+      "description": "Specification/Behavioral version",
+      "title": "Spec Version",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "description": "Generic metadata",
+      "title": "Metadata",
+      "type": "object"
+    },
+    "labels": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Identifying labels (e.g., tier: backend)",
+      "title": "Labels",
+      "type": "object"
+    },
+    "annotations": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Non-identifying metadata",
+      "title": "Annotations",
+      "type": "object"
+    },
+    "tags": {
+      "description": "Categorization tags",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "extensions": {
+      "additionalProperties": true,
+      "description": "Plugin specific extensions",
+      "title": "Extensions",
+      "type": "object"
+    },
+    "owner": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Resource owner reference",
+      "title": "Owner"
+    },
+    "created_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Who created this resource",
+      "title": "Created By"
+    },
+    "managed_by": {
+      "default": "aether-kernel",
+      "description": "Controller managing this resource",
+      "title": "Managed By",
+      "type": "string"
+    },
+    "id": {
+      "description": "Global unique identifier for this entity",
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+    },
+    "namespace": {
+      "default": "default",
+      "description": "Namespace isolating this entity",
+      "title": "Namespace",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "Creation timestamp",
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "updated_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Last modification timestamp",
+      "title": "Updated At"
+    },
+    "principal_ref": {
+      "$ref": "#/$defs/ResourceReference",
+      "description": "Identity mapped to this worker"
+    },
+    "role": {
+      "$ref": "#/$defs/Role",
+      "description": "Assigned role (persona)"
+    },
+    "profile": {
+      "$ref": "#/$defs/CapabilityProfile",
+      "description": "Capabilities & Skills"
+    },
+    "reputation": {
+      "$ref": "#/$defs/ReputationScore",
+      "description": "Performance metrics"
+    },
+    "lifecycle": {
+      "$ref": "#/$defs/WorkerLifecycle",
+      "description": "Current state"
+    }
+  },
+  "required": [
+    "principal_ref",
+    "role"
+  ],
+  "title": "Worker",
+  "type": "object"
+}

@@ -1,0 +1,90 @@
+{
+  "$defs": {
+    "ResourceReference": {
+      "additionalProperties": false,
+      "description": "Pointers ke resource lain untuk mencegah deep object graph.\nSangat cocok untuk Event Sourcing dan penyimpanan relasional.",
+      "properties": {
+        "id": {
+          "description": "Unique ID of the referenced resource",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Type of the resource (e.g., 'Worker', 'Task')",
+          "title": "Kind",
+          "type": "string"
+        },
+        "namespace": {
+          "default": "default",
+          "description": "Resource namespace",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Human readable name",
+          "title": "Name"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Specific version if applicable",
+          "title": "Version"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cached labels for fast filtering",
+          "title": "Labels",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "kind"
+      ],
+      "title": "ResourceReference",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Penugasan sebuah Task kepada seorang Worker.",
+  "properties": {
+    "task_ref": {
+      "$ref": "#/$defs/ResourceReference",
+      "description": "The task to execute"
+    },
+    "worker_ref": {
+      "$ref": "#/$defs/ResourceReference",
+      "description": "The assigned agent"
+    },
+    "is_active": {
+      "default": true,
+      "description": "Whether this assignment is current",
+      "title": "Is Active",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "task_ref",
+    "worker_ref"
+  ],
+  "title": "Assignment",
+  "type": "object"
+}

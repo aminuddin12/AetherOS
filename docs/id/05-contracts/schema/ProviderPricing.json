@@ -1,0 +1,18 @@
+{
+  "additionalProperties": false,
+  "description": "Skema tarif per token/request (dalam USD).",
+  "properties": {
+    "cost_per_1k_input_tokens": {
+      "default": 0.0,
+      "title": "Cost Per 1K Input Tokens",
+      "type": "number"
+    },
+    "cost_per_1k_output_tokens": {
+      "default": 0.0,
+      "title": "Cost Per 1K Output Tokens",
+      "type": "number"
+    }
+  },
+  "title": "ProviderPricing",
+  "type": "object"
+}

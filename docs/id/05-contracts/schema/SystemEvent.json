@@ -1,0 +1,123 @@
+{
+  "$defs": {
+    "TraceContext": {
+      "additionalProperties": false,
+      "description": "Konteks pelacakan eksekusi untuk observability.",
+      "properties": {
+        "trace_id": {
+          "description": "Global trace identifier",
+          "format": "uuid",
+          "title": "Trace Id",
+          "type": "string"
+        },
+        "current_span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TraceSpan"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Active span in this context"
+        }
+      },
+      "title": "TraceContext",
+      "type": "object"
+    },
+    "TraceSpan": {
+      "additionalProperties": false,
+      "description": "Unit dasar dalam OpenTelemetry-style tracing.",
+      "properties": {
+        "span_id": {
+          "description": "Unique ID for this span",
+          "format": "uuid",
+          "title": "Span Id",
+          "type": "string"
+        },
+        "parent_span_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "ID of the parent span",
+          "title": "Parent Span Id"
+        },
+        "name": {
+          "description": "Name of the operation",
+          "title": "Name",
+          "type": "string"
+        },
+        "started_at": {
+          "description": "Span start time",
+          "format": "date-time",
+          "title": "Started At",
+          "type": "string"
+        },
+        "ended_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Span end time",
+          "title": "Ended At"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "TraceSpan",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Event lintas komponen yang disebarkan via Event Bus.",
+  "properties": {
+    "event_id": {
+      "description": "Unique identifier for the event",
+      "format": "uuid",
+      "title": "Event Id",
+      "type": "string"
+    },
+    "occurred_on": {
+      "description": "When the event occurred",
+      "format": "date-time",
+      "title": "Occurred On",
+      "type": "string"
+    },
+    "topic": {
+      "description": "Routing topic for the event",
+      "title": "Topic",
+      "type": "string"
+    },
+    "payload": {
+      "additionalProperties": true,
+      "description": "Event data",
+      "title": "Payload",
+      "type": "object"
+    },
+    "trace": {
+      "$ref": "#/$defs/TraceContext",
+      "description": "Trace context for observability"
+    }
+  },
+  "required": [
+    "topic",
+    "trace"
+  ],
+  "title": "SystemEvent",
+  "type": "object"
+}

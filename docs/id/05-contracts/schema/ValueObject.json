@@ -1,0 +1,7 @@
+{
+  "additionalProperties": false,
+  "description": "Base class untuk semua Value Objects.\nValue Objects mendefinisikan objek berdasarkan atributnya, bukan identitasnya.\nOleh karena itu bersifat immutable. (Tidak mewarisi BaseContract agar tetap ringan).",
+  "properties": {},
+  "title": "ValueObject",
+  "type": "object"
+}

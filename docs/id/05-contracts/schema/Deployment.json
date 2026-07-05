@@ -1,0 +1,111 @@
+{
+  "$defs": {
+    "DeploymentStatus": {
+      "enum": [
+        "pending",
+        "in_progress",
+        "success",
+        "failed",
+        "rolled_back"
+      ],
+      "title": "DeploymentStatus",
+      "type": "string"
+    },
+    "ResourceReference": {
+      "additionalProperties": false,
+      "description": "Pointers ke resource lain untuk mencegah deep object graph.\nSangat cocok untuk Event Sourcing dan penyimpanan relasional.",
+      "properties": {
+        "id": {
+          "description": "Unique ID of the referenced resource",
+          "title": "Id",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Type of the resource (e.g., 'Worker', 'Task')",
+          "title": "Kind",
+          "type": "string"
+        },
+        "namespace": {
+          "default": "default",
+          "description": "Resource namespace",
+          "title": "Namespace",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Human readable name",
+          "title": "Name"
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Specific version if applicable",
+          "title": "Version"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cached labels for fast filtering",
+          "title": "Labels",
+          "type": "object"
+        }
+      },
+      "required": [
+        "id",
+        "kind"
+      ],
+      "title": "ResourceReference",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Catatan pengiriman kode/artefak ke environment.",
+  "properties": {
+    "event_id": {
+      "description": "Unique identifier for the event",
+      "format": "uuid",
+      "title": "Event Id",
+      "type": "string"
+    },
+    "occurred_on": {
+      "description": "When the event occurred",
+      "format": "date-time",
+      "title": "Occurred On",
+      "type": "string"
+    },
+    "environment_ref": {
+      "$ref": "#/$defs/ResourceReference",
+      "description": "Target environment"
+    },
+    "commit_ref": {
+      "$ref": "#/$defs/ResourceReference",
+      "description": "What was deployed"
+    },
+    "status": {
+      "$ref": "#/$defs/DeploymentStatus",
+      "default": "pending"
+    }
+  },
+  "required": [
+    "environment_ref",
+    "commit_ref"
+  ],
+  "title": "Deployment",
+  "type": "object"
+}

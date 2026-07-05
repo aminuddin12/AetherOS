@@ -1,0 +1,54 @@
+{
+  "$defs": {
+    "PermissionRecord": {
+      "additionalProperties": false,
+      "description": "Representasi izin akses ke sebuah sumber daya.",
+      "properties": {
+        "resource": {
+          "description": "Target resource (e.g., 'workspace.file')",
+          "title": "Resource",
+          "type": "string"
+        },
+        "action": {
+          "description": "Action allowed (e.g., 'read', 'write')",
+          "title": "Action",
+          "type": "string"
+        },
+        "effect": {
+          "default": "allow",
+          "description": "'allow' or 'deny'",
+          "title": "Effect",
+          "type": "string"
+        }
+      },
+      "required": [
+        "resource",
+        "action"
+      ],
+      "title": "PermissionRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Kumpulan permission yang dikelompokkan dalam peran (Role).",
+  "properties": {
+    "name": {
+      "description": "Role name",
+      "title": "Name",
+      "type": "string"
+    },
+    "permissions": {
+      "description": "Associated permissions",
+      "items": {
+        "$ref": "#/$defs/PermissionRecord"
+      },
+      "title": "Permissions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "title": "RoleRecord",
+  "type": "object"
+}

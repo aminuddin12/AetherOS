@@ -1,0 +1,213 @@
+{
+  "$defs": {
+    "Message": {
+      "additionalProperties": false,
+      "description": "Satu gelembung obrolan dalam percakapan (Conversation).",
+      "properties": {
+        "role": {
+          "$ref": "#/$defs/MessageRole",
+          "description": "The role of the message sender"
+        },
+        "content": {
+          "description": "The textual content of the message",
+          "title": "Content",
+          "type": "string"
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional name of the sender/tool",
+          "title": "Name"
+        },
+        "tool_call_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Optional ID if this is a tool response",
+          "title": "Tool Call Id"
+        }
+      },
+      "required": [
+        "role",
+        "content"
+      ],
+      "title": "Message",
+      "type": "object"
+    },
+    "MessageRole": {
+      "enum": [
+        "system",
+        "user",
+        "assistant",
+        "tool"
+      ],
+      "title": "MessageRole",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Rangkaian pesan obrolan utuh yang memiliki konteks.",
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "description": "Schema version of this contract",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "contract_version": {
+      "default": "1.0",
+      "description": "Data contract compatibility version",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "api_version": {
+      "default": "v1",
+      "description": "API route version",
+      "title": "Api Version",
+      "type": "string"
+    },
+    "spec_version": {
+      "default": "1.0",
+      "description": "Specification/Behavioral version",
+      "title": "Spec Version",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "description": "Generic metadata",
+      "title": "Metadata",
+      "type": "object"
+    },
+    "labels": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Identifying labels (e.g., tier: backend)",
+      "title": "Labels",
+      "type": "object"
+    },
+    "annotations": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Non-identifying metadata",
+      "title": "Annotations",
+      "type": "object"
+    },
+    "tags": {
+      "description": "Categorization tags",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "extensions": {
+      "additionalProperties": true,
+      "description": "Plugin specific extensions",
+      "title": "Extensions",
+      "type": "object"
+    },
+    "owner": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Resource owner reference",
+      "title": "Owner"
+    },
+    "created_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Who created this resource",
+      "title": "Created By"
+    },
+    "managed_by": {
+      "default": "aether-kernel",
+      "description": "Controller managing this resource",
+      "title": "Managed By",
+      "type": "string"
+    },
+    "id": {
+      "description": "Global unique identifier for this entity",
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+    },
+    "namespace": {
+      "default": "default",
+      "description": "Namespace isolating this entity",
+      "title": "Namespace",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "Creation timestamp",
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "updated_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Last modification timestamp",
+      "title": "Updated At"
+    },
+    "topic": {
+      "description": "Summary of what the conversation is about",
+      "title": "Topic",
+      "type": "string"
+    },
+    "messages": {
+      "description": "Chronological list of messages",
+      "items": {
+        "$ref": "#/$defs/Message"
+      },
+      "title": "Messages",
+      "type": "array"
+    },
+    "is_active": {
+      "default": true,
+      "description": "Whether new messages can be added",
+      "title": "Is Active",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "topic"
+  ],
+  "title": "Conversation",
+  "type": "object"
+}

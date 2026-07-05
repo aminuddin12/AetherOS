@@ -1,0 +1,32 @@
+{
+  "additionalProperties": false,
+  "description": "Batas operasional (Quotas & Context Window).",
+  "properties": {
+    "max_context_tokens": {
+      "description": "Maximum context window",
+      "title": "Max Context Tokens",
+      "type": "integer"
+    },
+    "max_output_tokens": {
+      "description": "Maximum output window",
+      "title": "Max Output Tokens",
+      "type": "integer"
+    },
+    "rate_limit_requests_per_minute": {
+      "default": 60,
+      "title": "Rate Limit Requests Per Minute",
+      "type": "integer"
+    },
+    "rate_limit_tokens_per_minute": {
+      "default": 100000,
+      "title": "Rate Limit Tokens Per Minute",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "max_context_tokens",
+    "max_output_tokens"
+  ],
+  "title": "ProviderLimits",
+  "type": "object"
+}

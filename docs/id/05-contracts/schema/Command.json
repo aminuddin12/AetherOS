@@ -1,0 +1,20 @@
+{
+  "additionalProperties": false,
+  "description": "Mewakili instruksi atau niat (intent) untuk mengubah state dalam sistem.",
+  "properties": {
+    "command_id": {
+      "description": "Unique identifier for the command",
+      "format": "uuid",
+      "title": "Command Id",
+      "type": "string"
+    },
+    "issued_at": {
+      "description": "When the command was issued",
+      "format": "date-time",
+      "title": "Issued At",
+      "type": "string"
+    }
+  },
+  "title": "Command",
+  "type": "object"
+}

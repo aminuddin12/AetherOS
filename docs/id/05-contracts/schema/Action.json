@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "description": "Niat (Intent) eksekusi spesifik oleh agen yang memanggil sebuah Tool.",
+  "properties": {
+    "command_id": {
+      "description": "Unique identifier for the command",
+      "format": "uuid",
+      "title": "Command Id",
+      "type": "string"
+    },
+    "issued_at": {
+      "description": "When the command was issued",
+      "format": "date-time",
+      "title": "Issued At",
+      "type": "string"
+    },
+    "tool_id": {
+      "description": "Reference to the Tool entity",
+      "title": "Tool Id",
+      "type": "string"
+    },
+    "arguments": {
+      "additionalProperties": true,
+      "description": "Arguments provided by LLM",
+      "title": "Arguments",
+      "type": "object"
+    }
+  },
+  "required": [
+    "tool_id",
+    "arguments"
+  ],
+  "title": "Action",
+  "type": "object"
+}

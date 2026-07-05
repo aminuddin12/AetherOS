@@ -1,0 +1,249 @@
+{
+  "$defs": {
+    "AuthenticationContext": {
+      "additionalProperties": false,
+      "description": "Konteks hasil otentikasi saat ini.",
+      "properties": {
+        "state": {
+          "$ref": "#/$defs/AuthenticationState",
+          "description": "Current state of authentication"
+        },
+        "principal": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Principal"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "The authenticated principal"
+        },
+        "authenticated_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "When the authentication occurred",
+          "title": "Authenticated At"
+        },
+        "expires_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "When the session expires",
+          "title": "Expires At"
+        }
+      },
+      "required": [
+        "state"
+      ],
+      "title": "AuthenticationContext",
+      "type": "object"
+    },
+    "AuthenticationState": {
+      "enum": [
+        "authenticated",
+        "anonymous",
+        "expired"
+      ],
+      "title": "AuthenticationState",
+      "type": "string"
+    },
+    "ExecutionContext": {
+      "additionalProperties": false,
+      "description": "Pembungkus state runtime untuk eksekusi yang sedang berjalan.\nMenyediakan info tentang 'Siapa', 'Kapan', dan 'Pelacakan apa' yang memicu aksi.",
+      "properties": {
+        "auth": {
+          "$ref": "#/$defs/AuthenticationContext",
+          "description": "Current authentication details"
+        },
+        "trace": {
+          "$ref": "#/$defs/TraceContext",
+          "description": "Observability trace details"
+        },
+        "metadata": {
+          "additionalProperties": true,
+          "description": "Additional contextual metadata",
+          "title": "Metadata",
+          "type": "object"
+        }
+      },
+      "required": [
+        "auth",
+        "trace"
+      ],
+      "title": "ExecutionContext",
+      "type": "object"
+    },
+    "Principal": {
+      "additionalProperties": false,
+      "description": "Aktor yang sedang mengeksekusi aksi dalam konteks aktif.",
+      "properties": {
+        "identity_id": {
+          "description": "ID of the underlying Identity",
+          "title": "Identity Id",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/PrincipalType",
+          "description": "Type of the principal"
+        },
+        "name": {
+          "description": "Human readable name of the principal",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "identity_id",
+        "type",
+        "name"
+      ],
+      "title": "Principal",
+      "type": "object"
+    },
+    "PrincipalType": {
+      "enum": [
+        "user",
+        "agent",
+        "system"
+      ],
+      "title": "PrincipalType",
+      "type": "string"
+    },
+    "TraceContext": {
+      "additionalProperties": false,
+      "description": "Konteks pelacakan eksekusi untuk observability.",
+      "properties": {
+        "trace_id": {
+          "description": "Global trace identifier",
+          "format": "uuid",
+          "title": "Trace Id",
+          "type": "string"
+        },
+        "current_span": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TraceSpan"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Active span in this context"
+        }
+      },
+      "title": "TraceContext",
+      "type": "object"
+    },
+    "TraceSpan": {
+      "additionalProperties": false,
+      "description": "Unit dasar dalam OpenTelemetry-style tracing.",
+      "properties": {
+        "span_id": {
+          "description": "Unique ID for this span",
+          "format": "uuid",
+          "title": "Span Id",
+          "type": "string"
+        },
+        "parent_span_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "ID of the parent span",
+          "title": "Parent Span Id"
+        },
+        "name": {
+          "description": "Name of the operation",
+          "title": "Name",
+          "type": "string"
+        },
+        "started_at": {
+          "description": "Span start time",
+          "format": "date-time",
+          "title": "Started At",
+          "type": "string"
+        },
+        "ended_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Span end time",
+          "title": "Ended At"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "TraceSpan",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Intensi untuk mengeksekusi operasi asinkron dalam sistem (CQRS pattern).",
+  "properties": {
+    "command_id": {
+      "description": "Unique identifier for the command",
+      "format": "uuid",
+      "title": "Command Id",
+      "type": "string"
+    },
+    "issued_at": {
+      "description": "When the command was issued",
+      "format": "date-time",
+      "title": "Issued At",
+      "type": "string"
+    },
+    "target_component": {
+      "description": "Target service or agent",
+      "title": "Target Component",
+      "type": "string"
+    },
+    "payload": {
+      "additionalProperties": true,
+      "description": "Command arguments",
+      "title": "Payload",
+      "type": "object"
+    },
+    "context": {
+      "$ref": "#/$defs/ExecutionContext",
+      "description": "Execution context (Auth + Trace)"
+    }
+  },
+  "required": [
+    "target_component",
+    "context"
+  ],
+  "title": "SystemCommand",
+  "type": "object"
+}

@@ -1,0 +1,20 @@
+{
+  "additionalProperties": false,
+  "description": "Konsumsi sumber daya non-LLM (CPU, Memori, Durasi Sandbox).",
+  "properties": {
+    "execution_time_ms": {
+      "default": 0,
+      "description": "Total execution duration in milliseconds",
+      "title": "Execution Time Ms",
+      "type": "integer"
+    },
+    "peak_memory_mb": {
+      "default": 0.0,
+      "description": "Peak memory consumption in MB",
+      "title": "Peak Memory Mb",
+      "type": "number"
+    }
+  },
+  "title": "ResourceUsage",
+  "type": "object"
+}

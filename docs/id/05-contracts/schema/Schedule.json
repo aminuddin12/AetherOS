@@ -1,0 +1,58 @@
+{
+  "$defs": {
+    "SchedulingPolicy": {
+      "enum": [
+        "fifo",
+        "priority",
+        "round_robin",
+        "cost_optimized"
+      ],
+      "title": "SchedulingPolicy",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Kontrak data murni untuk penjadwalan.\n(Bukan service/engine Scheduler).",
+  "properties": {
+    "policy": {
+      "$ref": "#/$defs/SchedulingPolicy",
+      "default": "fifo",
+      "description": "Rule for executing the job"
+    },
+    "cron_expression": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Optional cron schedule",
+      "title": "Cron Expression"
+    },
+    "execute_after": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Execute strictly after this time",
+      "title": "Execute After"
+    },
+    "priority_level": {
+      "default": 0,
+      "description": "Higher integer means higher priority",
+      "title": "Priority Level",
+      "type": "integer"
+    }
+  },
+  "title": "Schedule",
+  "type": "object"
+}

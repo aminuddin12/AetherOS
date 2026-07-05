@@ -1,0 +1,44 @@
+{
+  "additionalProperties": false,
+  "description": "Metrik kinerja agen (Agent Reputation) untuk auto-routing.",
+  "properties": {
+    "performance": {
+      "default": 0.0,
+      "description": "Task success rate",
+      "title": "Performance",
+      "type": "number"
+    },
+    "reliability": {
+      "default": 0.0,
+      "description": "Failure/Loop rate",
+      "title": "Reliability",
+      "type": "number"
+    },
+    "security": {
+      "default": 0.0,
+      "description": "Security vulnerability rate",
+      "title": "Security",
+      "type": "number"
+    },
+    "speed": {
+      "default": 0.0,
+      "description": "Task execution latency",
+      "title": "Speed",
+      "type": "number"
+    },
+    "cost_efficiency": {
+      "default": 0.0,
+      "description": "Token usage efficiency",
+      "title": "Cost Efficiency",
+      "type": "number"
+    },
+    "teamwork": {
+      "default": 0.0,
+      "description": "Handover success rate",
+      "title": "Teamwork",
+      "type": "number"
+    }
+  },
+  "title": "ReputationScore",
+  "type": "object"
+}

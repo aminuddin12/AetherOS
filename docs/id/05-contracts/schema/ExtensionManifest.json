@@ -1,0 +1,109 @@
+{
+  "$defs": {
+    "Extension": {
+      "additionalProperties": false,
+      "description": "Representasi dari komponen (apa pun jenisnya) yang diekspor oleh Plugin.",
+      "properties": {
+        "name": {
+          "description": "Extension name",
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/ExtensionType",
+          "description": "Type of extension"
+        },
+        "entrypoint": {
+          "description": "Python module path or reference",
+          "title": "Entrypoint",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "entrypoint"
+      ],
+      "title": "Extension",
+      "type": "object"
+    },
+    "ExtensionType": {
+      "enum": [
+        "agent",
+        "provider",
+        "tool",
+        "skill",
+        "workflow",
+        "dashboard_widget",
+        "distribution",
+        "cli"
+      ],
+      "title": "ExtensionType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Deklarasi paket (Plugin/Distribution) yang mendaftarkan sekumpulan Extension.\nMemiliki mekanisme dependency management untuk Marketplace.",
+  "properties": {
+    "pack_name": {
+      "description": "E.g., 'CyberSecurityPack'",
+      "title": "Pack Name",
+      "type": "string"
+    },
+    "version": {
+      "description": "SemVer version",
+      "title": "Version",
+      "type": "string"
+    },
+    "author": {
+      "description": "Vendor/Author name",
+      "title": "Author",
+      "type": "string"
+    },
+    "dependencies": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Required plugins and versions",
+      "title": "Dependencies",
+      "type": "object"
+    },
+    "conflicts": {
+      "description": "Plugins that cannot run together with this",
+      "items": {
+        "type": "string"
+      },
+      "title": "Conflicts",
+      "type": "array"
+    },
+    "compatibility": {
+      "description": "Supported AetherOS components",
+      "items": {
+        "type": "string"
+      },
+      "title": "Compatibility",
+      "type": "array"
+    },
+    "minimum_kernel_version": {
+      "default": "1.0.0",
+      "description": "Minimum AetherOS version required",
+      "title": "Minimum Kernel Version",
+      "type": "string"
+    },
+    "extensions": {
+      "description": "Provided components",
+      "items": {
+        "$ref": "#/$defs/Extension"
+      },
+      "title": "Extensions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "pack_name",
+    "version",
+    "author"
+  ],
+  "title": "ExtensionManifest",
+  "type": "object"
+}

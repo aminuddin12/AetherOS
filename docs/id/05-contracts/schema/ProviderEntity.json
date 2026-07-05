@@ -1,0 +1,278 @@
+{
+  "$defs": {
+    "ProviderCapability": {
+      "additionalProperties": false,
+      "description": "Fitur spesifik yang didukung oleh model/provider.",
+      "properties": {
+        "supports_vision": {
+          "default": false,
+          "title": "Supports Vision",
+          "type": "boolean"
+        },
+        "supports_function_calling": {
+          "default": false,
+          "title": "Supports Function Calling",
+          "type": "boolean"
+        },
+        "supports_structured_outputs": {
+          "default": false,
+          "title": "Supports Structured Outputs",
+          "type": "boolean"
+        },
+        "supports_streaming": {
+          "default": false,
+          "title": "Supports Streaming",
+          "type": "boolean"
+        }
+      },
+      "title": "ProviderCapability",
+      "type": "object"
+    },
+    "ProviderHealth": {
+      "additionalProperties": false,
+      "description": "Status ketersediaan provider untuk routing dinamis.",
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/ProviderStatus",
+          "default": "online"
+        },
+        "latency_ms": {
+          "default": 0.0,
+          "description": "Average response latency",
+          "title": "Latency Ms",
+          "type": "number"
+        },
+        "error_rate": {
+          "default": 0.0,
+          "description": "Failure percentage (0.0 - 1.0)",
+          "title": "Error Rate",
+          "type": "number"
+        }
+      },
+      "title": "ProviderHealth",
+      "type": "object"
+    },
+    "ProviderLimits": {
+      "additionalProperties": false,
+      "description": "Batas operasional (Quotas & Context Window).",
+      "properties": {
+        "max_context_tokens": {
+          "description": "Maximum context window",
+          "title": "Max Context Tokens",
+          "type": "integer"
+        },
+        "max_output_tokens": {
+          "description": "Maximum output window",
+          "title": "Max Output Tokens",
+          "type": "integer"
+        },
+        "rate_limit_requests_per_minute": {
+          "default": 60,
+          "title": "Rate Limit Requests Per Minute",
+          "type": "integer"
+        },
+        "rate_limit_tokens_per_minute": {
+          "default": 100000,
+          "title": "Rate Limit Tokens Per Minute",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_context_tokens",
+        "max_output_tokens"
+      ],
+      "title": "ProviderLimits",
+      "type": "object"
+    },
+    "ProviderPricing": {
+      "additionalProperties": false,
+      "description": "Skema tarif per token/request (dalam USD).",
+      "properties": {
+        "cost_per_1k_input_tokens": {
+          "default": 0.0,
+          "title": "Cost Per 1K Input Tokens",
+          "type": "number"
+        },
+        "cost_per_1k_output_tokens": {
+          "default": 0.0,
+          "title": "Cost Per 1K Output Tokens",
+          "type": "number"
+        }
+      },
+      "title": "ProviderPricing",
+      "type": "object"
+    },
+    "ProviderStatus": {
+      "enum": [
+        "online",
+        "degraded",
+        "offline"
+      ],
+      "title": "ProviderStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Data registry untuk satu model/vendor (mis: 'gpt-4o', 'claude-3-5-sonnet').",
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "description": "Schema version of this contract",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "contract_version": {
+      "default": "1.0",
+      "description": "Data contract compatibility version",
+      "title": "Contract Version",
+      "type": "string"
+    },
+    "api_version": {
+      "default": "v1",
+      "description": "API route version",
+      "title": "Api Version",
+      "type": "string"
+    },
+    "spec_version": {
+      "default": "1.0",
+      "description": "Specification/Behavioral version",
+      "title": "Spec Version",
+      "type": "string"
+    },
+    "metadata": {
+      "additionalProperties": true,
+      "description": "Generic metadata",
+      "title": "Metadata",
+      "type": "object"
+    },
+    "labels": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Identifying labels (e.g., tier: backend)",
+      "title": "Labels",
+      "type": "object"
+    },
+    "annotations": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Non-identifying metadata",
+      "title": "Annotations",
+      "type": "object"
+    },
+    "tags": {
+      "description": "Categorization tags",
+      "items": {
+        "type": "string"
+      },
+      "title": "Tags",
+      "type": "array"
+    },
+    "extensions": {
+      "additionalProperties": true,
+      "description": "Plugin specific extensions",
+      "title": "Extensions",
+      "type": "object"
+    },
+    "owner": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Resource owner reference",
+      "title": "Owner"
+    },
+    "created_by": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Who created this resource",
+      "title": "Created By"
+    },
+    "managed_by": {
+      "default": "aether-kernel",
+      "description": "Controller managing this resource",
+      "title": "Managed By",
+      "type": "string"
+    },
+    "id": {
+      "description": "Global unique identifier for this entity",
+      "format": "uuid",
+      "title": "Id",
+      "type": "string"
+    },
+    "namespace": {
+      "default": "default",
+      "description": "Namespace isolating this entity",
+      "title": "Namespace",
+      "type": "string"
+    },
+    "created_at": {
+      "description": "Creation timestamp",
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "updated_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Last modification timestamp",
+      "title": "Updated At"
+    },
+    "name": {
+      "description": "Model identifier",
+      "title": "Name",
+      "type": "string"
+    },
+    "vendor": {
+      "description": "Vendor name (e.g., 'openai')",
+      "title": "Vendor",
+      "type": "string"
+    },
+    "capability": {
+      "$ref": "#/$defs/ProviderCapability",
+      "description": "Supported features"
+    },
+    "limits": {
+      "$ref": "#/$defs/ProviderLimits",
+      "description": "Quotas"
+    },
+    "pricing": {
+      "$ref": "#/$defs/ProviderPricing",
+      "description": "Cost calculation"
+    },
+    "health": {
+      "$ref": "#/$defs/ProviderHealth",
+      "description": "Current availability"
+    }
+  },
+  "required": [
+    "name",
+    "vendor",
+    "capability",
+    "limits",
+    "pricing"
+  ],
+  "title": "ProviderEntity",
+  "type": "object"
+}

@@ -1,0 +1,102 @@
+{
+  "$defs": {
+    "AuthenticationState": {
+      "enum": [
+        "authenticated",
+        "anonymous",
+        "expired"
+      ],
+      "title": "AuthenticationState",
+      "type": "string"
+    },
+    "Principal": {
+      "additionalProperties": false,
+      "description": "Aktor yang sedang mengeksekusi aksi dalam konteks aktif.",
+      "properties": {
+        "identity_id": {
+          "description": "ID of the underlying Identity",
+          "title": "Identity Id",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/$defs/PrincipalType",
+          "description": "Type of the principal"
+        },
+        "name": {
+          "description": "Human readable name of the principal",
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "identity_id",
+        "type",
+        "name"
+      ],
+      "title": "Principal",
+      "type": "object"
+    },
+    "PrincipalType": {
+      "enum": [
+        "user",
+        "agent",
+        "system"
+      ],
+      "title": "PrincipalType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Konteks hasil otentikasi saat ini.",
+  "properties": {
+    "state": {
+      "$ref": "#/$defs/AuthenticationState",
+      "description": "Current state of authentication"
+    },
+    "principal": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Principal"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "The authenticated principal"
+    },
+    "authenticated_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "When the authentication occurred",
+      "title": "Authenticated At"
+    },
+    "expires_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "When the session expires",
+      "title": "Expires At"
+    }
+  },
+  "required": [
+    "state"
+  ],
+  "title": "AuthenticationContext",
+  "type": "object"
+}

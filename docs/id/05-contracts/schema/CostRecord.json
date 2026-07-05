@@ -1,0 +1,28 @@
+{
+  "additionalProperties": false,
+  "description": "Pencatatan biaya finansial dalam sistem.",
+  "properties": {
+    "currency": {
+      "default": "USD",
+      "description": "ISO 4217 currency code",
+      "title": "Currency",
+      "type": "string"
+    },
+    "amount": {
+      "description": "Total cost amount",
+      "title": "Amount",
+      "type": "number"
+    },
+    "billable_entity_id": {
+      "description": "ID of the workspace or project billed",
+      "title": "Billable Entity Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "amount",
+    "billable_entity_id"
+  ],
+  "title": "CostRecord",
+  "type": "object"
+}

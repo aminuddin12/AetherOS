@@ -1,0 +1,38 @@
+{
+  "$defs": {
+    "PrincipalType": {
+      "enum": [
+        "user",
+        "agent",
+        "system"
+      ],
+      "title": "PrincipalType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Aktor yang sedang mengeksekusi aksi dalam konteks aktif.",
+  "properties": {
+    "identity_id": {
+      "description": "ID of the underlying Identity",
+      "title": "Identity Id",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/$defs/PrincipalType",
+      "description": "Type of the principal"
+    },
+    "name": {
+      "description": "Human readable name of the principal",
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "identity_id",
+    "type",
+    "name"
+  ],
+  "title": "Principal",
+  "type": "object"
+}

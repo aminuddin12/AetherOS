@@ -1,0 +1,28 @@
+{
+  "additionalProperties": false,
+  "description": "Fitur spesifik yang didukung oleh model/provider.",
+  "properties": {
+    "supports_vision": {
+      "default": false,
+      "title": "Supports Vision",
+      "type": "boolean"
+    },
+    "supports_function_calling": {
+      "default": false,
+      "title": "Supports Function Calling",
+      "type": "boolean"
+    },
+    "supports_structured_outputs": {
+      "default": false,
+      "title": "Supports Structured Outputs",
+      "type": "boolean"
+    },
+    "supports_streaming": {
+      "default": false,
+      "title": "Supports Streaming",
+      "type": "boolean"
+    }
+  },
+  "title": "ProviderCapability",
+  "type": "object"
+}

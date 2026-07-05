@@ -1,0 +1,28 @@
+{
+  "additionalProperties": false,
+  "description": "Saran tindakan berdasarkan metrik atau pola.",
+  "properties": {
+    "context": {
+      "description": "Situation triggering recommendation",
+      "title": "Context",
+      "type": "string"
+    },
+    "suggested_action": {
+      "description": "What should be done",
+      "title": "Suggested Action",
+      "type": "string"
+    },
+    "expected_benefit": {
+      "description": "Why it should be done",
+      "title": "Expected Benefit",
+      "type": "string"
+    }
+  },
+  "required": [
+    "context",
+    "suggested_action",
+    "expected_benefit"
+  ],
+  "title": "Recommendation",
+  "type": "object"
+}

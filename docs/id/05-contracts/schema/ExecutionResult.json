@@ -1,0 +1,37 @@
+{
+  "$defs": {
+    "ResultStatus": {
+      "enum": [
+        "success",
+        "failure",
+        "partial"
+      ],
+      "title": "ResultStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Keluaran dari suatu task atau aksi.",
+  "properties": {
+    "status": {
+      "$ref": "#/$defs/ResultStatus",
+      "description": "Outcome of the execution"
+    },
+    "summary": {
+      "description": "Brief outcome description",
+      "title": "Summary",
+      "type": "string"
+    },
+    "output_data": {
+      "default": null,
+      "description": "Artifacts or structured results",
+      "title": "Output Data"
+    }
+  },
+  "required": [
+    "status",
+    "summary"
+  ],
+  "title": "ExecutionResult",
+  "type": "object"
+}

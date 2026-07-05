@@ -1,0 +1,40 @@
+{
+  "additionalProperties": false,
+  "description": "Event telemetri umum untuk pelacakan observability.",
+  "properties": {
+    "event_id": {
+      "description": "Unique identifier for the event",
+      "format": "uuid",
+      "title": "Event Id",
+      "type": "string"
+    },
+    "occurred_on": {
+      "description": "When the event occurred",
+      "format": "date-time",
+      "title": "Occurred On",
+      "type": "string"
+    },
+    "level": {
+      "default": "info",
+      "description": "Log level (info, warn, error)",
+      "title": "Level",
+      "type": "string"
+    },
+    "message": {
+      "description": "Telemetry message",
+      "title": "Message",
+      "type": "string"
+    },
+    "attributes": {
+      "additionalProperties": true,
+      "description": "Structured log data",
+      "title": "Attributes",
+      "type": "object"
+    }
+  },
+  "required": [
+    "message"
+  ],
+  "title": "TelemetryEvent",
+  "type": "object"
+}

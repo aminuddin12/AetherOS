@@ -1,0 +1,28 @@
+{
+  "additionalProperties": false,
+  "description": "Representasi cabang (branch) VCS.",
+  "properties": {
+    "repository_id": {
+      "description": "The repository",
+      "title": "Repository Id",
+      "type": "string"
+    },
+    "name": {
+      "description": "Branch name (e.g., 'feature/auth')",
+      "title": "Name",
+      "type": "string"
+    },
+    "head_commit": {
+      "description": "Latest commit SHA",
+      "title": "Head Commit",
+      "type": "string"
+    }
+  },
+  "required": [
+    "repository_id",
+    "name",
+    "head_commit"
+  ],
+  "title": "Branch",
+  "type": "object"
+}

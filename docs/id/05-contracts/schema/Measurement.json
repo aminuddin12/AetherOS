@@ -1,0 +1,36 @@
+{
+  "additionalProperties": false,
+  "description": "Nilai aktual pada titik waktu tertentu dari sebuah metrik.",
+  "properties": {
+    "metric_id": {
+      "description": "Reference to the Metric entity",
+      "title": "Metric Id",
+      "type": "string"
+    },
+    "value": {
+      "description": "The measured value",
+      "title": "Value",
+      "type": "number"
+    },
+    "tags": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Dimensions for aggregation",
+      "title": "Tags",
+      "type": "object"
+    },
+    "timestamp": {
+      "description": "When measured",
+      "format": "date-time",
+      "title": "Timestamp",
+      "type": "string"
+    }
+  },
+  "required": [
+    "metric_id",
+    "value"
+  ],
+  "title": "Measurement",
+  "type": "object"
+}
