@@ -43,8 +43,11 @@ Untuk mempermudah pemahaman sistem, Anda dapat mengikuti jalur membaca dokumenta
 
 ## Daftar Isi
 
-### 🎯 [01 — Visi & Filosofi](01-vision/philosophy-and-principles.md)
-Fondasi strategis, visi, misi, prinsip desain inti, dan value proposition AetherOS sebagai platform AI company orchestrator.
+### 🎯 01 — Visi & Filosofi
+| Dokumen | Deskripsi |
+|---------|-----------|
+| [Filosofi & Prinsip](01-vision/philosophy-and-principles.md) | Fondasi strategis, visi OS Generik, dan value proposition AetherOS |
+| [AI Constitution](01-vision/ai-constitution.md) | Hierarki aturan sistem (global.yaml hingga agent.yaml) |
 
 ---
 
@@ -52,26 +55,31 @@ Fondasi strategis, visi, misi, prinsip desain inti, dan value proposition Aether
 | Dokumen | Deskripsi |
 |---------|-----------|
 | [Gambaran Umum Sistem](02-architecture/system-overview.md) | Arsitektur global, technology stack, diagram C4, dan dependency graph |
+| [AI Kernel](02-architecture/ai-kernel.md) | Lapisan abstraksi utama (Runtime, Scheduler, Router, dll) |
 | [Execution Loop](02-architecture/execution-loop.md) | 7 tahap siklus eksekusi: Ingestion → Persistence, error handling, retry |
 | [Arsitektur Event-Driven](02-architecture/event-driven-architecture.md) | Redis Streams, Consumer Groups, event catalog, dead letter queue |
 | [Orkestrasi State Machine](02-architecture/state-machine-orchestration.md) | LangGraph, transisi state, Checkpoint Gates, HITL workflow |
 
 ---
 
-### 🧠 03 — Project Brain
+### 🧠 03 — Company Brain
 | Dokumen | Deskripsi |
 |---------|-----------|
-| [Arsitektur Memori](03-project-brain/memory-architecture.md) | Short-term vs Long-term memory, distillation process, sinkronisasi |
-| [Skema PostgreSQL](03-project-brain/postgresql-schema.md) | DDL lengkap, ERD, index strategy, migration |
-| [Desain Vektor Qdrant](03-project-brain/qdrant-vector-design.md) | Collections, embedding strategy, metadata filtering, archiving |
+| [Arsitektur Memori](03-company-brain/memory-architecture.md) | Short-term vs Long-term memory, distillation process, sinkronisasi |
+| [Organizational Intelligence](03-company-brain/organizational-intelligence.md) | Sistem pembelajaran AI: Knowledge, Lessons, Patterns, Predictions |
+| [Multi-Workspace](03-company-brain/multi-workspace.md) | Hierarki Organisasi → Divisi → Proyek → Workspace |
+| [Skema PostgreSQL](03-company-brain/postgresql-schema.md) | DDL lengkap, ERD, index strategy, migration |
+| [Desain Vektor Qdrant](03-company-brain/qdrant-vector-design.md) | Collections, embedding strategy, metadata filtering, archiving |
 
 ---
 
 ### 🤖 04 — Agen
 | Dokumen | Deskripsi |
 |---------|-----------|
-| [Framework Agen](04-agents/agent-framework.md) | PydanticAI runtime, schema validation, lifecycle, error handling |
+| [Framework Agen](04-agents/agent-framework.md) | PydanticAI runtime, schema validation, error handling |
 | [Katalog Agen](04-agents/agent-catalog.md) | 8 peran agen: capabilities, I/O schemas, dependency graph |
+| [Siklus Hidup Agen](04-agents/agent-lifecycle.md) | Fase agen: Training → Working → Promotion → Retirement |
+| [Reputasi Agen](04-agents/agent-reputation.md) | Metrik performa, reliabilitas, keamanan, dan biaya |
 | [Komunikasi Agen](04-agents/agent-communication.md) | Inter-agent protocol, handover, reasoning chain, conflict resolution |
 | [RBAC & Permissions](04-agents/rbac-and-permissions.md) | Permission matrix, directory access, tool restrictions, eskalasi |
 
@@ -111,6 +119,7 @@ Multi-provider LLM routing, automatic fallback, cost & token analytics, model se
 | Dokumen | Deskripsi |
 |---------|-----------|
 | [Spesifikasi API](09-interfaces/api-specification.md) | FastAPI endpoints, OpenAPI spec, authentication |
+| [Plugin SDK](09-interfaces/plugin-sdk.md) | Agent SDK, Provider SDK, Tool SDK, Skill SDK, dll. |
 | [Referensi CLI](09-interfaces/cli-reference.md) | Command-line interface, commands, usage |
 | [Desain Dashboard](09-interfaces/dashboard-design.md) | Web dashboard, monitoring UI, approval interface |
 | [Marketplace API](09-interfaces/marketplace-api.md) | Plugin marketplace, third-party integration, distribution |
@@ -124,6 +133,15 @@ Git workflow, branching strategy, atomic commits, workspace volume management, p
 
 ### 🗺️ [11 — Roadmap Pengembangan](11-roadmap/development-phases.md)
 Fase 1-5 detail dengan deliverables, KPIs, timeline, dan acceptance criteria.
+
+---
+
+### 🏛️ Architecture Decision Records (ADR)
+| Kategori | Deskripsi |
+|----------|-----------|
+| [Index ADR](adr/README.md) | Daftar lengkap keputusan arsitektural historis |
+| [Index RFC](rfc/README.md) | Request for Comments untuk diskusi fitur baru |
+| [Index Research](research/README.md) | Kumpulan ide eksplorasi dan riset masa depan |
 
 ---
 

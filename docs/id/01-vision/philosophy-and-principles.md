@@ -1,6 +1,6 @@
 # 01 — Visi, Filosofi, dan Prinsip Desain
 
-> *"AetherOS bukan sekadar framework — ia adalah sistem operasi untuk perusahaan AI, di mana pengetahuan organisasi menjadi aset abadi yang tidak bergantung pada model AI manapun."*
+> *"The Open Agent Operating System. Build Organizations, not Agents."*
 
 ---
 
@@ -37,7 +37,14 @@ mindmap
 
 ## 1.2 Visi
 
-**AetherOS adalah platform open-source revolusioner yang dirancang untuk mengorkestrasi organisasi AI multi-agent dengan kedaulatan pengetahuan penuh.**
+**AetherOS adalah "The Open Agent Operating System" — sebuah platform open-source revolusioner yang menjadi fondasi generik bagi berbagai bentuk organisasi otonom (AI Organizations) dengan kedaulatan pengetahuan penuh.**
+
+Sebagai OS Generik, AetherOS tidak terbatas pada perusahaan software. Kernel inti AetherOS dapat menjalankan berbagai *Distribution Packs* seperti:
+- **Software Company Pack**
+- **Cyber Security Pack**
+- **Marketing Agency Pack**
+- **Research Laboratory Pack**
+- **Legal Assistant Pack**
 
 Visi ini mengandung tiga elemen kunci:
 
@@ -75,11 +82,11 @@ Sama seperti OS mengabstraksi hardware sehingga aplikasi tidak perlu tahu detail
 
 ## 1.3 Misi
 
-**Mencapai Model Agnosticism total melalui Project Brain — sebuah sumber kebenaran permanen (Immutable Ledger) yang memastikan pengetahuan proyek tetap utuh meskipun model LLM di bawahnya diganti atau diperbarui.**
+**Mencapai Model Agnosticism total melalui Company Brain — sebuah sumber kebenaran permanen dan kecerdasan kolektif yang memastikan pengetahuan organisasi tetap utuh dan berkembang, meskipun model LLM atau agen di bawahnya berganti.**
 
 ### Misi Operasional
 
-1. **Memisahkan Pengetahuan dari Komputasi** — Setiap wawasan yang dihasilkan oleh LLM diekstraksi, distrukturisasi, dan disimpan dalam Project Brain sebelum sesi berakhir.
+1. **Memisahkan Pengetahuan dari Komputasi** — Setiap wawasan yang dihasilkan oleh LLM diekstraksi, distrukturisasi, dan disimpan dalam Company Brain sebelum sesi berakhir.
 2. **Menstandarisasi Kolaborasi Multi-Agent** — Menyediakan protokol komunikasi, validasi, dan serah terima tugas yang konsisten antar agen.
 3. **Menjamin Tata Kelola AI** — Setiap tindakan agen memiliki jejak audit, dan tindakan kritikal memerlukan persetujuan manusia.
 4. **Mengdemokratisasi Akses** — Sebagai platform open-source, AetherOS memastikan bahwa organisasi kecil maupun besar dapat membangun perusahaan AI yang mandiri.
@@ -140,7 +147,7 @@ graph TD
 
 ### Pilar 2: Persistence First
 
-**Definisi:** Pengetahuan tidak boleh terkurung dalam konteks sesi LLM yang *ephemeral*. AetherOS menerapkan **Knowledge Extraction Layer** yang secara aktif mengekstraksi wawasan terstruktur dari setiap respons LLM sebelum dikomit ke dalam Project Brain.
+**Definisi:** Pengetahuan tidak boleh terkurung dalam konteks sesi LLM yang *ephemeral*. AetherOS menerapkan **Knowledge Extraction Layer** yang secara aktif mengekstraksi wawasan terstruktur dari setiap respons LLM sebelum dikomit ke dalam Company Brain.
 
 **Mekanisme:**
 
@@ -149,7 +156,7 @@ sequenceDiagram
     participant Agent as 🤖 Agent
     participant LLM as 🧠 LLM
     participant KEL as 📋 Knowledge<br/>Extraction Layer
-    participant PB as 🗄️ Project Brain
+    participant PB as 🗄️ Company Brain
 
     Agent->>LLM: Kirim instruksi + konteks
     LLM-->>Agent: Respons (kode, analisis, keputusan)
@@ -263,10 +270,15 @@ graph TD
 
 ## 1.5 Value Proposition
 
-### Untuk Startup AI
-- Memulai dengan tim AI yang terstruktur tanpa perlu merekrut banyak engineer
-- Mengurangi biaya operasional melalui multi-provider routing dan cost analytics
-- Memastikan pengetahuan proyek tetap utuh meskipun berganti model atau engineer
+### Untuk Berbagai Industri (Distributions)
+- **Software Company:** Otomatisasi siklus hidup SDLC, code review, dan testing.
+- **Cyber Security:** Orkestrasi agen pentester, analis malware, dan tim respons insiden.
+- **Research Lab:** Sintesis literatur massal, ekstraksi data eksperimen, dan penulisan paper.
+
+### Untuk Startup & Organisasi
+- Memulai dengan tim AI yang terstruktur tanpa perlu merekrut banyak pekerja manual.
+- Mengurangi biaya operasional melalui multi-provider routing dan cost analytics.
+- Memastikan DNA dan pengetahuan organisasi terus berkembang secara otonom (Organizational Intelligence).
 
 ### Untuk Enterprise
 - Audit trail lengkap untuk setiap keputusan AI — memenuhi compliance requirement
@@ -285,7 +297,7 @@ graph TD
 | Aspek | AetherOS | AutoGPT / CrewAI | LangChain Agents | Custom Solutions |
 |-------|----------|-------------------|------------------|-----------------|
 | Model Agnosticism | ✅ Total | ⚠️ Parsial | ⚠️ Parsial | ❌ Biasanya single-model |
-| Persistent Knowledge | ✅ Project Brain | ❌ Session-based | ❌ Session-based | ⚠️ Ad-hoc |
+| Persistent Knowledge | ✅ Company Brain | ❌ Session-based | ❌ Session-based | ⚠️ Ad-hoc |
 | Event-Driven Comms | ✅ Redis Streams | ❌ Sequential | ❌ Sequential | ⚠️ Varies |
 | Full Audit Trail | ✅ OpenTelemetry | ❌ Minimal | ⚠️ Basic logging | ❌ Biasanya tidak ada |
 | HITL Workflow | ✅ Checkpoint Gates | ❌ Tidak ada | ⚠️ Basic | ⚠️ Custom |

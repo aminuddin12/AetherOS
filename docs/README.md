@@ -1,6 +1,7 @@
 # AetherOS Documentation
 
-> Sistem Operasi untuk Perusahaan AI — Platform open-source untuk mengorkestrasi organisasi AI multi-agent dengan kedaulatan pengetahuan penuh.
+> **The Open Agent Operating System.**
+> *Build Organizations, not Agents.*
 
 ## 🌐 Language / Bahasa
 
@@ -11,15 +12,16 @@
 
 ## Tentang AetherOS
 
-AetherOS adalah platform revolusioner yang dirancang sebagai **"Operating System for AI Companies"** — sebuah sistem di mana agen AI berfungsi sebagai entitas kerja yang dapat dipertukarkan tanpa mendegradasi aset intelektual organisasi.
+AetherOS adalah platform revolusioner yang dirancang sebagai **"The Open Agent Operating System"** — sebuah sistem operasi generik yang menjadi fondasi bagi organisasi otonom (AI Organizations). Dengan AetherOS, Anda tidak lagi hanya mengorkestrasi agen secara individu, melainkan membangun kecerdasan kolektif tingkat perusahaan.
 
 ### Fitur Utama
 
 - **Model Agnosticism** — Tidak bergantung pada satu penyedia LLM
-- **Project Brain** — Sumber kebenaran permanen (Immutable Ledger)
-- **Event-Driven Architecture** — Komunikasi asinkron antar agen
-- **Human-in-the-Loop** — Checkpoint gates untuk tindakan kritikal
-- **Multi-Agent Orchestration** — 8 peran agen spesialis
+- **Company Brain** — Sumber kebenaran permanen dan memori kolektif organisasi
+- **AI Kernel & Constitution** — Aturan terpusat yang dipatuhi oleh seluruh sistem
+- **Organizational Intelligence** — Sistem yang secara otonom belajar dari kesalahan agen
+- **Multi-Workspace** — Isolasi proyek dengan berbagi pengetahuan global
+- **Multi-Agent Orchestration** — Dukungan untuk peran spesialis dengan Lifecycle & Reputation
 
 ## Quick Links
 

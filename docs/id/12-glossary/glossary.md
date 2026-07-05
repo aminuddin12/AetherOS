@@ -8,8 +8,11 @@
 
 | Istilah | Definisi |
 |---------|----------|
+| **ADR (Architecture Decision Record)** | Dokumen historis yang merekam keputusan arsitektural penting beserta konteks dan alasannya. |
 | **Agent** | Entitas otonom berbasis LLM yang memiliki peran, kemampuan, dan batasan akses spesifik dalam organisasi AetherOS. |
 | **Agent Handover** | Mekanisme serah terima tugas dan konteks dari satu agen ke agen lain melalui Event Bus. |
+| **AI Constitution** | Sekumpulan aturan sistem berbasis YAML yang mengatur batas etika, kebijakan, dan operasional seluruh agen AI. |
+| **AI Kernel** | Lapisan abstraksi utama (OS Layer) yang memisahkan agen dari infrastruktur (event, memori, akses). |
 | **API Router** | Lapisan abstraksi yang mengarahkan request ke penyedia LLM yang tepat berdasarkan preferensi, ketersediaan, dan biaya. |
 | **Atomic Commit** | Operasi Git commit yang bersifat all-or-nothing — berhasil sepenuhnya atau gagal sepenuhnya tanpa state parsial. |
 | **Audit Log** | Catatan permanen dari setiap aksi yang dilakukan oleh agen atau sistem, disimpan secara append-only di PostgreSQL. |
@@ -26,6 +29,7 @@
 | Istilah | Definisi |
 |---------|----------|
 | **Checkpoint Gate** | Titik dalam alur kerja di mana state machine membekukan eksekusi dan menunggu input manusia sebelum melanjutkan. |
+| **Company Brain** | Sumber kebenaran permanen dan memori kolektif tingkat organisasi (menggantikan konsep Project Brain). |
 | **Consumer Group** | Fitur Redis Streams yang memungkinkan multiple instances agen berbagi beban pemrosesan pesan. |
 | **Context Injection** | Proses mengambil pengetahuan relevan dari Project Brain dan menyuntikkannya ke Working Memory agen sebelum eksekusi tugas. |
 | **Context Window** | Batas jumlah token yang dapat diproses oleh LLM dalam satu request. |
@@ -37,7 +41,7 @@
 |---------|----------|
 | **DAG (Directed Acyclic Graph)** | Struktur data graph yang digunakan untuk merepresentasikan task graph — tugas dan dependensi antar tugas tanpa siklus. |
 | **Dead Letter Queue (DLQ)** | Antrian khusus untuk pesan yang gagal diproses setelah jumlah maksimal percobaan. |
-| **Distillation** | Proses mengekstraksi dan merangkum pengetahuan terstruktur dari output kerja agen untuk disimpan ke Project Brain. |
+| **Distillation** | Proses mengekstraksi dan merangkum pengetahuan terstruktur dari output kerja agen untuk disimpan ke Company Brain. |
 
 ## E
 
@@ -66,7 +70,7 @@
 
 | Istilah | Definisi |
 |---------|----------|
-| **Knowledge Extraction Layer (KEL)** | Komponen yang secara aktif mengekstraksi wawasan terstruktur dari respons LLM sebelum disimpan ke Project Brain. |
+| **Knowledge Extraction Layer (KEL)** | Komponen yang secara aktif mengekstraksi wawasan terstruktur dari respons LLM sebelum disimpan ke Company Brain. |
 
 ## L
 
@@ -75,7 +79,7 @@
 | **LangGraph** | Library Python untuk membangun stateful, graph-based workflows — digunakan AetherOS sebagai state machine engine. |
 | **LLM (Large Language Model)** | Model bahasa berskala besar (GPT-4, Claude, Llama) yang digunakan sebagai mesin komputasi oleh agen. |
 | **LLM Agnostic** | Prinsip di mana sistem tidak bergantung pada satu model atau penyedia LLM tertentu. |
-| **Long-term Memory** | Pengetahuan yang disimpan secara permanen di Project Brain (PostgreSQL + Qdrant). |
+| **Long-term Memory** | Pengetahuan yang disimpan secara permanen di Company Brain (PostgreSQL + Qdrant). |
 
 ## M
 
@@ -90,6 +94,7 @@
 |---------|----------|
 | **OpenHands** | Tool Execution Layer yang menyediakan sandbox terisolasi untuk operasi file dan terminal oleh agen. |
 | **OpenTelemetry** | Standar observabilitas vendor-neutral untuk distributed tracing, metrics, dan logging. |
+| **Organizational Intelligence** | Kemampuan sistem belajar dari pengalaman kolektif organisasi untuk mengotomatisasi kebijakan baru secara dinamis. |
 | **Outbox Pattern** | Pola desain untuk menjamin konsistensi antara dua penyimpanan data (PostgreSQL dan Qdrant). |
 
 ## P
@@ -99,7 +104,7 @@
 | **PEL (Pending Entry List)** | Daftar pesan di Redis Streams yang telah dideliveri ke consumer tetapi belum di-acknowledge. |
 | **Persistence First** | Prinsip bahwa pengetahuan harus disimpan secara permanen sebelum sesi berakhir. |
 | **Plugin** | Bundel ekstensi (skills + configurations) yang dapat diinstal dari marketplace. |
-| **Project Brain** | Sistem penyimpanan pengetahuan gabungan PostgreSQL (terstruktur) dan Qdrant (vektor) — sumber kebenaran AetherOS. |
+| **Plugin SDK** | Kumpulan spesifikasi antarmuka untuk membuat ekstensi agen, tool, memory, dan API pada AetherOS. |
 | **Provider Router** | Komponen yang mengabstraksi dan mengarahkan request ke berbagai penyedia LLM. |
 | **PydanticAI** | Framework Python yang memberlakukan strict type-checking pada input/output agen. |
 
@@ -107,7 +112,7 @@
 
 | Istilah | Definisi |
 |---------|----------|
-| **Qdrant** | Database vektor yang digunakan untuk menyimpan dan mencari embedding semantik dalam Project Brain. |
+| **Qdrant** | Database vektor yang digunakan untuk menyimpan dan mencari embedding semantik dalam Company Brain. |
 
 ## R
 
@@ -117,6 +122,7 @@
 | **RBAC (Role-Based Access Control)** | Sistem kontrol akses berdasarkan peran agen — membatasi akses ke tools, direktori, dan aksi. |
 | **Reasoning Chain** | Dokumentasi langkah-langkah berpikir agen sebelum mengambil tindakan — memungkinkan traceability dan debugging. |
 | **Redis Streams** | Fitur Redis yang menyediakan persistent, append-only log — digunakan sebagai backbone Event Bus. |
+| **RFC (Request for Comments)** | Dokumen usulan fitur atau perubahan arsitektural berskala besar untuk didiskusikan oleh komunitas. |
 
 ## S
 
