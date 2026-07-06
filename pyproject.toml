@@ -6,7 +6,16 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "pydantic>=2.7.0",
+    "typer>=0.12.0",
+    "rich>=13.0.0",
+    "pyyaml>=6.0.0",
 ]
+
+[tool.uv.workspace]
+members = ["cli", "runtime", "workspace"]
+
+[project.scripts]
+aether = "aether_cli.app:app"
 
 [project.optional-dependencies]
 dev = [
@@ -78,3 +87,7 @@ forbidden_modules = ["core.execution"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["core", "tools"]
+
+[tool.hatch.build.targets.wheel.sources]
+"cli/src/aether_cli" = "aether_cli"
+"runtime/src/aether_runtime" = "aether_runtime"

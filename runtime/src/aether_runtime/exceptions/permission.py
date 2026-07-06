@@ -1,0 +1,1 @@
+class RuntimePermissionException(Exception): pass

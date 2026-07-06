@@ -1,5 +1,8 @@
 # AetherOS
 
+> **AetherOS adalah Open Agent Operating System yang menyediakan kernel, runtime, dan organizational platform untuk membangun organisasi digital yang terdiri dari manusia, AI, tools, dan layanan sebagai satu sistem yang terintegrasi.**
+
+Philosophy: Build Organizations, not Agents.
 **The Open Agent Operating System**
 
 > Build Organizations, not Agents.
