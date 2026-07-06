@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [tool.uv.workspace]
-members = ["cli", "runtime", "workspace"]
+members = ["cli", "runtime", "workspace", "storage", "repository", "artifact", "workspace-app", "organization"]
 
 [project.scripts]
 aether = "aether_cli.app:app"

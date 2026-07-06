@@ -1,0 +1,25 @@
+[project]
+name = "aether-workspace-app"
+version = "1.0.0"
+description = "AetherOS Workspace Application Runtime (Orchestration Layer)"
+authors = [
+    { name = "AetherOS Contributors" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7.0",
+    "aether-workspace",
+    "aether-storage",
+    "aether-repository",
+    "aether-artifact"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+aether-workspace = { workspace = true }
+aether-storage = { workspace = true }
+aether-repository = { workspace = true }
+aether-artifact = { workspace = true }

@@ -1,59 +1,31 @@
-# AetherOS Roadmap
+# AetherOS Roadmap 2.0
 
-AetherOS telah berevolusi dari sekadar "AI Agent Framework" menjadi **Open Agent Operating System**. Roadmap berikut merangkum evolusi arsitektur dan fungsionalitas menuju ekosistem organisasi digital yang sepenuhnya berdaulat.
+Evolusi AetherOS dirancang untuk bergerak dari lapisan Infrastruktur (OS), menuju lapisan Organisasi, dan berakhir pada lapisan Kecerdasan (Intelligence).
 
----
+## ✅ Phase 1: Infrastructure Layer
+- **M1: Kernel Runtime** — System Services, Logging, Telemetry, Core Events.
+- **M2: Execution Engine** — Subprocess, Docker, Isolation.
+- **M2.6: Developer Platform** — CLI Tooling.
+- **M2.7: Runtime SDK** — Universal Facade (System Call Interface).
 
-## Operating System Layer (Completed)
+## ✅ Phase 2: Organization Layer
+- **M3.0: Workspace Core** — Entitas Aggregate Root.
+- **M3.1: Storage Runtime** — Blob Storage & Hash Management.
+- **M3.2: Repository Runtime** — Revision Graph Management.
+- **M3.3: Artifact Runtime** — Semantic Resource Management.
+- **M3.4: Workspace Application Runtime** — Orchestration, CQRS, Middleware.
+- **M3.5: Organization Runtime** — Operating Context, Identity, Directory, Registry.
 
-Layer fondasi ini membangun infrastruktur *low-level* AetherOS yang independen dari konsep AI, bertindak murni sebagai Sistem Operasi.
+## 🔄 Phase 3: Consolidation (Current)
+- **M3.6: Architecture Consolidation & Documentation Freeze** — Menyelaraskan seluruh dokumentasi, ADR, dan spesifikasi arsitektur sebelum memulai pembuatan lapisan kecerdasan.
 
-- ✅ **Milestone 0: Core Contracts** (Data structures, Pydantic schemas, BaseContract)
-- ✅ **Milestone 1: Kernel** (Dependency Injection, Dispatcher, Metrics, Pipeline, State, Registry)
-- ✅ **Milestone 2: Execution Engine** (Thread, Worker, Queue, Strategy, Timeout, Retry, Pool)
-- ✅ **Milestone 2.5: Engineering Hardening** (Testing, Architecture Validation, Compatibility, CI/CD, OSS Governance)
-- ✅ **Milestone 2.6: Developer Runtime (CLI)** (Aether CLI, Dynamic Formatter, Architecture Introspection)
+## ⏳ Phase 4: Intelligence Layer
+- **M4: Company Brain** — *Knowledge Orchestrator* pembangun graf semantik, bertugas mengambil kesimpulan tanpa memiliki knowledge database mandiri.
+- **M5: Agent Runtime** — Entitas kognitif pekerja yang memahami direktori dan identitas.
+- **M6: Provider Runtime** — Pengelola integrasi model bahasa abstrak.
+- **M7: Workflow Runtime** — Orkestrasi langkah kerja multi-agen.
+- **M8: Constitution Runtime** — Tata tertib dan regulasi tertinggi untuk perilaku AI dalam OS.
 
----
-
-## The Bridge (Next)
-
-Menjembatani fondasi *low-level* (Kernel) dengan *frontends* dan *Organization Layer*.
-
-- ⏳ **Milestone 2.7: Internal Runtime API** 
-  - Standarisasi antarmuka untuk seluruh interaksi dengan Kernel.
-  - CLI, GUI (Aether Studio), dan REST API akan mengonsumsi layer Runtime API yang sama.
-
----
-
-## Organization Layer (Future)
-
-Lapisan di mana AI, manusia, dan instrumen digital dirakit menjadi satu entitas operasional.
-
-- ⏳ **Milestone 3: Workspace Core Runtime**
-  - Implementasi *Workspace Lifecycle*, *Repository*, *Branch*, *Commit*, *Artifact*, dan *Filesystem*.
-  - Pemisahan model domain dari servis (tanpa AI).
-  
-- ⏳ **Milestone 3.5: Workspace Services Runtime**
-  - Integrasi layanan *Workspace*: *Git*, *Watcher*, *Indexer*, *Search*, *Snapshot*, *Workspace Events*, *Cache*.
-
-- ⏳ **Milestone 4: Knowledge Runtime** (Mantan "Memory Engine")
-  - Membangun memori organisasi: *Knowledge, Policy, Lesson, Company DNA, Standards, Patterns, Predictions, Recommendations, Embeddings*.
-  
-- ⏳ **Milestone 5: Provider Runtime**
-  - Abstraksi layanan kapabilitas: *LLM, Embedding, Vision, Speech, Image, Video, OCR, Search, Browser, Filesystem*.
-  - Provider bukan entitas AI, melainkan driver kapabilitas.
-
-- ⏳ **Milestone 6: Tool Runtime**
-  - Mesin untuk manajemen, eksekusi, dan keamanan *Tools*.
-
-- ⏳ **Milestone 7: Extension Runtime** (Mantan "Plugin SDK")
-  - Runtime modular untuk memperluas fungsi AetherOS melalui: *Command, Provider, Tool, Dashboard, Distribution, Workflow, CLI, Studio, SDK*.
-
-- ⏳ **Milestone 8: Organization Runtime**
-  - Struktur operasional: *CEO, CTO, Engineering, QA, Security, DevOps, Finance, HR, Marketing, Research*.
-  - Mengelola *Worker* (AI) sebagai bagian integral dari departemen.
-
-- ⏳ **Milestone 9: Distribution Runtime**
-  - Kemampuan instalasi organisasi prasetel (Packaged Distributions).
-  - Contoh: `aether install software-company`, `aether install cybersecurity`, `aether install marketing`.
+## ⏳ Phase 5: Distribution Layer
+- **M9: Distribution Packs** — Paket deployment (Pip, Docker).
+- **M10: Aether Studio** — Antarmuka web (GUI) resmi untuk memantau Organization Runtime dan Company Brain.

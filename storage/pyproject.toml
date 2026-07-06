@@ -1,0 +1,15 @@
+[project]
+name = "aether-storage"
+version = "1.0.0"
+description = "AetherOS Agnostic Storage Platform"
+authors = [
+    { name = "AetherOS Contributors" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7.0"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

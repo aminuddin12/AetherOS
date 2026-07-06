@@ -10,10 +10,30 @@ resolution-markers = [
 
 [manifest]
 members = [
+    "aether-artifact",
     "aether-cli",
+    "aether-organization",
+    "aether-repository",
     "aether-runtime",
+    "aether-storage",
     "aether-workspace",
+    "aether-workspace-app",
     "aetheros",
+]
+
+[[package]]
+name = "aether-artifact"
+version = "1.0.0"
+source = { editable = "artifact" }
+dependencies = [
+    { name = "aether-storage" },
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aether-storage", editable = "storage" },
+    { name = "pydantic", specifier = ">=2.7.0" },
 ]
 
 [[package]]
@@ -36,9 +56,46 @@ requires-dist = [
 ]
 
 [[package]]
+name = "aether-organization"
+version = "1.0.0"
+source = { editable = "organization" }
+dependencies = [
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pydantic", specifier = ">=2.7.0" }]
+
+[[package]]
+name = "aether-repository"
+version = "1.0.0"
+source = { editable = "repository" }
+dependencies = [
+    { name = "aether-storage" },
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aether-storage", editable = "storage" },
+    { name = "pydantic", specifier = ">=2.7.0" },
+]
+
+[[package]]
 name = "aether-runtime"
 version = "1.0.0"
 source = { editable = "runtime" }
+dependencies = [
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "pydantic", specifier = ">=2.7.0" }]
+
+[[package]]
+name = "aether-storage"
+version = "1.0.0"
+source = { editable = "storage" }
 dependencies = [
     { name = "pydantic" },
 ]
@@ -56,6 +113,27 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [{ name = "pydantic", specifier = ">=2.0.0" }]
+
+[[package]]
+name = "aether-workspace-app"
+version = "1.0.0"
+source = { editable = "workspace-app" }
+dependencies = [
+    { name = "aether-artifact" },
+    { name = "aether-repository" },
+    { name = "aether-storage" },
+    { name = "aether-workspace" },
+    { name = "pydantic" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aether-artifact", editable = "artifact" },
+    { name = "aether-repository", editable = "repository" },
+    { name = "aether-storage", editable = "storage" },
+    { name = "aether-workspace", editable = "workspace" },
+    { name = "pydantic", specifier = ">=2.7.0" },
+]
 
 [[package]]
 name = "aetheros"

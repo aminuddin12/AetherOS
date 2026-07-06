@@ -1,0 +1,19 @@
+[project]
+name = "aether-repository"
+version = "1.0.0"
+description = "AetherOS Agnostic Version Control Platform"
+authors = [
+    { name = "AetherOS Contributors" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pydantic>=2.7.0",
+    "aether-storage"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+aether-storage = { workspace = true }
