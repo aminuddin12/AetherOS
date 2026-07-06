@@ -7,7 +7,7 @@ Owner: AI Governance Architect
 Last Updated: 2026-07-07
 ---
 
-Daftar istilah baku ini mendefinisikan secara kaku dan unik makna setiap konsep penting di dalam ekosistem AetherOS. Istilah di bawah ini dilarang ditafsirkan secara ganda atau menyimpang dari definisi konstitusi.
+Daftar istilah baku ini mendefinisikan secara kaku dan unik makna setiap konsep arsitektur penting di dalam ekosistem AetherOS.
 
 ---
 
@@ -18,7 +18,7 @@ Daftar istilah baku ini mendefinisikan secara kaku dan unik makna setiap konsep 
 | **Kernel** | Layanan sistem operasi dasar (*system services*): DI, registry, dispatcher, supervisor, dan diagnostics. |
 | **Runtime Platform** | Komponen Kernel (`sys_platform/`) yang mengelola bootstrap, deskriptor, relasi graph dependensi, dan resolusi kapabilitas runtime subsistem. |
 | **Workspace** | Batas operasional pengerjaan proyek tunggal (*Aggregate Root boundary*) yang membawahi status file, repositori, dan otorisasi lokal. |
-| **Storage** | Layanan manajemen data biner fisik (*Blob/Stream*) menggunakan prinsip CAS (Content-Addressable Storage). |
+| **Storage** | Layanan CAS (Content-Addressable Storage) untuk manajemen data biner fisik (*Blob/Stream*). |
 | **Repository** | Layanan pelacakan riwayat versi berkas berbasis graf komit (*Revision Graph*). |
 | **Artifact** | Node pengetahuan semantik (*Semantic Resource*) yang memberikan metadata tipe, klasifikasi, silsilah lineage, dan proyeksi terhadap berkas. |
 | **Organization** | Operating Context tertinggi yang membawahi struktur perusahaan, keanggotaan manusia & AI (Directory), RBAC, dan kepatuhan audit trail. |

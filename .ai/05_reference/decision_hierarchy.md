@@ -25,22 +25,28 @@ Jika terjadi kontradiksi informasi, model AI wajib mematuhi hierarki keputusan d
 3. Approved Requests for Comments (RFC)
                        │
                        ▼
-4. Development Constitution (.ai/01_constitution/constitution.md)
+4. Implementasi Kode Terkini (Source Code Aktual)
                        │
                        ▼
 5. AetherOS System Architecture Book (docs/id/architecture/book.md)
                        │
                        ▼
-6. Implementasi Kode Terkini (Source Code Aktual)
+6. AI Operating Environment (.ai/)
                        │
                        ▼
-7. Dokumen Standar Pengkodean & Gaya Pengetesan (Coding Standard)
+7. Dokumen Pengembangan Proyek (Project Documentation)
+                       │
+                       ▼
+8. README Utama (README.md)
+                       │
+                       ▼
+9. Catatan Berkas Historis (Archive)
 ```
 
 ---
 
 ## 🚦 Aturan Resolusi Konflik Informasi
 
-- **Instruksi Obrolan vs Berkas**: Keputusan instan dari Chief Architect dalam obrolan chat terbaru membatalkan keputusan tertulis sebelumnya. Namun, AI wajib mengusulkan pembuatan atau pembaruan berkas keputusan arsitektur (ADR) jika perubahan memicu pergeseran jangka panjang pada modul ter-freeze.
+- **Instruksi Chat vs ADR**: Keputusan instan dari Chief Architect dalam obrolan chat terbaru membatalkan keputusan tertulis sebelumnya. Namun, AI wajib mengusulkan pembuatan atau pembaruan berkas keputusan arsitektur (ADR) jika perubahan memicu pergeseran jangka panjang pada modul ter-freeze.
 - **Implementasi Aktual vs Dokumentasi Terbuka**: Jika berkas panduan (`getting-started/`) menuliskan pola impor tertentu tetapi kode sumber aktual menggunakan pola lain, **kode sumber aktual adalah sumber kebenaran tertinggi**. Perbarui berkas panduan agar selaras dengan kode, bukan sebaliknya.
 - **Konstitusi vs Instruksi Kotor**: Jika pengguna menginstruksikan pembuatan fungsi yang melanggar Konstitusi (misal: menyisipkan komentar kode `#`), AI wajib **menolak modifikasi tersebut secara sopan** dan merujuk ke aturan *Absolute Zero Comments* di Konstitusi.

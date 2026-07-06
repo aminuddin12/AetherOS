@@ -7,19 +7,20 @@ Owner: AI Governance Architect
 Last Updated: 2026-07-07
 ---
 
-Dokumen ini menyediakan gambaran ringkas (*condensed overview*) proyek AetherOS untuk mempercepat orientasi kognitif model AI. Dokumen ini murni menggunakan **referensi dinamis** ke berkas arsitektur utama untuk mencegah terjadinya *documentation drift*.
+Dokumen ini menyediakan ringkasan terintegrasi mengenai visi dan sasaran proyek AetherOS untuk orientasi cepat model AI, murni menggunakan referensi dinamis untuk menghindari *documentation drift*.
 
 ---
 
 ## 1. Peta Navigasi Sumber Kebenaran (Source of Truth Navigation)
 
-Untuk memahami keadaan sistem secara dinamis, muat berkas-berkas berikut:
+Untuk memahami keadaan sistem secara aktual, muat berkas-berkas berikut:
 
 - **Roadmap Proyek**: [ROADMAP.md](../../ROADMAP.md) dan [development-phases.md](../../docs/id/roadmap/development-phases.md).
 - **Keputusan Arsitektur**: Indeks keputusan arsitektur di [ADR Index](../../docs/id/adr/README.md).
 - **Usulan Perubahan**: Desain usulan fitur di [RFC Index](../../docs/id/rfc/README.md).
-- **Konstitusi Arsitektural**: Berkas konstitusi tertinggi di [AetherOS System Architecture Book](../../docs/id/architecture/book.md).
-- **Daftar Terminologi**: Kamus leksikon resmi di [Definisi Istilah](../04_reference/terminology.md).
+- **Buku Arsitektur Utama**: [AetherOS System Architecture Book](../../docs/id/architecture/book.md).
+- **Daftar Terminologi**: Kamus leksikon resmi di [Definisi Istilah](../05_reference/terminology.md).
+- **Memori Perkembangan Proyek**: [Repository Memory](repository_memory.md).
 
 ---
 

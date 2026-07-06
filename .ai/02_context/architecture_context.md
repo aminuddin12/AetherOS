@@ -7,24 +7,20 @@ Owner: AI Governance Architect
 Last Updated: 2026-07-07
 ---
 
-Dokumen ini menyediakan ringkasan arsitektur tingkat tinggi AetherOS yang dirancang khusus untuk mempermudah pemetaan mental kognitif model AI.
+Dokumen ini menyediakan gambaran arsitektur tingkat tinggi AetherOS yang dirancang khusus untuk mempermudah pemetaan mental kognitif model AI.
 
 ---
 
-## 1. Hubungan Kesetaraan Konseptual (Symmetric Architectural Mapping)
+## 1. Context Resolution Structure (Struktur Konteks AI-OE)
 
-Untuk menjaga keselarasan filosofis, struktur tata kelola AI pada **AI Operating Environment (AI-OE)** dirancang secara simetris dengan **Runtime Platform** AetherOS:
+AI Operating Environment membagi konteks kognitif pengembangan menjadi 6 tipe terpisah untuk diresolusi oleh AI:
 
-| Runtime Platform Component | AI Operating Environment Equivalent | Penjelasan Fungsional |
-|---|---|---|
-| **Bootstrap Engine** | [AI Bootstrap](../00_bootstrap/bootstrap.md) | Langkah booting inisialisasi awal. |
-| **Runtime Registry** | [Context Registry](../02_context/project_context.md) | Sumber metadata keadaan proyek. |
-| **Runtime Descriptor** | [Knowledge Descriptor](../02_context/architecture_context.md) | Identitas arsitektur platform. |
-| **Runtime Graph** | [Discovery / Dependency Resolver](../02_context/discovery.md) | Pengatur dependensi dan relasi penemuan berkas. |
-| **Composition Profile** | [Governance Composition](../01_constitution/constitution.md) | Profil aturan yang membatasi lingkungan kerja. |
-| **Lifecycle** | [AI Lifecycle](../00_bootstrap/bootstrap.md) | Siklus daur hidup sesi model AI. |
-| **Health Evaluation** | [Review & Self-Compliance](../03_protocol/review.md) | Audit kepatuhan arsitektur (Drift Detection). |
-| **Capability Resolution** | [Context Resolution](../03_protocol/execution.md) | Resolusi kebutuhan pengerjaan tugas. |
+1. **Project Context**: Status milestone, tujuan jangka panjang, dan rujukan roadmap aktif ([project_context.md](project_context.md)).
+2. **Architecture Context**: Aturan layering, batas dependensi vertikal, invarian, dan status freeze ([architecture_context.md](architecture_context.md)).
+3. **Repository Context**: Tanggung jawab direktori konkret dan lokasi penemuan berkas ([repository_map.md](repository_map.md), [discovery.md](discovery.md)).
+4. **Implementation Context**: Struktur kode aktual yang saat ini berjalan pada repositori dan test suite koresponden.
+5. **Current Development Context**: Instruksi penugasan spesifik (*Task Contract*) yang diberikan oleh Chief Architect.
+6. **Runtime Context**: Status kesehatan dan kemampuan yang aktif saat simulasi penugasan dijalankan.
 
 ---
 

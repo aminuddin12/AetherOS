@@ -26,13 +26,13 @@ Peta Navigasi Repositori ini memetakan tanggung jawab setiap direktori di dalam 
 | **`workspace-app/`** | Orkestrasi use-case aplikasi, Command/Query Handlers. | Mengimpor kontrak subsistem di bawahnya (Level 1 & 0). | Mengandung Command/Query Bus. |
 | **`organization/`** | Operating Context tertinggi, directory membership, global policies. | Memanggil Workspace App melalui SDK Facade. | Logika audit trail disimpan di sini. |
 | **`docs/`** | Buku arsitektur, spesifikasi subsistem, ADR, dan RFC. | Sumber kebenaran dokumentasi tertulis. | Divalidasi oleh test suite. |
-| **`.ai/`** | Konstitusi, protokol, dan peta operasi model AI (AI-OE). | Di-mount otomatis saat bootstrap AI. | Penulisan markdown hierarkis. |
+| **`.ai/`** | Konstitusi, kebijakan, protokol, dan peta operasi model AI (AI-OE). | Di-mount otomatis saat bootstrap AI. | Penulisan markdown hierarkis. |
 
 ---
 
 ## 🚦 Aturan Lokasi Penulisan Kode (Where Code Belongs)
 
-- **Jika Anda menulis DTO atau primitives baru**: Letakkan di bawah `core/contracts/` dan pastikan model bersifat `frozen=True`.
+- **Jika Anda menulis DTO atau primitives baru**: Letakkan di bawah `core/contracts/src/aether_contracts/` dan pastikan model bersifat `frozen=True`.
 - **Jika Anda memodifikasi query/command use-case**: Letakkan di bawah `workspace-app/src/aether_workspace_app/application/`.
 - **Jika Anda memperbaiki cara penanganan event platform**: Letakkan di bawah `core/kernel/sys_platform/events.py`.
 - **Dilarang keras**: Membuat package baru di root direktori tanpa mendaftarkannya ke dalam `workspace.members` di `pyproject.toml` utama.
