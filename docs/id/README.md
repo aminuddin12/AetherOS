@@ -31,7 +31,9 @@ Penjelasan rinci untuk masing-masing subsistem modular dalam OS:
 ---
 
 ### 3. 🚦 Memulai Pengembangan (Onboarding)
-- **[Developer Package Standard](getting-started/developer.md)**: Checklist kelayakan mutu (quality standard) untuk pembuatan paket runtime baru.
+- **[AI Governance System](../../.ai/GOVERNANCE.md)**: Protokol operasi wajib untuk model AI yang berkontribusi pada repositori.
+- **[Runtime Package Checklist](getting-started/checklist.md)**: Kriteria kelayakan mutu (quality standard) untuk pembuatan paket runtime baru.
+- **[Developer Onboarding Guide](getting-started/quickstart.md)**: Panduan instalasi lokal dan instruksi eksekusi.
 - **[Glosarium Istilah](glossary/index.md)**: Kamus istilah teknis baku dalam ekosistem AetherOS.
 - **[Roadmap Evolusi](roadmap/development-phases.md)**: Detail fase pengerjaan proyek dari infrastruktur dasar hingga Studio UI.
 

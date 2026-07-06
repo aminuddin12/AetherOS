@@ -16,8 +16,9 @@ Evolusi AetherOS dirancang untuk bergerak dari lapisan Infrastruktur (OS), menuj
 - **M3.4: Workspace Application Runtime** — Orchestration, CQRS, Middleware.
 - **M3.5: Organization Runtime** — Operating Context, Identity, Directory, Registry.
 
-## 🔄 Phase 3: Consolidation (Current)
-- **M3.6: Architecture Consolidation & Documentation Freeze** — Menyelaraskan seluruh dokumentasi, ADR, dan spesifikasi arsitektur sebelum memulai pembuatan lapisan kecerdasan.
+## ✅ Phase 3: Consolidation
+- **M3.6: Architecture Consolidation & Documentation Freeze** — Menyelaraskan seluruh dokumentasi, ADR, dan spesifikasi arsitektur.
+- **M3.7: Runtime Platform & Bootstrap Architecture** — Registrasi runtime, bootstrap engine, dan capability resolution.
 
 ## ⏳ Phase 4: Intelligence Layer
 - **M4: Company Brain** — *Knowledge Orchestrator* pembangun graf semantik, bertugas mengambil kesimpulan tanpa memiliki knowledge database mandiri.

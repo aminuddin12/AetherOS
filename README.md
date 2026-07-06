@@ -69,10 +69,11 @@ Sistem AetherOS dibangun murni secara *bottom-up* dengan arah ketergantungan ver
 
 ## 5. Current Implementation & Milestone
 
-AetherOS saat ini berada pada **Milestone 3.6 (Architecture Consolidation & Documentation Freeze)**. 
+AetherOS saat ini berada pada **Milestone 3.7 (Runtime Platform & Bootstrap Architecture)**.
 
 ### Status Implementasi Subsistem:
 - **Kernel & Execution Engine**: Selesai diimplementasikan secara fungsional.
+- **Runtime Platform & Bootstrap**: Pendaftaran runtime, capability resolution, dan dependency graph selesai dibangun (`sys_platform/`).
 - **Runtime SDK**: Fasad universal telah diuji dan berjalan stabil.
 - **Storage, Repository, Artifact, Workspace**: Seluruh sub-sistem domain organisasi telah selesai di-deploy.
 - **Organization Core**: Domain identitas multidimensi, RBAC, dan audit trail telah didefinisikan secara matang.
@@ -83,7 +84,8 @@ AetherOS saat ini berada pada **Milestone 3.6 (Architecture Consolidation & Docu
 
 ```text
 AetherOS/
-├── core/                # Layer 0: Kernel & Execution Engine
+├── .ai/                 # AI Governance System & Operating Protocols
+├── core/                # Layer 0: Kernel, Execution & Platform Engine
 ├── runtime/             # SDK Facade (AetherRuntime)
 ├── workspace/           # Subsystem: Workspace Domain
 ├── storage/             # Subsystem: Content-Addressable Storage
@@ -103,7 +105,8 @@ AetherOS/
 - ✅ **M2**: Execution Engine & CLI
 - ✅ **M3.0–3.4**: Workspace & Application Runtime
 - ✅ **M3.5**: Organization Runtime
-- 🔄 **M3.6**: Documentation Freeze (Tahap Sekarang)
+- ✅ **M3.6**: Documentation Governance
+- ✅ **M3.7**: Runtime Platform & Bootstrap Architecture
 - ⏳ **M4**: Company Brain (Knowledge Orchestrator)
 - ⏳ **M5**: Agent Runtime
 - ⏳ **M6**: Provider Runtime
@@ -119,7 +122,8 @@ AetherOS/
 Seluruh dokumentasi terperinci dikelola menggunakan hierarki tergovermentasi di bawah folder `docs/`:
 
 1. **Konstitusi Utama**: [AetherOS System Architecture Book](docs/id/architecture/book.md)
-2. **Spesifikasi Subsistem**:
+2. **AI Governance**: [AI Governance System](.ai/GOVERNANCE.md)
+3. **Spesifikasi Subsistem**:
    - [Kernel Subsystem](docs/id/runtime/kernel.md)
    - [Execution Subsystem](docs/id/runtime/execution.md)
    - [Runtime SDK Subsystem](docs/id/runtime/runtime-sdk.md)
@@ -128,12 +132,13 @@ Seluruh dokumentasi terperinci dikelola menggunakan hierarki tergovermentasi di 
    - [Repository Subsystem](docs/id/runtime/repository.md)
    - [Artifact Subsystem](docs/id/runtime/artifact.md)
    - [Organization Subsystem](docs/id/runtime/organization.md)
-3. **Catatan Keputusan Arsitektural**: [Architecture Decision Records (ADR) Log](docs/id/adr/README.md)
-4. **Catatan Diskusi Fitur**: [RFC Index](docs/id/rfc/README.md)
-5. **Glosarium Istilah**: [Definisi Istilah Baku AetherOS](docs/id/glossary/index.md)
+4. **Catatan Keputusan Arsitektural**: [Architecture Decision Records (ADR) Log](docs/id/adr/README.md)
+5. **Catatan Diskusi Fitur**: [RFC Index](docs/id/rfc/README.md)
+6. **Glosarium Istilah**: [Definisi Istilah Baku AetherOS](docs/id/glossary/index.md)
 
 ---
 
 ## 9. Contribution & Governance
 
-Pengembangan kode AetherOS diatur secara ketat melalui aturan tata tertib kualitas. Silakan merujuk ke [Developer Standard Guide](docs/id/getting-started/developer.md) sebelum mengajukan Pull Request baru.
+Pengembangan kode AetherOS diatur secara ketat melalui aturan tata tertib kualitas. Silakan merujuk ke **[Developer Onboarding Guide](docs/id/getting-started/quickstart.md)** sebelum mengajukan Pull Request baru. Model AI yang berkontribusi wajib mengikuti aturan **[AI Governance System](.ai/GOVERNANCE.md)**.
+
