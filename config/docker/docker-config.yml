@@ -1,0 +1,145 @@
+# AetherOS Docker Configuration
+# Central configuration for Docker deployments
+
+# Development Configuration
+development:
+  # Build settings
+  build:
+    context: .
+    dockerfile: Dockerfile.dev
+    args:
+      PYTHON_VERSION: "3.14"
+      POETRY_VERSION: "1.8.3"
+    
+  # Runtime settings
+  runtime:
+    ports:
+      - "8000:8000"
+    volumes:
+      - ".:/workspace"
+      - "aetheros_cache:/root/.cache"
+      - "aetheros_data:/workspace/data"
+    environment:
+      AETHEROS_ENV: "development"
+      AETHEROS_LOG_LEVEL: "debug"
+    
+  # Service dependencies
+  services:
+    postgres:
+      image: "postgres:16-alpine"
+      ports: ["5432:5432"]
+      environment:
+        POSTGRES_DB: "aetheros"
+        POSTGRES_USER: "aetheros"
+        POSTGRES_PASSWORD: "aetheros"
+    
+    redis:
+      image: "redis:7-alpine"
+      ports: ["6379:6379"]
+    
+    qdrant:
+      image: "qdrant/qdrant:v1.8.0"
+      ports: ["6333:6333", "6334:6334"]
+
+# Production Configuration
+production:
+  # Build settings
+  build:
+    context: .
+    dockerfile: Dockerfile.prod
+    args:
+      PYTHON_VERSION: "3.14"
+    
+  # Runtime settings
+  runtime:
+    ports:
+      - "8000:8000"
+    environment:
+      AETHEROS_ENV: "production"
+      AETHEROS_LOG_LEVEL: "info"
+    
+  # Security settings
+  security:
+    user: "aetheros"
+    read_only: true
+    capabilities:
+      drop: ["ALL"]
+      add: ["CHOWN", "SETGID", "SETUID"]
+    
+  # Resource limits
+  resources:
+    limits:
+      cpus: "2.0"
+      memory: "2G"
+    reservations:
+      cpus: "1.0"
+      memory: "1G"
+
+# Testing Configuration
+test:
+  # Test runner settings
+  test_runner:
+    image: "aetheros-dev"
+    command: ["pytest", "/workspace/tests", "-v"]
+    environment:
+      AETHEROS_ENV: "test"
+      PYTEST_ADDOPTS: "--color=yes -v --tb=short"
+    
+  # Test services
+  services:
+    test_postgres:
+      image: "postgres:16-alpine"
+      environment:
+        POSTGRES_DB: "aetheros_test"
+        POSTGRES_USER: "aetheros"
+        POSTGRES_PASSWORD: "aetheros"
+    
+    test_redis:
+      image: "redis:7-alpine"
+    
+    test_qdrant:
+      image: "qdrant/qdrant:v1.8.0"
+
+# Network Configuration
+network:
+  name: "aetheros-network"
+  driver: "bridge"
+  ipam:
+    config:
+      - subnet: "172.20.0.0/16"
+
+# Volume Configuration
+volumes:
+  postgres_data:
+    name: "aetheros-postgres-data"
+  redis_data:
+    name: "aetheros-redis-data"
+  qdrant_data:
+    name: "aetheros-qdrant-data"
+  aetheros_cache:
+    name: "aetheros-cache"
+  aetheros_data:
+    name: "aetheros-data"
+
+# Health Check Configuration
+health_check:
+  interval: "30s"
+  timeout: "10s"
+  retries: 3
+  start_period: "40s"
+
+# Logging Configuration
+logging:
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+# Monitoring Configuration
+monitoring:
+  prometheus:
+    enabled: false
+    port: 9090
+  grafana:
+    enabled: false
+    port: 3000

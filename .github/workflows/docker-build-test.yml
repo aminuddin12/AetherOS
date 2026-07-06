@@ -1,0 +1,156 @@
+# AetherOS Docker Build and Test Workflow
+# This workflow builds Docker images, runs tests, and performs security scans
+
+name: Docker Build and Test
+
+on:
+  push:
+    branches: [ main, dev ]
+    paths:
+      - '**.py'
+      - 'Dockerfile*'
+      - 'docker-compose*.yml'
+      - '.github/workflows/docker-build-test.yml'
+  pull_request:
+    branches: [ main, dev ]
+    paths:
+      - '**.py'
+      - 'Dockerfile*'
+      - 'docker-compose*.yml'
+      - '.github/workflows/docker-build-test.yml'
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+  DOCKER_BUILDKIT: 1
+
+jobs:
+  build-and-test:
+    name: Build and Test Docker Images
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build development Docker image
+        id: build-dev
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.dev
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev-latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: false
+          load: true
+      
+      - name: Build production Docker image
+        id: build-prod
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.prod
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:prod-latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: false
+          load: true
+      
+      - name: Run security scanning
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev-latest'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+      
+      - name: Start test services
+        run: |
+          docker compose -f docker-compose.test.yml up -d
+          docker compose -f docker-compose.test.yml ps
+      
+      - name: Run tests in Docker
+        run: |
+          docker compose -f docker-compose.test.yml run test-runner
+      
+      - name: Stop test services
+        if: always()
+        run: docker compose -f docker-compose.test.yml down -v
+      
+      - name: Push development image
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.dev
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:dev-latest
+          push: true
+      
+      - name: Push production image
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.prod
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:prod-latest,${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          push: true
+
+  vulnerability-scan:
+    name: Vulnerability Scan
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+  docker-hub-push:
+    name: Push to Docker Hub
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile.prod
+          tags: aetheros/aetheros:latest,aetheros/aetheros:${{ github.sha }}
+          push: true

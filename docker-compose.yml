@@ -1,0 +1,138 @@
+# AetherOS Docker Compose Configuration
+# Development environment with all required services
+
+version: '3.8'
+
+services:
+  # Main AetherOS Application
+  aetheros:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: aetheros-app
+    restart: unless-stopped
+    environment:
+      - AETHEROS_ENV=development
+      - AETHEROS_PORT=8000
+      - AETHEROS_HOST=0.0.0.0
+      - AETHEROS_LOG_LEVEL=debug
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=aetheros
+      - POSTGRES_USER=aetheros
+      - POSTGRES_PASSWORD=aetheros
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - QDRANT_HOST=qdrant
+      - QDRANT_PORT=6333
+    volumes:
+      - .:/workspace
+      - aetheros_cache:/root/.cache
+      - aetheros_data:/workspace/data
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    networks:
+      - aetheros-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: aetheros-postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=aetheros
+      - POSTGRES_USER=aetheros
+      - POSTGRES_PASSWORD=aetheros
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./config/docker/postgres-init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - aetheros-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aetheros -d aetheros"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: aetheros-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - aetheros-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Qdrant Vector Database
+  qdrant:
+    image: qdrant/qdrant:v1.8.0
+    container_name: aetheros-qdrant
+    restart: unless-stopped
+    volumes:
+      - qdrant_data:/qdrant/storage
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    networks:
+      - aetheros-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/readyz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  # Adminer - Database Management UI
+  adminer:
+    image: adminer:latest
+    container_name: aetheros-adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
+      - aetheros-network
+    depends_on:
+      - postgres
+
+# Networks
+networks:
+  aetheros-network:
+    driver: bridge
+    name: aetheros-network
+
+# Volumes
+volumes:
+  postgres_data:
+    name: aetheros-postgres-data
+  redis_data:
+    name: aetheros-redis-data
+  qdrant_data:
+    name: aetheros-qdrant-data
+  aetheros_cache:
+    name: aetheros-cache
+  aetheros_data:
+    name: aetheros-data

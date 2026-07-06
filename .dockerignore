@@ -1,0 +1,76 @@
+# Docker ignore file for AetherOS
+
+# Ignore virtual environments
+.env
+.venv
+venv
+
+# Ignore Python cache and bytecode
+__pycache__/
+*.py[cod]
+
+# Ignore IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore build and distribution directories
+build/
+dist/
+
+# Ignore coverage and test reports
+.coverage
+htmlcov/
+*.prof
+
+# Ignore local development files
+*.log
+tmp/
+
+# Ignore documentation build
+site/
+
+# Ignore dependency directories
+dependencies/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore git files (except .git itself)
+.gitattributes
+.gitignore
+
+# Ignore personal configuration files
+*.cfg
+*.ini
+
+# Ignore large data files
+data/
+
+# Ignore node_modules (if any)
+node_modules/
+
+# Ignore local environment files
+.env.local
+.env.development
+.env.test
+
+# Ignore Python package downloads
+*.egg-info/
+
+# Ignore test cache
+.pytest_cache/
+
+# Ignore Jupyter notebooks (if any)
+*.ipynb
+
+# Ignore macOS metadata
+._*
+
+# Ignore Windows thumbnail cache
+Thumbs.db
+
+# Ignore VS Code workspace files
+*.code-workspace

@@ -135,10 +135,72 @@ Seluruh dokumentasi terperinci dikelola menggunakan hierarki tergovermentasi di 
 4. **Catatan Keputusan Arsitektural**: [Architecture Decision Records (ADR) Log](docs/id/adr/README.md)
 5. **Catatan Diskusi Fitur**: [RFC Index](docs/id/rfc/README.md)
 6. **Glosarium Istilah**: [Definisi Istilah Baku AetherOS](docs/id/glossary/index.md)
+7. **Docker & Development**:
+   - [Docker Setup Guide](docs/en/development/docker-setup.md)
+   - [Testing with Docker](docs/en/development/testing-with-docker.md)
 
 ---
 
-## 9. Contribution & Governance
+## 9. Docker Setup & Development
+
+AetherOS provides comprehensive Docker support for development, testing, and production deployment.
+
+### Quick Start with Docker
+
+```bash
+# Clone the repository
+git clone https://github.com/aetheros/aetheros.git
+cd aetheros
+
+# Build development image
+docker build -t aetheros-dev -f Dockerfile.dev .
+
+# Start development environment
+docker compose up -d
+
+# Access services
+# - AetherOS: http://localhost:8000
+# - Adminer (DB UI): http://localhost:8080
+# - PostgreSQL: localhost:5432
+# - Redis: localhost:6379
+# - Qdrant: localhost:6333
+```
+
+### Development Workflow
+
+```bash
+# Access development container
+docker compose exec aetheros-app bash
+
+# Run tests
+docker compose exec aetheros-app pytest tests/
+
+# Run linter
+docker compose exec aetheros-app ruff check .
+
+# Run type checker
+docker compose exec aetheros-app mypy .
+```
+
+### Production Deployment
+
+```bash
+# Build production image
+docker build -t aetheros-prod -f Dockerfile.prod .
+
+# Run production container
+docker run -d \
+  --name aetheros-prod \
+  -p 8000:8000 \
+  -e AETHEROS_ENV=production \
+  aetheros-prod
+```
+
+For detailed Docker setup instructions, see:
+- [Complete Docker Setup Guide](docs/en/development/docker-setup.md)
+- [Testing with Docker](docs/en/development/testing-with-docker.md)
+
+## 10. Contribution & Governance
 
 Pengembangan kode AetherOS diatur secara ketat melalui aturan tata tertib kualitas. Silakan merujuk ke **[Developer Onboarding Guide](docs/id/getting-started/quickstart.md)** sebelum mengajukan Pull Request baru. Model AI yang berkontribusi wajib mengikuti aturan **[AI Governance System](.ai/GOVERNANCE.md)**.
 

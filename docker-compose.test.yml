@@ -1,0 +1,95 @@
+# AetherOS Test Docker Compose Configuration
+# Isolated environment for running tests
+
+version: '3.8'
+
+services:
+  # Test Runner
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: aetheros-test-runner
+    environment:
+      - AETHEROS_ENV=test
+      - AETHEROS_LOG_LEVEL=debug
+      - POSTGRES_HOST=test-postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=aetheros_test
+      - POSTGRES_USER=aetheros
+      - POSTGRES_PASSWORD=aetheros
+      - REDIS_HOST=test-redis
+      - REDIS_PORT=6379
+      - QDRANT_HOST=test-qdrant
+      - QDRANT_PORT=6333
+      - PYTEST_ADDOPTS=--color=yes -v
+    volumes:
+      - .:/workspace
+      - test_cache:/root/.cache
+    depends_on:
+      test-postgres:
+        condition: service_healthy
+      test-redis:
+        condition: service_healthy
+      test-qdrant:
+        condition: service_healthy
+    networks:
+      - test-network
+    command: ["pytest", "/workspace/tests", "-v", "--tb=short"]
+
+  # Test PostgreSQL Database
+  test-postgres:
+    image: postgres:16-alpine
+    container_name: aetheros-test-postgres
+    environment:
+      - POSTGRES_DB=aetheros_test
+      - POSTGRES_USER=aetheros
+      - POSTGRES_PASSWORD=aetheros
+    volumes:
+      - test_postgres_data:/var/lib/postgresql/data
+    networks:
+      - test-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aetheros -d aetheros_test"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Test Redis Cache
+  test-redis:
+    image: redis:7-alpine
+    container_name: aetheros-test-redis
+    command: redis-server --appendonly no
+    networks:
+      - test-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Test Qdrant Vector Database
+  test-qdrant:
+    image: qdrant/qdrant:v1.8.0
+    container_name: aetheros-test-qdrant
+    networks:
+      - test-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/readyz"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+# Networks
+networks:
+  test-network:
+    driver: bridge
+    name: aetheros-test-network
+
+# Volumes
+volumes:
+  test_postgres_data:
+    name: aetheros-test-postgres-data
+  test_cache:
+    name: aetheros-test-cache
