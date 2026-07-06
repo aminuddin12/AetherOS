@@ -10,5 +10,5 @@ __all__ = [
     "ProviderCapability",
     "ProviderLimits",
     "ProviderPricing",
-    "ProviderHealth"
+    "ProviderHealth",
 ]

@@ -1,0 +1,34 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - name: Build Artifacts (Wheel & Source Dist)
+      run: uv build
+    - name: Generate SBOM
+      run: |
+        uv pip install cyclonedx-bom
+        cyclonedx-py environment --outfile sbom.json
+    - name: Generate Release Notes
+      # Dummy step for now, typically handled by semantic-release
+      run: echo "Release notes for AetherOS" > release_notes.md
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: |
+          dist/*
+          sbom.json
+        body_path: release_notes.md

@@ -1,6 +1,7 @@
 from typing import Dict
 from core.execution.spi import ExecutionStrategy
 
+
 class StrategyRegistry:
     """Registry untuk mendaftarkan dan menemukan strategy berdasarkan nama."""
 

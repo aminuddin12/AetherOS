@@ -1,10 +1,12 @@
 from typing import Dict
 import time
 
+
 class ExecutionMetricsCollector:
     """
     In-memory metrics collector untuk Execution Engine.
     """
+
     def __init__(self):
         self._counters: Dict[str, int] = {
             "execution_count": 0,

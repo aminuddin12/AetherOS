@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class KernelState(Enum):
     PRE_BOOTSTRAP = "pre_bootstrap"
     BOOTSTRAPPING = "bootstrapping"
@@ -8,6 +9,7 @@ class KernelState(Enum):
     RUNNING = "running"
     SHUTTING_DOWN = "shutting_down"
     TERMINATED = "terminated"
+
 
 class KernelLifecycle:
     def __init__(self):

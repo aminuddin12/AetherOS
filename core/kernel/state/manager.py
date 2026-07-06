@@ -1,10 +1,12 @@
 from typing import Dict, Any
 
+
 class StateManager:
     """
     Satu-satunya komponen yang diperbolehkan memegang Mutable State global
     untuk Kernel, Worker, dan Task di luar AggregateRoot instances.
     """
+
     def __init__(self):
         self._kernel_state: Dict[str, Any] = {}
         self._worker_states: Dict[str, Any] = {}

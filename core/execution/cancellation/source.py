@@ -1,10 +1,12 @@
 from .token import CancellationToken
 
+
 class CancellationTokenSource:
     """
     Sumber yang mengontrol CancellationToken.
     Hanya pemilik source yang boleh memicu cancel.
     """
+
     def __init__(self):
         self._token = CancellationToken()
 

@@ -10,7 +10,12 @@ from .execution_events import (
 )
 
 __all__ = [
-    "ExecutionStarted", "ExecutionCompleted", "ExecutionFailed",
-    "ExecutionCancelled", "ExecutionTimedOut", "ExecutionRetried",
-    "ExecutorAllocated", "ExecutorReleased",
+    "ExecutionStarted",
+    "ExecutionCompleted",
+    "ExecutionFailed",
+    "ExecutionCancelled",
+    "ExecutionTimedOut",
+    "ExecutionRetried",
+    "ExecutorAllocated",
+    "ExecutorReleased",
 ]

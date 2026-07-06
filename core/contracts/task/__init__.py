@@ -18,5 +18,5 @@ __all__ = [
     "ReviewFeedback",
     "Approval",
     "ApprovalStatus",
-    "Decision"
+    "Decision",
 ]

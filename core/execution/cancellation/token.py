@@ -1,10 +1,12 @@
 import asyncio
 
+
 class CancellationToken:
     """
     Token cooperative cancellation (read-only view).
     Executor memeriksa token ini secara periodik.
     """
+
     def __init__(self):
         self._event = asyncio.Event()
         self._reason: str = ""

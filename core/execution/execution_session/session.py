@@ -4,6 +4,7 @@ from pydantic import BaseModel, Field
 from uuid import UUID, uuid4
 from datetime import datetime, UTC
 
+
 class SessionStatus(StrEnum):
     CREATED = "created"
     QUEUED = "queued"
@@ -13,10 +14,12 @@ class SessionStatus(StrEnum):
     FAILED = "failed"
     TIMED_OUT = "timed_out"
 
+
 class ExecutionSession(BaseModel):
     """
     Session runtime yang membungkus satu unit eksekusi.
     """
+
     session_id: UUID = Field(default_factory=uuid4)
     parent_session_id: UUID | None = Field(default=None)
     child_session_ids: List[UUID] = Field(default_factory=list)

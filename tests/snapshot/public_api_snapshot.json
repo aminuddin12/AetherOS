@@ -1,0 +1,579 @@
+{
+  "core.kernel.bootstrap.bootstrap.KernelBootstrap": {
+    "bootstrap": "(builder: core.kernel.bootstrap.builder.KernelBuilder) -> core.kernel.bootstrap.kernel.AetherKernel",
+    "post_bootstrap": "(kernel: core.kernel.bootstrap.kernel.AetherKernel) -> None",
+    "pre_bootstrap": "() -> core.kernel.bootstrap.builder.KernelBuilder"
+  },
+  "core.kernel.bootstrap.builder.KernelBuilder": {
+    "__init__": "(self)",
+    "build": "(self) -> core.kernel.bootstrap.kernel.AetherKernel",
+    "configure_services": "(self, configurator) -> 'KernelBuilder'"
+  },
+  "core.kernel.bootstrap.kernel.AetherKernel": {
+    "__init__": "(self, manifest: core.kernel.manifest.KernelManifest, container: core.kernel.dependency_injection.container.ServiceContainer)",
+    "shutdown": "(self)"
+  },
+  "core.kernel.configuration.config.KernelConfiguration": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.context.context.KernelContext": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.context.context.KernelEnvironment": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.context.context.KernelExecutionContext": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.context.context.KernelRuntimeContext": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.dependency_injection.container.ServiceContainer": {
+    "__init__": "(self)",
+    "register": "(self, interface: Type[~T], implementation: Type[~T] | None = None, scope: core.kernel.dependency_injection.scope.ServiceScope = <ServiceScope.SINGLETON: 'singleton'>) -> None",
+    "register_instance": "(self, interface: Type[~T], instance: ~T) -> None",
+    "resolve": "(self, interface: Type[~T]) -> ~T"
+  },
+  "core.kernel.dependency_injection.exceptions.DependencyResolutionError": {},
+  "core.kernel.dependency_injection.provider.ServiceProvider": {
+    "__init__": "(self, factory: Callable[..., Any], scope: core.kernel.dependency_injection.scope.ServiceScope)",
+    "get": "(self, resolver: 'Resolver') -> Any"
+  },
+  "core.kernel.dependency_injection.resolver.Resolver": {
+    "__init__": "(self, container: 'ServiceContainer')",
+    "build": "(self, factory: Callable[..., Any]) -> Any"
+  },
+  "core.kernel.dependency_injection.scope.ServiceScope": {},
+  "core.kernel.diagnostics.diagnostics.DiagnosticsReport": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.diagnostics.health.HealthModel": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.diagnostics.health.HealthStatus": {},
+  "core.kernel.dispatcher.event_bus.EventBus": {
+    "__init__": "(self, policy: core.kernel.dispatcher.policy.SupervisorPolicy = <SupervisorPolicy.TELEMETRY: 'telemetry'>)",
+    "publish": "(self, event: core.contracts.base.event.DomainEvent) -> None",
+    "subscribe": "(self, event_type: Type[core.contracts.base.event.DomainEvent], handler: Callable) -> None"
+  },
+  "core.kernel.dispatcher.policy.DispatcherPolicy": {
+    "__init__": "(self, policy: core.kernel.dispatcher.policy.SupervisorPolicy = <SupervisorPolicy.TELEMETRY: 'telemetry'>)"
+  },
+  "core.kernel.dispatcher.policy.SupervisorPolicy": {},
+  "core.kernel.events.internal_events.KernelBootstrapped": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.events.internal_events.KernelStarted": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.events.internal_events.KernelStopped": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.events.internal_events.PermissionDenied": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.events.internal_events.PipelineCompleted": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.events.internal_events.PipelineStarted": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.events.internal_events.TaskCompleted": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.events.internal_events.TaskFailed": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.events.internal_events.TaskScheduled": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.events.internal_events.WorkerRegistered": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.events.internal_events.WorkerUnregistered": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.internal.exceptions.KernelBaseException": {},
+  "core.kernel.lifecycle.kernel_lifecycle.KernelLifecycle": {
+    "__init__": "(self)",
+    "transition_to": "(self, new_state: core.kernel.lifecycle.kernel_lifecycle.KernelState)"
+  },
+  "core.kernel.lifecycle.kernel_lifecycle.KernelState": {},
+  "core.kernel.lifecycle.service_lifecycle.ServiceLifecycle": {
+    "__init__": "(self)",
+    "transition_to": "(self, new_state: core.kernel.lifecycle.service_lifecycle.ServiceState)"
+  },
+  "core.kernel.lifecycle.service_lifecycle.ServiceState": {},
+  "core.kernel.lifecycle.worker_lifecycle.WorkerLifecycleManager": {
+    "validate_transition": "(self, current: core.contracts.worker.lifecycle.WorkerLifecycle, new_state: core.contracts.worker.lifecycle.WorkerLifecycle) -> bool"
+  },
+  "core.kernel.manifest.KernelManifest": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.permissions.engine.RBACEngine": {
+    "__init__": "(self)",
+    "is_authorized": "(self, role: str, action: str, resource: str) -> bool"
+  },
+  "core.kernel.pipeline.hooks.PipelineHook": {
+    "__init__": "(self, *args, **kwargs)",
+    "on_after": "(self, context: Any, result: Any) -> None",
+    "on_before": "(self, context: Any) -> None",
+    "on_error": "(self, context: Any, error: Exception) -> None"
+  },
+  "core.kernel.pipeline.middleware.PipelineMiddleware": {
+    "__init__": "(self, *args, **kwargs)",
+    "invoke": "(self, context: Any, next_mid: Callable[[Any], Awaitable[Any]]) -> Any"
+  },
+  "core.kernel.pipeline.pipeline.KernelExecutionPipeline": {
+    "__init__": "(self)",
+    "add_hook": "(self, hook: core.kernel.pipeline.hooks.PipelineHook) -> None",
+    "execute": "(self, context: core.kernel.context.context.KernelExecutionContext, payload: Any) -> Any",
+    "use": "(self, middleware: core.kernel.pipeline.middleware.PipelineMiddleware) -> None"
+  },
+  "core.kernel.registry.base.RegistryProtocol": {
+    "__init__": "(self, *args, **kwargs)",
+    "export": "(self) -> str",
+    "filter": "(self, predicate: <built-in function callable>) -> List[Any]",
+    "find": "(self, key: str) -> Any | None",
+    "import_data": "(self, data: str) -> None",
+    "register": "(self, key: str, instance: Any) -> None",
+    "replace": "(self, key: str, new_instance: Any) -> None",
+    "search": "(self, query: str) -> List[Any]",
+    "snapshot": "(self) -> Dict[str, Any]",
+    "unregister": "(self, key: str) -> None"
+  },
+  "core.kernel.registry.composite.BaseRegistry": {
+    "__init__": "(self)",
+    "export": "(self) -> str",
+    "filter": "(self, predicate: <built-in function callable>) -> List[Any]",
+    "find": "(self, key: str) -> Any | None",
+    "import_data": "(self, data: str) -> None",
+    "register": "(self, key: str, instance: Any) -> None",
+    "replace": "(self, key: str, new_instance: Any) -> None",
+    "search": "(self, query: str) -> List[Any]",
+    "snapshot": "(self) -> Dict[str, Any]",
+    "unregister": "(self, key: str) -> None"
+  },
+  "core.kernel.registry.composite.CompositeRegistry": {
+    "__init__": "(self)"
+  },
+  "core.kernel.runtime.executor.WorkerRuntime": {
+    "__init__": "(self)",
+    "execute_task": "(self, context: core.kernel.context.context.KernelRuntimeContext, task_payload: Any) -> Any"
+  },
+  "core.kernel.scheduler.plan.ExecutionPlan": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.kernel.scheduler.scheduler.KernelScheduler": {
+    "generate_plan": "(self, task: core.contracts.task.task.Task) -> core.kernel.scheduler.plan.ExecutionPlan"
+  },
+  "core.kernel.state.manager.StateManager": {
+    "__init__": "(self)",
+    "get_kernel_state": "(self, key: str) -> Any",
+    "get_task_state": "(self, task_id: str) -> Any",
+    "set_kernel_state": "(self, key: str, value: Any) -> None",
+    "set_task_state": "(self, task_id: str, state: Any) -> None"
+  },
+  "core.kernel.supervisor.loop.KernelSupervisor": {
+    "__init__": "(self)",
+    "start": "(self)",
+    "stop": "(self)"
+  },
+  "core.execution.bootstrap.engine_bootstrap.ExecutionEngineBootstrap": {
+    "initialize": "() -> 'ExecutionEngineInstance'"
+  },
+  "core.execution.bootstrap.engine_bootstrap.ExecutionEngineInstance": {
+    "__init__": "(self, pool: core.execution.executor_pool.pool.ExecutorPool, metrics: core.execution.metrics.collector.ExecutionMetricsCollector, diagnostics: core.execution.diagnostics.report.ExecutionDiagnostics, state: core.execution.state.manager.ExecutionStateManager, policy: core.execution.execution_policy.policy_manager.ExecutionPolicyManager, resource: core.execution.resource_manager.manager.ResourceManager, history: core.execution.execution_history.store.ExecutionHistoryStore, scheduler: core.execution.scheduler.scheduler.ExecutionScheduler, strategy_registry: core.execution.execution_strategy.registry.StrategyRegistry, pipeline: core.execution.pipeline.pipeline.ExecutionPipeline)"
+  },
+  "core.execution.cancellation.source.CancellationTokenSource": {
+    "__init__": "(self)",
+    "cancel": "(self, reason: str = 'Cancellation requested') -> None"
+  },
+  "core.execution.cancellation.token.CancellationToken": {
+    "__init__": "(self)",
+    "wait_for_cancellation": "(self) -> None"
+  },
+  "core.execution.diagnostics.report.ExecutionDiagnostics": {
+    "__init__": "(self, pool: core.execution.executor_pool.pool.ExecutorPool, metrics: core.execution.metrics.collector.ExecutionMetricsCollector)",
+    "report": "(self) -> Dict[str, Any]"
+  },
+  "core.execution.events.execution_events.ExecutionCancelled": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.events.execution_events.ExecutionCompleted": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.events.execution_events.ExecutionFailed": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.events.execution_events.ExecutionRetried": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.events.execution_events.ExecutionStarted": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.events.execution_events.ExecutionTimedOut": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.events.execution_events.ExecutorAllocated": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.events.execution_events.ExecutorReleased": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.execution_context.context.ExecutionContext": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.execution_history.store.ExecutionHistoryStore": {
+    "__init__": "(self, max_entries: int = 10000)",
+    "get": "(self, session_id: str) -> core.execution.execution_result.result.ExecutionResult | None",
+    "list_recent": "(self, limit: int = 50) -> List[core.execution.execution_result.result.ExecutionResult]",
+    "record": "(self, session_id: str, result: core.execution.execution_result.result.ExecutionResult) -> None"
+  },
+  "core.execution.execution_plan.plan.ExecutionPlan": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.execution_policy.policy_manager.ExecutionPolicyManager": {
+    "__init__": "(self, default_policy: core.execution.spi.policy.ExecutionPolicy | None = None)",
+    "get_policy": "(self, task_id: str | None = None) -> core.execution.spi.policy.ExecutionPolicy"
+  },
+  "core.execution.execution_result.result.ExecutionResult": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.execution_result.result.ExecutionStatus": {},
+  "core.execution.execution_session.session.ExecutionSession": {
+    "__init__": "(self, /, **data: 'Any') -> 'None'",
+    "copy": "(self, *, include: 'AbstractSetIntStr | MappingIntStrAny | None' = None, exclude: 'AbstractSetIntStr | MappingIntStrAny | None' = None, update: 'Dict[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "dict": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False) -> 'Dict[str, Any]'",
+    "json": "(self, *, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, by_alias: 'bool' = False, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, encoder: 'Callable[[Any], Any] | None' = PydanticUndefined, models_as_dict: 'bool' = PydanticUndefined, **dumps_kwargs: 'Any') -> 'str'",
+    "model_copy": "(self, *, update: 'Mapping[str, Any] | None' = None, deep: 'bool' = False) -> 'Self'",
+    "model_dump": "(self, *, mode: \"Literal['json', 'python'] | str\" = 'python', include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'dict[str, Any]'",
+    "model_dump_json": "(self, *, indent: 'int | None' = None, ensure_ascii: 'bool' = False, include: 'IncEx | None' = None, exclude: 'IncEx | None' = None, context: 'Any | None' = None, by_alias: 'bool | None' = None, exclude_unset: 'bool' = False, exclude_defaults: 'bool' = False, exclude_none: 'bool' = False, exclude_computed_fields: 'bool' = False, round_trip: 'bool' = False, warnings: \"bool | Literal['none', 'warn', 'error']\" = True, fallback: 'Callable[[Any], Any] | None' = None, serialize_as_any: 'bool' = False, polymorphic_serialization: 'bool | None' = None) -> 'str'",
+    "model_post_init": "(self, context: 'Any', /) -> 'None'"
+  },
+  "core.execution.execution_session.session.SessionStatus": {},
+  "core.execution.execution_strategy.parallel.ParallelStrategy": {
+    "execute": "(self, units: List[Any], executor_fn: Any) -> List[Any]"
+  },
+  "core.execution.execution_strategy.registry.StrategyRegistry": {
+    "__init__": "(self)",
+    "get": "(self, name: str) -> core.execution.spi.strategy.ExecutionStrategy | None",
+    "register": "(self, name: str, strategy: core.execution.spi.strategy.ExecutionStrategy) -> None"
+  },
+  "core.execution.execution_strategy.sequential.SequentialStrategy": {
+    "execute": "(self, units: List[Any], executor_fn: Any) -> List[Any]"
+  },
+  "core.execution.executor_pool.pool.ExecutorPool": {
+    "__init__": "(self)",
+    "allocate": "(self, session_id: str, executor_id: str | None = None) -> core.execution.spi.executor.Executor",
+    "list_available": "(self) -> List[str]",
+    "lookup": "(self, executor_id: str) -> core.execution.spi.executor.Executor",
+    "register": "(self, executor_id: str, executor: core.execution.spi.executor.Executor) -> None",
+    "release": "(self, session_id: str) -> None",
+    "unregister": "(self, executor_id: str) -> None"
+  },
+  "core.execution.internal.exceptions.ExecutionCancelledError": {},
+  "core.execution.internal.exceptions.ExecutionEngineError": {},
+  "core.execution.internal.exceptions.ExecutionRetryExhaustedError": {},
+  "core.execution.internal.exceptions.ExecutionTimeoutError": {},
+  "core.execution.internal.exceptions.ExecutionValidationError": {},
+  "core.execution.internal.exceptions.ExecutorAllocationError": {},
+  "core.execution.internal.exceptions.ExecutorNotFoundError": {},
+  "core.execution.lifecycle.execution_lifecycle.ExecutionLifecycle": {
+    "__init__": "(self)",
+    "transition_to": "(self, new_state: core.execution.lifecycle.execution_lifecycle.ExecutionState) -> bool"
+  },
+  "core.execution.lifecycle.execution_lifecycle.ExecutionState": {},
+  "core.execution.metrics.collector.ExecutionMetricsCollector": {
+    "__init__": "(self)",
+    "get_average_duration": "(self) -> float",
+    "record_execution": "(self, status: str, duration_ms: float = 0.0, retries: int = 0) -> None",
+    "snapshot": "(self) -> Dict[str, int | float]"
+  },
+  "core.execution.middleware.logging_mw.LoggingMiddleware": {
+    "invoke": "(self, context: Any, payload: Any, next_mw: Callable) -> Any"
+  },
+  "core.execution.middleware.metrics_mw.MetricsMiddleware": {
+    "__init__": "(self, collector: core.execution.metrics.collector.ExecutionMetricsCollector)",
+    "invoke": "(self, context: Any, payload: Any, next_mw: Callable) -> Any"
+  },
+  "core.execution.middleware.validation.ValidationMiddleware": {
+    "invoke": "(self, context: Any, payload: Any, next_mw: Callable) -> Any"
+  },
+  "core.execution.pipeline.pipeline.ExecutionPipeline": {
+    "__init__": "(self)",
+    "execute": "(self, context: Any, payload: Any) -> Any",
+    "use": "(self, middleware: core.execution.spi.middleware.ExecutionMiddleware) -> 'ExecutionPipeline'"
+  },
+  "core.execution.resource_manager.manager.ResourceManager": {
+    "__init__": "(self, max_concurrent: int = 10)",
+    "acquire": "(self, session_id: str) -> bool",
+    "release": "(self, session_id: str) -> None"
+  },
+  "core.execution.retry.handler.RetryHandler": {
+    "__init__": "(self, policy: core.execution.spi.retry_policy.RetryPolicy)",
+    "execute_with_retry": "(self, fn: Callable[..., Awaitable[Any]], *args: Any, **kwargs: Any) -> Any"
+  },
+  "core.execution.scheduler.scheduler.ExecutionScheduler": {
+    "create_plan": "(self, task_id: str, priority: int = 0, strategy: str = 'sequential') -> core.execution.execution_plan.plan.ExecutionPlan"
+  },
+  "core.execution.spi.executor.Executor": {
+    "cancel": "(self) -> None",
+    "capabilities": "(self) -> List[core.execution.spi.executor.ExecutorCapability]",
+    "execute": "(self, context: 'ExecutionContext', payload: Any) -> Any",
+    "health": "(self) -> core.execution.spi.executor.ExecutorHealth",
+    "shutdown": "(self) -> None",
+    "validate": "(self, context: 'ExecutionContext', payload: Any) -> bool"
+  },
+  "core.execution.spi.executor.ExecutorCapability": {
+    "__init__": "(self, name: str, version: str = '1.0')"
+  },
+  "core.execution.spi.executor.ExecutorHealth": {
+    "__init__": "(self, healthy: bool = True, message: str = 'OK')"
+  },
+  "core.execution.spi.middleware.ExecutionMiddleware": {
+    "invoke": "(self, context: Any, payload: Any, next_mw: Callable[[ForwardRef('ExecutionContext'), Any], Awaitable[Any]]) -> Any"
+  },
+  "core.execution.spi.policy.ExecutionPolicy": {
+    "__init__": "(self, retry: core.execution.spi.retry_policy.RetryPolicy | None = None, timeout: core.execution.spi.timeout_policy.TimeoutPolicy | None = None)"
+  },
+  "core.execution.spi.retry_policy.RetryPolicy": {
+    "__init__": "(self, max_retries: int = 3, delay_seconds: float = 1.0, backoff_multiplier: float = 2.0, retryable_exceptions: tuple = (<class 'Exception'>,))",
+    "get_delay": "(self, attempt: int) -> float",
+    "should_retry": "(self, attempt: int, error: Exception) -> bool"
+  },
+  "core.execution.spi.strategy.ExecutionStrategy": {
+    "execute": "(self, units: List[Any], executor_fn: Any) -> List[Any]"
+  },
+  "core.execution.spi.timeout_policy.TimeoutPolicy": {
+    "__init__": "(self, execution_timeout_seconds: float = 300.0, session_timeout_seconds: float = 3600.0)"
+  },
+  "core.execution.state.manager.ExecutionStateManager": {
+    "__init__": "(self)",
+    "get_execution_data": "(self, session_id: str) -> Any",
+    "get_session": "(self, session_id: str) -> core.execution.execution_session.session.ExecutionSession | None",
+    "store_session": "(self, session_id: str, session: core.execution.execution_session.session.ExecutionSession) -> None",
+    "update_execution_data": "(self, session_id: str, data: Any) -> None"
+  },
+  "core.execution.timeout.handler.TimeoutHandler": {
+    "__init__": "(self, policy: core.execution.spi.timeout_policy.TimeoutPolicy)",
+    "execute_with_timeout": "(self, fn: Callable[..., Awaitable[Any]], *args: Any, **kwargs: Any) -> Any"
+  }
+}

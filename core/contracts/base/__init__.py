@@ -17,5 +17,5 @@ __all__ = [
     "DomainEvent",
     "Command",
     "Query",
-    "ContractProtocol"
+    "ContractProtocol",
 ]

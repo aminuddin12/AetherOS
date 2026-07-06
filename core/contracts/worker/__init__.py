@@ -11,5 +11,5 @@ __all__ = [
     "Capability",
     "ReputationScore",
     "LifecyclePhase",
-    "WorkerLifecycle"
+    "WorkerLifecycle",
 ]

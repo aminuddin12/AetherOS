@@ -1,6 +1,7 @@
-from core.contracts.metrics.metric import TelemetryEvent
+from core.contracts.metrics.telemetry import TelemetryEvent
 from .aggregator import MetricsAggregator
 from .exporter import MetricsExporter
+
 
 class MetricsCollector:
     def __init__(self, aggregator: MetricsAggregator, exporter: MetricsExporter):

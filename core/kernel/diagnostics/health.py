@@ -2,11 +2,13 @@ from enum import StrEnum
 from typing import Dict, Any
 from pydantic import BaseModel, Field
 
+
 class HealthStatus(StrEnum):
     HEALTHY = "healthy"
     DEGRADED = "degraded"
     MAINTENANCE = "maintenance"
     FAILED = "failed"
+
 
 class HealthModel(BaseModel):
     status: HealthStatus = Field(default=HealthStatus.HEALTHY)

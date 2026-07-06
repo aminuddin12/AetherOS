@@ -2,6 +2,7 @@ from typing import Any, Callable, Awaitable
 from core.execution.spi import ExecutionMiddleware
 from core.execution.internal import ExecutionValidationError
 
+
 class ValidationMiddleware(ExecutionMiddleware):
     """Memvalidasi bahwa payload tidak kosong sebelum meneruskan."""
 

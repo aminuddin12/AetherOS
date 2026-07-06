@@ -1,6 +1,7 @@
 from typing import Any, List
 from core.execution.spi import ExecutionStrategy
 
+
 class SequentialStrategy(ExecutionStrategy):
     """Menjalankan units satu per satu secara berurutan."""
 

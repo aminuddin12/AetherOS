@@ -1,9 +1,11 @@
 from pydantic import BaseModel, Field
 
+
 class KernelConfiguration(BaseModel):
     """
     Konfigurasi dan Feature Flags Kernel.
     """
+
     # Feature Flags
     enable_scheduler: bool = True
     enable_metrics: bool = True

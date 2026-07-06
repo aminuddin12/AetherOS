@@ -1,10 +1,12 @@
 from typing import Any
 from core.kernel.context import KernelRuntimeContext
 
+
 class WorkerRuntime:
     """
     Murni bertindak sebagai Executor dari Pipeline.
     """
+
     def __init__(self):
         pass
 

@@ -1,7 +1,8 @@
 from abc import ABC, abstractmethod
 from typing import Any, Callable, Awaitable
 
-NextMiddleware = Callable[['ExecutionContext', Any], Awaitable[Any]]
+NextMiddleware = Callable[["ExecutionContext", Any], Awaitable[Any]]
+
 
 class ExecutionMiddleware(ABC):
     """

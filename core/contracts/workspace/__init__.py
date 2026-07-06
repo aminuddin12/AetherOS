@@ -16,5 +16,5 @@ __all__ = [
     "Commit",
     "PullRequest",
     "Deployment",
-    "Environment"
+    "Environment",
 ]

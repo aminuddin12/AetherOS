@@ -1,10 +1,12 @@
 from typing import List, Dict
 from core.execution.execution_result import ExecutionResult
 
+
 class ExecutionHistoryStore:
     """
     In-memory store untuk riwayat eksekusi.
     """
+
     def __init__(self, max_entries: int = 10000):
         self._history: Dict[str, ExecutionResult] = {}
         self._max = max_entries

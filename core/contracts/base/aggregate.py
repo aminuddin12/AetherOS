@@ -3,14 +3,15 @@ from pydantic import Field, PrivateAttr
 from .entity import Entity
 from .event import DomainEvent
 
+
 class AggregateRoot(Entity):
     """
     Aggregate Root adalah pintu masuk utama (transaction boundary).
     Mendukung Domain Events mutation secara internal,
     sementara akses dari luar tetap immutable.
     """
-    
-    # Internal list of domain events. 
+
+    # Internal list of domain events.
     # PrivateAttr allows mutation inside the class despite frozen=True.
     _domain_events: List[DomainEvent] = PrivateAttr(default_factory=list)
 

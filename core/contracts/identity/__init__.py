@@ -13,5 +13,5 @@ __all__ = [
     "AuthenticationState",
     "AuthenticationContext",
     "PermissionRecord",
-    "RoleRecord"
+    "RoleRecord",
 ]

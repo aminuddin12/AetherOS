@@ -3,6 +3,7 @@ from typing import Any, Callable
 from core.execution.spi import ExecutionMiddleware
 from core.execution.metrics import ExecutionMetricsCollector
 
+
 class MetricsMiddleware(ExecutionMiddleware):
     """Merekam durasi dan status eksekusi."""
 

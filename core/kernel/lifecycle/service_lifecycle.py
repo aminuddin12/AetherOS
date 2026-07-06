@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class ServiceState(Enum):
     UNINITIALIZED = "uninitialized"
     STARTING = "starting"
@@ -7,6 +8,7 @@ class ServiceState(Enum):
     STOPPING = "stopping"
     STOPPED = "stopped"
     FAILED = "failed"
+
 
 class ServiceLifecycle:
     def __init__(self):

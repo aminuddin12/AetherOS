@@ -1,5 +1,6 @@
 from typing import Protocol, Any, List, Dict
 
+
 class RegistryProtocol(Protocol):
     def register(self, key: str, instance: Any) -> None: ...
     def unregister(self, key: str) -> None: ...

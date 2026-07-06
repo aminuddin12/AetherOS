@@ -1,11 +1,13 @@
 from typing import List, Dict, Any
 from pydantic import BaseModel, ConfigDict, Field
 
+
 class ExecutionPlan(BaseModel):
     """
     Arahan eksekusi immutable yang dihasilkan Scheduler.
     Setelah dibuat, tidak boleh dimutasi. Perubahan menghasilkan plan baru.
     """
+
     model_config = ConfigDict(frozen=True)
 
     task_id: str = Field(...)

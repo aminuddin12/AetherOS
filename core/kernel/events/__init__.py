@@ -9,12 +9,19 @@ from .internal_events import (
     TaskFailed,
     PermissionDenied,
     PipelineStarted,
-    PipelineCompleted
+    PipelineCompleted,
 )
 
 __all__ = [
-    "KernelStarted", "KernelStopped", "KernelBootstrapped",
-    "WorkerRegistered", "WorkerUnregistered", "TaskScheduled",
-    "TaskCompleted", "TaskFailed", "PermissionDenied",
-    "PipelineStarted", "PipelineCompleted"
+    "KernelStarted",
+    "KernelStopped",
+    "KernelBootstrapped",
+    "WorkerRegistered",
+    "WorkerUnregistered",
+    "TaskScheduled",
+    "TaskCompleted",
+    "TaskFailed",
+    "PermissionDenied",
+    "PipelineStarted",
+    "PipelineCompleted",
 ]

@@ -1,15 +1,18 @@
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List
 
+
 class ExecutorCapability:
     def __init__(self, name: str, version: str = "1.0"):
         self.name = name
         self.version = version
 
+
 class ExecutorHealth:
     def __init__(self, healthy: bool = True, message: str = "OK"):
         self.healthy = healthy
         self.message = message
+
 
 class Executor(ABC):
     """
@@ -19,12 +22,12 @@ class Executor(ABC):
     """
 
     @abstractmethod
-    async def execute(self, context: 'ExecutionContext', payload: Any) -> Any:
+    async def execute(self, context: "ExecutionContext", payload: Any) -> Any:
         """Menjalankan payload dalam context yang diberikan."""
         ...
 
     @abstractmethod
-    async def validate(self, context: 'ExecutionContext', payload: Any) -> bool:
+    async def validate(self, context: "ExecutionContext", payload: Any) -> bool:
         """Memvalidasi apakah executor dapat menjalankan payload ini."""
         ...
 

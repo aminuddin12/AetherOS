@@ -2,14 +2,29 @@ import os
 import ast
 
 FORBIDDEN_MODULES = [
-    "openai", "fastapi", "sqlalchemy", "redis", "langgraph", "openhands",
-    "provider", "workspace", "database", "docker", "flask", "django",
-    "httpx", "requests", "aiohttp", "celery", "dramatiq",
+    "openai",
+    "fastapi",
+    "sqlalchemy",
+    "redis",
+    "langgraph",
+    "openhands",
+    "provider",
+    "workspace",
+    "database",
+    "docker",
+    "flask",
+    "django",
+    "httpx",
+    "requests",
+    "aiohttp",
+    "celery",
+    "dramatiq",
 ]
 
 FORBIDDEN_INTERNAL_IMPORTS = [
     "core.kernel.internal",
 ]
+
 
 def check_imports(directory):
     errors = []
@@ -39,6 +54,7 @@ def check_imports(directory):
                                 errors.append(f"{path}: forbidden 'from {node.module}'")
 
     return errors
+
 
 if __name__ == "__main__":
     print("=" * 60)

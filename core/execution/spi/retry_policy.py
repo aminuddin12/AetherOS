@@ -2,6 +2,7 @@ class RetryPolicy:
     """
     Aturan retry untuk eksekusi yang gagal.
     """
+
     def __init__(
         self,
         max_retries: int = 3,
@@ -20,4 +21,4 @@ class RetryPolicy:
         return isinstance(error, self.retryable_exceptions)
 
     def get_delay(self, attempt: int) -> float:
-        return self.delay_seconds * (self.backoff_multiplier ** attempt)
+        return self.delay_seconds * (self.backoff_multiplier**attempt)

@@ -2,6 +2,7 @@ from typing import List
 from pydantic import BaseModel, Field
 from .health import HealthModel
 
+
 class DiagnosticsReport(BaseModel):
     version: str = Field(...)
     health: HealthModel = Field(...)

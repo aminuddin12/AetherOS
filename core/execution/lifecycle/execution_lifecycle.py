@@ -1,5 +1,6 @@
 from enum import StrEnum
 
+
 class ExecutionState(StrEnum):
     CREATED = "created"
     QUEUED = "queued"
@@ -9,20 +10,28 @@ class ExecutionState(StrEnum):
     FAILED = "failed"
     TIMED_OUT = "timed_out"
 
+
 VALID_TRANSITIONS = {
     ExecutionState.CREATED: {ExecutionState.QUEUED, ExecutionState.CANCELLED},
     ExecutionState.QUEUED: {ExecutionState.RUNNING, ExecutionState.CANCELLED},
-    ExecutionState.RUNNING: {ExecutionState.COMPLETED, ExecutionState.FAILED, ExecutionState.CANCELLED, ExecutionState.TIMED_OUT},
+    ExecutionState.RUNNING: {
+        ExecutionState.COMPLETED,
+        ExecutionState.FAILED,
+        ExecutionState.CANCELLED,
+        ExecutionState.TIMED_OUT,
+    },
     ExecutionState.COMPLETED: set(),
     ExecutionState.CANCELLED: set(),
     ExecutionState.FAILED: set(),
     ExecutionState.TIMED_OUT: set(),
 }
 
+
 class ExecutionLifecycle:
     """
     Mengelola dan memvalidasi transisi status eksekusi.
     """
+
     def __init__(self):
         self._state = ExecutionState.CREATED
 

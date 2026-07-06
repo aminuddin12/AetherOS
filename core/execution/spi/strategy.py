@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any, List
 
+
 class ExecutionStrategy(ABC):
     """
     Menentukan BAGAIMANA sekelompok unit kerja dieksekusi.

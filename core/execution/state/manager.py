@@ -1,11 +1,13 @@
 from typing import Dict, Any
 from core.execution.execution_session import ExecutionSession
 
+
 class ExecutionStateManager:
     """
     State Manager khusus Execution Engine.
     Satu-satunya tempat mutable state boleh hidup.
     """
+
     def __init__(self):
         self._sessions: Dict[str, ExecutionSession] = {}
         self._execution_data: Dict[str, Any] = {}

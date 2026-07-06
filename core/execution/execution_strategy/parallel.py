@@ -2,6 +2,7 @@ import asyncio
 from typing import Any, List
 from core.execution.spi import ExecutionStrategy
 
+
 class ParallelStrategy(ExecutionStrategy):
     """Menjalankan semua units secara paralel menggunakan asyncio.gather."""
 

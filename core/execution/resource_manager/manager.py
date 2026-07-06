@@ -1,9 +1,11 @@
 from typing import Dict
 
+
 class ResourceManager:
     """
     In-memory resource manager untuk mengatur slot eksekusi.
     """
+
     def __init__(self, max_concurrent: int = 10):
         self._max = max_concurrent
         self._allocated: Dict[str, bool] = {}

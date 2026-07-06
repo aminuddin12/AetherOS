@@ -3,21 +3,28 @@ from .scope import ServiceScope
 from .provider import ServiceProvider
 from .resolver import Resolver
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class ServiceContainer:
     """
     Pure Python IoC Container.
     Mendukung Singleton dan Transient. Constructor Injection otomatis via Type Hints.
     """
+
     def __init__(self):
         self._providers: Dict[Type, ServiceProvider] = {}
         self._resolver = Resolver(self)
-        
+
         # Self registration
         self.register_instance(ServiceContainer, self)
 
-    def register(self, interface: Type[T], implementation: Type[T] | None = None, scope: ServiceScope = ServiceScope.SINGLETON) -> None:
+    def register(
+        self,
+        interface: Type[T],
+        implementation: Type[T] | None = None,
+        scope: ServiceScope = ServiceScope.SINGLETON,
+    ) -> None:
         impl = implementation or interface
         self._providers[interface] = ServiceProvider(impl, scope)
 

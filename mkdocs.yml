@@ -1,0 +1,49 @@
+site_name: AetherOS
+site_description: The Open Agent Operating System
+site_author: AetherOS Core Team
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+  palette:
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+
+nav:
+  - Home: index.md
+  - Architecture:
+      - Overview: architecture/overview.md
+  - Specifications:
+      - Core Contracts: id/specifications/contracts.md
+      - Kernel: id/specifications/kernel.md
+      - Execution Engine: id/specifications/execution.md
+  - Compatibility:
+      - Promise: id/compatibility/promise.md
+  - Governance:
+      - Decision Process: id/governance/decision-process.md
+      - Maintainers: id/governance/maintainers.md
+      - Release Process: id/governance/release-process.md
+      - RFC Process: id/governance/rfc-process.md
+      - ADR Process: id/governance/adr-process.md
+  - Engineering Handbook: id/engineering/engineering-handbook.md
+  - Quality & Security:
+      - Architecture Metrics: id/quality/architecture-metrics.md
+      - Performance Budget: id/quality/performance-budget.md
+      - Deprecation Policy: id/deprecation-policy.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences

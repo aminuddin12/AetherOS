@@ -3,12 +3,14 @@ import asyncio
 from core.contracts.base import DomainEvent
 from .policy import SupervisorPolicy
 
+
 class EventBus:
     """
     Pure Pub/Sub Event Dispatcher.
     Tidak menyimpan antrian atau retry logic.
     Menyerahkan penanganan error kepada Supervisor Policy.
     """
+
     def __init__(self, policy: SupervisorPolicy = SupervisorPolicy.TELEMETRY):
         self._subscribers: Dict[Type[DomainEvent], List[Callable]] = {}
         self._policy = policy

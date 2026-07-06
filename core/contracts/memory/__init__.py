@@ -14,5 +14,5 @@ __all__ = [
     "ArchitecturePattern",
     "Recommendation",
     "OrganizationalPolicy",
-    "ArchitectureDecision"
+    "ArchitectureDecision",
 ]

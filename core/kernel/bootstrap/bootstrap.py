@@ -1,10 +1,12 @@
 from .builder import KernelBuilder
 from .kernel import AetherKernel
 
+
 class KernelBootstrap:
     """
     Orkestrator utama dengan Pre, Main, dan Post phases.
     """
+
     @staticmethod
     def pre_bootstrap() -> KernelBuilder:
         return KernelBuilder()

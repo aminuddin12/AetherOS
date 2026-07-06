@@ -2,10 +2,12 @@ from typing import Dict, List, Any
 from core.execution.spi import Executor
 from core.execution.internal import ExecutorNotFoundError, ExecutorAllocationError
 
+
 class ExecutorPool:
     """
     Pool pengelola Executor instances.
     """
+
     def __init__(self):
         self._executors: Dict[str, Executor] = {}
         self._allocated: Dict[str, str] = {}

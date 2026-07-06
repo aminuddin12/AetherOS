@@ -3,6 +3,7 @@ from typing import Any, Dict
 from pydantic import BaseModel, ConfigDict, Field
 from datetime import datetime, UTC
 
+
 class ExecutionStatus(StrEnum):
     SUCCESS = "success"
     FAILURE = "failure"
@@ -10,10 +11,12 @@ class ExecutionStatus(StrEnum):
     CANCELLED = "cancelled"
     RETRY_EXHAUSTED = "retry_exhausted"
 
+
 class ExecutionResult(BaseModel):
     """
     Hasil eksekusi. Immutable setelah dibuat.
     """
+
     model_config = ConfigDict(frozen=True)
 
     status: ExecutionStatus = Field(...)

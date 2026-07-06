@@ -14,5 +14,5 @@ __all__ = [
     "Notification",
     "Message",
     "MessageRole",
-    "Conversation"
+    "Conversation",
 ]

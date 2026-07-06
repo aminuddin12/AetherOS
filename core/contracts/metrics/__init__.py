@@ -12,5 +12,5 @@ __all__ = [
     "TelemetryEvent",
     "CostRecord",
     "ResourceUsage",
-    "TokenUsage"
+    "TokenUsage",
 ]

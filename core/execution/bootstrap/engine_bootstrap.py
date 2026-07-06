@@ -10,13 +10,15 @@ from core.execution.resource_manager import ResourceManager
 from core.execution.execution_history import ExecutionHistoryStore
 from core.execution.scheduler import ExecutionScheduler
 
+
 class ExecutionEngineBootstrap:
     """
     Orkestrator inisialisasi Execution Engine.
     Membangun semua komponen dan merangkainya.
     """
+
     @staticmethod
-    def initialize() -> 'ExecutionEngineInstance':
+    def initialize() -> "ExecutionEngineInstance":
         pool = ExecutorPool()
         metrics = ExecutionMetricsCollector()
         diagnostics = ExecutionDiagnostics(pool, metrics)
@@ -48,10 +50,12 @@ class ExecutionEngineBootstrap:
             pipeline=pipeline,
         )
 
+
 class ExecutionEngineInstance:
     """
     Instance Execution Engine yang sudah ter-bootstrap.
     """
+
     def __init__(
         self,
         pool: ExecutorPool,

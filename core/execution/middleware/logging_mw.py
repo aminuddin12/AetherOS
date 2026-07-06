@@ -4,6 +4,7 @@ from core.execution.spi import ExecutionMiddleware
 
 logger = logging.getLogger("aether.execution")
 
+
 class LoggingMiddleware(ExecutionMiddleware):
     """Logging middleware untuk observability."""
 

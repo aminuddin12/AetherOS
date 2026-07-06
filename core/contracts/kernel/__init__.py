@@ -12,5 +12,5 @@ __all__ = [
     "SchedulingPolicy",
     "ComponentRegistryProtocol",
     "SandboxExecutorProtocol",
-    "ExecutionPipelineProtocol"
+    "ExecutionPipelineProtocol",
 ]
