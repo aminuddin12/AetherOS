@@ -1,6 +1,6 @@
 # 💬 Request for Comments (RFC)
 
-Terinspirasi dari tata kelola proyek *open-source* berskala besar seperti Kubernetes, Python (PEP), dan CNCF, AetherOS menggunakan sistem **RFC (Request for Comments)** untuk mengusulkan fitur besar atau perubahan arsitektural.
+AetherOS menggunakan sistem **RFC (Request for Comments)** untuk mengusulkan fitur besar atau perubahan arsitektural.
 
 Proses yang terstruktur memastikan bahwa kontributor dari seluruh dunia dapat berdiskusi dan menyempurnakan suatu ide **sebelum** satu baris kode pun ditulis.
 
@@ -19,13 +19,13 @@ graph LR
     ADR --> CODE["💻 Implementation"]
 ```
 
-## Daftar RFC Aktif
-
-*(Tabel ini akan berisi daftar file RFC markdown yang sedang dalam masa peninjauan atau sudah disetujui)*
+## Daftar RFC
 
 | ID RFC | Judul | Penulis | Status | Tanggal |
 |---|---|---|---|---|
-| RFC-000 | (Contoh) Migrasi dari FastAPI ke gRPC | @aminuddin12 | Draft | - |
+| [RFC-0001](rfc-0001-execution-engine.md) | Aether Execution Engine | Principal Runtime Engineer | 🟢 Implemented | 2026-07-06 |
+| [RFC-0011](../../../.gemini/antigravity-ide/brain/abe93bac-f782-4551-93ab-8d241ba05046/implementation_plan.md) | Organization Runtime (Operating Context) | Core Platform Team | 🟢 Implemented | 2026-07-07 |
+| [RFC-0012](../../../.gemini/antigravity-ide/brain/abe93bac-f782-4551-93ab-8d241ba05046/implementation_plan.md) | Architecture Consolidation & Docs Freeze | Core Platform Team | 🟢 Implemented | 2026-07-07 |
 
 ---
 

@@ -207,6 +207,7 @@ Membangun antarmuka pengguna, marketplace, dan optimasi biaya.
 
 ---
 
-🔗 **Selanjutnya:** [Glosarium →](../12-glossary/glossary.md)
+🔗 **Selanjutnya:** [Glosarium →](../glossary/index.md)
 
-🔗 **Kembali:** [Git Workflow ←](../10-workspace/git-workflow.md)
+🔗 **Kembali:** [Menu Utama ←](../README.md)
+

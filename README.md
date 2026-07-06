@@ -1,109 +1,139 @@
-# AetherOS
+# AetherOS: The Open Agent Operating System
 
-**Open Agent Operating System**
+---
+Status: Implemented
+Version: 2.0.0
+Owner: Core Platform Team
+Last Updated: 2026-07-07
+Implementation Status: Core Foundation Implemented (M1 - M3.5)
+---
 
-AetherOS bukanlah sekadar kerangka kerja (*framework*) untuk membuat *AI Agent*. AetherOS adalah sistem operasi berskala penuh yang dirancang dari nol untuk mensimulasikan dan menjalankan sebuah organisasi berbasis kecerdasan buatan (*Artificial Intelligence*).
+## 1. What is AetherOS?
 
-Filosofi utama kami adalah:
-> *"Build Organizations, not Agents."*
-
-Alih-alih berfokus pada agen AI yang bekerja mandiri (seperti chatbot), AetherOS menyediakan infrastruktur sistem (*Kernel, Execution, Storage, Repository, Artifact, Workspace, Organization*) tempat para agen bekerja sebagai **bagian dari sebuah sistem sosial, birokrasi, dan kolaborasi**.
+AetherOS bukanlah sebuah *AI Agent Framework* biasa untuk membuat *standalone chatbots*. AetherOS adalah sebuah **Sistem Operasi Agen Terbuka (Open Agent Operating System)** berskala penuh yang dirancang dari nol untuk menjalankan, mengoordinasikan, dan mengamankan kolaborasi berskala besar antara agen AI (*Agent Workers*) dan manusia dalam lingkup tata kelola organisasi.
 
 ---
 
-## 🏗 High-Level Architecture
+## 2. Visi & Filosofi
 
-Sistem ini disusun berdasarkan prinsip *Dependency Direction* (ADR-0025) murni secara *bottom-up*. Tidak ada runtime tingkat atas yang mengetahui atau menyimpan *state* internal dari runtime di bawahnya.
+### "Build Organizations, not Agents"
+Membuat agen AI pintar yang bekerja sendiri (seperti asisten personal) tidaklah cukup untuk menyelesaikan tantangan operasional perusahaan modern. Visi AetherOS adalah mempermudah perancangan **Organisasi Berbasis Kecerdasan Buatan (AI-Driven Organizations)**.
+
+AetherOS bertindak sebagai "jantung" komputasi sosial dan kognitif, menyediakan abstraksi sistem operasi tradisional (Kernel, Sandbox, Version Control, I/O Storage, Identitas, Izin Akses) yang disesuaikan secara khusus bagi agen kecerdasan buatan.
+
+---
+
+## 3. Why AetherOS Exists?
+
+- **Pemisahan Kognisi dan Infrastruktur**: Developer agen AI sering kali dipusingkan dengan cara melakukan pembacaan/penulisan file secara aman, integrasi Git, dan penyimpanan memori. AetherOS menangani semua urusan infrastruktur ini di tingkat sistem operasi (*System Level*), membebaskan developer agen AI untuk berfokus pada logika nalar (*cognitive/reasoning logic*).
+- **Keamanan Sandboxed by Default**: Seluruh eksekusi kode atau perintah terminal oleh agen diproteksi melalui engine eksekusi terisolasi untuk mencegah eksploitasi lingkungan host.
+- **Bahasa Komunikasi Universal**: Komponen internal berkomunikasi menggunakan URI (`workspace://`, `artifact://`, `storage://`) untuk memastikan portabilitas tinggi melintasi sistem terdistribusi.
+
+---
+
+## 4. High-Level Architecture
+
+Sistem AetherOS dibangun murni secara *bottom-up* dengan arah ketergantungan vertikal yang ketat:
 
 ```text
-               [ Company Brain ]
-             (Knowledge Orchestrator)
-                       │
-       ┌───────────────┴────────────────┐
-       │                                │
-[ Organization Runtime ]     [ Constitution Runtime ]
-(Operating Context)          (Rules & Compliance)
-       │                                │
-[ Workspace Application ]    [ Agent/Workflow Runtime ]
-(CQRS & Pipelines)           (Cognition & Execution)
-       │
-   ┌───┴────┬───────────┬───────────┐
-   │        │           │           │
-[Workspace] [Storage] [Repository] [Artifact]
-(Domain)   (Blobs)     (Graph)    (Semantic)
-   │        │           │           │
-   └────────┴───────────┴───────────┘
-                       │
-                 [ Runtime SDK ]
-               (Universal Facade)
-                       │
-             [ Kernel & Execution ]
-```
-
-### Konsep Inti
-- **Universal ResourceURI**: Seluruh interaksi lintas komponen diatur melalui `ResourceURI` (`workspace://...`, `artifact://...`, `storage://...`). 
-- **Ownership Matrix (ADR-0024)**: Setiap lapis runtime hanya menyimpan dan mengelola data miliknya. *Repository* tidak menyimpan file, melainkan graf revisi. *Storage* menyimpan blob.
-- **Company Brain (M4)**: Bukan sekadar model LLM, melainkan *Knowledge Orchestrator* yang mengonstruksi graf pengetahuan (*Subject-Predicate-Object*) berdasarkan abstraksi dari *Organization Layer*.
-
----
-
-## 🚀 Quick Start (Coming Soon)
-
-AetherOS sedang dalam tahap pembekuan fondasi arsitektur (M3.6). Rilis publik dengan instalasi pip sedang dipersiapkan untuk Milestone 9.
-
-Untuk pengembangan lokal (*Development*):
-```bash
-git clone https://github.com/aminuddin12/AetherOS.git
-cd AetherOS
-uv sync
-```
-
-Menjalankan CLI:
-```bash
-uv run aether --help
-```
-
-Contoh penggunaan Runtime SDK (sebagai ilustrasi arsitektur masa depan):
-```python
-from aether_runtime.sdk import AetherRuntime
-
-async def main():
-    runtime = AetherRuntime()
-    
-    # Mencari identitas di dalam direktori
-    members = await runtime.organization.directory.members()
-    
-    # Mengeksekusi komando pada workspace
-    result = await runtime.workspace_app.execute(
-        command="InitWorkspaceCommand",
-        payload={"uri": "workspace://engineering/core"}
-    )
+               ┌────────────────────────┐
+               │      Company Brain     │  <-- Layer 4: Intelligence (M4)
+               └───────────┬────────────┘
+                           │
+               ┌───────────▼────────────┐
+               │   Organization Core    │  <-- Layer 3: Organization (M3.5)
+               └───────────┬────────────┘
+                           │
+               ┌───────────▼────────────┐
+               │ Workspace Application  │  <-- Layer 2: Orchestration (CQRS) (M3.4)
+               └─────┬───┬───┬───┬──────┘
+                     │   │   │   │
+        ┌────────────┘   │   │   └────────────┐
+        ▼                ▼   ▼                ▼
+ ┌─────────────┐ ┌───────────┐ ┌────────────┐ ┌────────────┐
+ │  Workspace  │ │  Storage  │ │ Repository │ │  Artifact  │ <-- Layer 1: Subsystems (M3.0 - M3.3)
+ └─────────────┘ └───────────┘ └────────────┘ └────────────┘
+        │                │           │                │
+        └────────────┐   │   ┌───────┘                │
+                     ▼   ▼   ▼                        ▼
+               ┌────────────────────────┐
+               │      Runtime SDK       │  <-- Facade (Syscall API) (M2.7)
+               └───────────┬────────────┘
+                           │
+               ┌───────────▼────────────┐
+               │   Execution & Kernel   │  <-- Layer 0: System Kernel (M1 - M2)
+               └────────────────────────┘
 ```
 
 ---
 
-## 🗺 Roadmap Status
+## 5. Current Implementation & Milestone
 
-AetherOS dikembangkan dalam milestone terukur yang bergeser dari sistem dasar (OS) hingga orkestrasi kognitif (Brain).
+AetherOS saat ini berada pada **Milestone 3.6 (Architecture Consolidation & Documentation Freeze)**. 
 
-- ✅ **M1**: Kernel
-- ✅ **M2**: Execution, CLI, Runtime SDK
+### Status Implementasi Subsistem:
+- **Kernel & Execution Engine**: Selesai diimplementasikan secara fungsional.
+- **Runtime SDK**: Fasad universal telah diuji dan berjalan stabil.
+- **Storage, Repository, Artifact, Workspace**: Seluruh sub-sistem domain organisasi telah selesai di-deploy.
+- **Organization Core**: Domain identitas multidimensi, RBAC, dan audit trail telah didefinisikan secara matang.
+
+---
+
+## 6. Repository Structure
+
+```text
+AetherOS/
+├── core/                # Layer 0: Kernel & Execution Engine
+├── runtime/             # SDK Facade (AetherRuntime)
+├── workspace/           # Subsystem: Workspace Domain
+├── storage/             # Subsystem: Content-Addressable Storage
+├── repository/          # Subsystem: Revision Graph Repository
+├── artifact/            # Subsystem: Semantic Artifact Registry
+├── workspace-app/       # Layer 2: CQRS & Orchestration Bus
+├── organization/        # Layer 3: Organization Context
+├── docs/                # Dokumentasi Arsitektur & Panduan
+└── tests/               # Unit & Integration Test Suites
+```
+
+---
+
+## 7. Roadmap 2.0
+
+- ✅ **M1**: Kernel Runtime
+- ✅ **M2**: Execution Engine & CLI
 - ✅ **M3.0–3.4**: Workspace & Application Runtime
 - ✅ **M3.5**: Organization Runtime
-- 🔄 **M3.6**: Documentation Freeze (Current)
-- ⏳ **M4**: Company Brain
+- 🔄 **M3.6**: Documentation Freeze (Tahap Sekarang)
+- ⏳ **M4**: Company Brain (Knowledge Orchestrator)
 - ⏳ **M5**: Agent Runtime
 - ⏳ **M6**: Provider Runtime
 - ⏳ **M7**: Workflow Runtime
 - ⏳ **M8**: Constitution Runtime
 - ⏳ **M9**: Distribution Packs
-- ⏳ **M10**: Aether Studio
+- ⏳ **M10**: Aether Studio (Web Dashboard)
 
 ---
 
-## 🤝 Contribution & Governance
+## 8. Documentation Navigation
 
-Pengembangan sistem AetherOS sangat ketat pada disiplin arsitektur. Sebelum berkontribusi, wajib membaca [Developer Guide](docs/id/getting-started/developer.md) dan memahami [Runtime Package Blueprint](docs/id/adr/ADR-0027-Runtime-Package-Blueprint.md).
+Seluruh dokumentasi terperinci dikelola menggunakan hierarki tergovermentasi di bawah folder `docs/`:
 
-## 📄 License
-(TBD)
+1. **Konstitusi Utama**: [AetherOS System Architecture Book](docs/id/architecture/book.md)
+2. **Spesifikasi Subsistem**:
+   - [Kernel Subsystem](docs/id/runtime/kernel.md)
+   - [Execution Subsystem](docs/id/runtime/execution.md)
+   - [Runtime SDK Subsystem](docs/id/runtime/runtime-sdk.md)
+   - [Workspace Subsystem](docs/id/runtime/workspace.md)
+   - [Storage Subsystem](docs/id/runtime/storage.md)
+   - [Repository Subsystem](docs/id/runtime/repository.md)
+   - [Artifact Subsystem](docs/id/runtime/artifact.md)
+   - [Organization Subsystem](docs/id/runtime/organization.md)
+3. **Catatan Keputusan Arsitektural**: [Architecture Decision Records (ADR) Log](docs/id/adr/README.md)
+4. **Catatan Diskusi Fitur**: [RFC Index](docs/id/rfc/README.md)
+5. **Glosarium Istilah**: [Definisi Istilah Baku AetherOS](docs/id/glossary/index.md)
+
+---
+
+## 9. Contribution & Governance
+
+Pengembangan kode AetherOS diatur secara ketat melalui aturan tata tertib kualitas. Silakan merujuk ke [Developer Standard Guide](docs/id/getting-started/developer.md) sebelum mengajukan Pull Request baru.
