@@ -35,5 +35,5 @@ class OrganizationFacade:
         self.configuration = ConfigurationFacade()
         self.capabilities = CapabilitiesFacade()
         
-    def identity(self):
+    async def identity(self):
         return {"status": "Active"}

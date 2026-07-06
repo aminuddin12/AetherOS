@@ -10,6 +10,9 @@ from .facade.repository import RepositoryFacade
 from .facade.artifact import ArtifactFacade
 from .facade.workspace_app import WorkspaceAppFacade
 from .facade.organization import OrganizationFacade
+from .facade.knowledge import KnowledgeFacade
+from .facade.provider_router import ProviderRouterFacade
+from .facade.workflow import WorkflowFacade
 from .events.dispatcher import event_dispatcher
 from .models.metadata.manifest import RuntimeManifest
 
@@ -30,15 +33,27 @@ class AetherRuntime:
         self.storage = StorageFacade()
         self.repository = RepositoryFacade()
         self.artifact = ArtifactFacade()
-        self.workspace_app = WorkspaceAppFacade(engine=None) # Wired later by Bootstrap
+        self.workspace_app = WorkspaceAppFacade(engine=None)  # Wired later by Bootstrap
         self.organization = OrganizationFacade()
+        self.knowledge = KnowledgeFacade(
+            artifact=self.artifact,
+            repository=self.repository,
+            storage=self.storage,
+            workspace=self.workspace,
+            organization=self.organization,
+            runtime=self,
+        )
+        self.provider_router = ProviderRouterFacade()
+        self.workflow = WorkflowFacade()
 
     async def capabilities(self) -> dict:
         return {
             "kernel": True,
             "execution": True,
             "workspace": True,
-            "knowledge": False
+            "knowledge": True,
+            "provider_router": True,
+            "workflow": True,
         }
 
     async def manifest(self) -> RuntimeManifest:
