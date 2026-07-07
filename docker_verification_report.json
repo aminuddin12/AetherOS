@@ -1,0 +1,163 @@
+{
+  "verification_completed": "2026-07-07T08:34:58.060609",
+  "duration_seconds": 4.76,
+  "tests_passed": 13,
+  "tests_total": 13,
+  "success_rate": 100.0,
+  "overall_status": "PASS",
+  "results": [
+    {
+      "test_name": "Docker Installation",
+      "passed": true,
+      "message": "Docker is installed",
+      "details": {
+        "version": "Docker version 28.3.3, build 980b856"
+      },
+      "timestamp": "2026-07-07T08:34:53.339162"
+    },
+    {
+      "test_name": "Docker Compose Installation",
+      "passed": true,
+      "message": "Docker Compose is installed",
+      "details": {
+        "version": "Docker Compose version v2.39.2-desktop.1"
+      },
+      "timestamp": "2026-07-07T08:34:53.873766"
+    },
+    {
+      "test_name": "Docker Daemon",
+      "passed": true,
+      "message": "Docker daemon is running",
+      "details": null,
+      "timestamp": "2026-07-07T08:34:55.224040"
+    },
+    {
+      "test_name": "Docker Compose Files",
+      "passed": true,
+      "message": "All Docker Compose files found",
+      "details": {
+        "files": [
+          "docker-compose.yml",
+          "docker-compose.test.yml"
+        ]
+      },
+      "timestamp": "2026-07-07T08:34:55.224213"
+    },
+    {
+      "test_name": "Dockerfiles",
+      "passed": true,
+      "message": "All Dockerfiles found",
+      "details": {
+        "files": [
+          "Dockerfile.dev",
+          "Dockerfile.prod"
+        ]
+      },
+      "timestamp": "2026-07-07T08:34:55.224366"
+    },
+    {
+      "test_name": "Services Running",
+      "passed": true,
+      "message": "All services are running",
+      "details": {
+        "running": [
+          "aetheros-adminer",
+          "aetheros-app",
+          "aetheros-postgres",
+          "aetheros-qdrant",
+          "aetheros-redis"
+        ],
+        "healthy": [
+          "aetheros-postgres",
+          "aetheros-redis"
+        ]
+      },
+      "timestamp": "2026-07-07T08:34:55.553120"
+    },
+    {
+      "test_name": "Port Accessibility",
+      "passed": true,
+      "message": "All required ports are accessible",
+      "details": {
+        "accessible_ports": [
+          "PostgreSQL (5432)",
+          "Redis (6379)",
+          "Qdrant (6333)",
+          "AetherOS (8000)",
+          "Adminer (8080)"
+        ]
+      },
+      "timestamp": "2026-07-07T08:34:55.579973"
+    },
+    {
+      "test_name": "Docker Network",
+      "passed": true,
+      "message": "Network properly configured",
+      "details": {
+        "containers": [
+          "48d3bdf093b2851c85222bdb503ee5fd6ca0dfd7ee485c0c6ff9da4ca6b1177b",
+          "6524bff38317a3e67c439e8f30b0ac45a766bc2cbfc89e0034c3cf8e01711128",
+          "a3941b2caa8872dde701a456ca2beeb69127eabf122bbba4739d4e87462bd2ed",
+          "befc0ab426864f02727c8955e072902655f39cf7b90ff4739bd705de0888807e",
+          "ef843eb41b06fe64c312fc32ddf5311e87e438c0dfb98327d924fb61b109a1df"
+        ],
+        "driver": "bridge"
+      },
+      "timestamp": "2026-07-07T08:34:55.619585"
+    },
+    {
+      "test_name": "Docker Volumes",
+      "passed": true,
+      "message": "All required volumes found",
+      "details": {
+        "volumes": [
+          "aetheros-cache",
+          "aetheros-data",
+          "aetheros-postgres-data",
+          "aetheros-qdrant-data",
+          "aetheros-redis-data"
+        ]
+      },
+      "timestamp": "2026-07-07T08:34:55.658763"
+    },
+    {
+      "test_name": "Testing Framework",
+      "passed": true,
+      "message": "All testing files found",
+      "details": {
+        "files": [
+          "tools/docker/test_docker_health.py",
+          "tools/docker/docker_test_suite.py",
+          "tools/docker/verify_docker_setup.py"
+        ]
+      },
+      "timestamp": "2026-07-07T08:34:55.658995"
+    },
+    {
+      "test_name": "Documentation",
+      "passed": true,
+      "message": "All documentation files found",
+      "details": {
+        "files": [
+          "docs/DOCKER_SETUP.md",
+          "docs/DOCKER_TROUBLESHOOTING.md"
+        ]
+      },
+      "timestamp": "2026-07-07T08:34:55.659092"
+    },
+    {
+      "test_name": "Health Checks",
+      "passed": true,
+      "message": "All services passed health checks",
+      "details": null,
+      "timestamp": "2026-07-07T08:34:56.699421"
+    },
+    {
+      "test_name": "Test Suite",
+      "passed": true,
+      "message": "All Docker tests passed",
+      "details": null,
+      "timestamp": "2026-07-07T08:34:58.060321"
+    }
+  ]
+}
