@@ -1,30 +1,40 @@
-class ExecutionEngineError(Exception):
-    """Root exception untuk Execution Engine."""
-
+class ExecutionError(Exception):
+    """Base exception for execution-related errors."""
     pass
 
 
-class ExecutorNotFoundError(ExecutionEngineError):
-    """Tidak ada executor yang cocok ditemukan."""
-
+class ExecutorError(ExecutionError):
+    """Base exception for executor-related errors."""
     pass
 
 
-class ExecutorAllocationError(ExecutionEngineError):
-    """Gagal mengalokasikan executor dari pool."""
-
+class ExecutionEngineError(ExecutionError):
+    """Root exception for Execution Engine."""
     pass
 
 
-class ExecutionTimeoutError(ExecutionEngineError):
-    """Eksekusi melebihi batas waktu."""
-
+class ExecutorNotFoundError(ExecutorError):
+    """Executor not found."""
     pass
 
 
-class ExecutionCancelledError(ExecutionEngineError):
-    """Eksekusi dibatalkan."""
+class ExecutorAllocationError(ExecutorError):
+    """Failed to allocate executor from pool."""
+    pass
 
+
+class ExecutionTimeoutError(ExecutionError):
+    """Execution exceeded time limit."""
+    pass
+
+
+class ExecutionCancelledError(ExecutionError):
+    """Execution was cancelled."""
+    pass
+
+
+class TaskValidationError(ExecutionError):
+    """Task validation failed."""
     pass
 
 

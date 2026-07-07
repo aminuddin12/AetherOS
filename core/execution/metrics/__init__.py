@@ -1,3 +1,3 @@
-from .collector import ExecutionMetricsCollector
+from .collector import MetricsCollector
 
 __all__ = ["ExecutionMetricsCollector"]

@@ -19,10 +19,6 @@ from .events.dispatcher import event_dispatcher
 from .models.metadata.manifest import RuntimeManifest
 
 class AetherRuntime:
-    """
-    The main entry point for interacting with AetherOS (Milestone 2.7+).
-    This acts as a high-level SDK providing access to isolated Domain Facades.
-    """
     def __init__(self, context: RuntimeContext, session: RuntimeSession, pipeline: MiddlewarePipeline):
         self.context = context
         self.session = session
@@ -35,7 +31,7 @@ class AetherRuntime:
         self.storage = StorageFacade()
         self.repository = RepositoryFacade()
         self.artifact = ArtifactFacade()
-        self.workspace_app = WorkspaceAppFacade(engine=None)  # Wired later by Bootstrap
+        self.workspace_app = WorkspaceAppFacade(engine=None)
         self.organization = OrganizationFacade()
         self.knowledge = KnowledgeFacade(
             artifact=self.artifact,
@@ -50,12 +46,6 @@ class AetherRuntime:
         self._kernel_integration = None
 
     async def capabilities(self) -> dict:
-        """
-        Get the runtime capabilities that can be registered with the kernel.
-        
-        Returns:
-            Dictionary of capability descriptors that can be used for kernel registration.
-        """
         capabilities = {}
         for cap in RuntimeCapabilities.get_capability_descriptors():
             capabilities[cap.id] = {
@@ -88,35 +78,14 @@ class AetherRuntime:
         await event_dispatcher.dispatch("RuntimeShutdown", session_id=self.context.correlation_id)
     
     def register_with_kernel(self) -> list[str]:
-        """
-        Register runtime capabilities with the kernel.
-        
-        Returns:
-            List of successfully registered capability IDs.
-        """
         if not self._kernel_integration:
             raise RuntimeError("Kernel integration not initialized.")
         return self._kernel_integration.register_capabilities()
     
-    def get_kernel_integration(self) -> KernelIntegration:
-        """
-        Get the kernel integration object.
-        
-        Returns:
-            The KernelIntegration object.
-        """
+    def get_kernel_integration(self) -> KernelIntegration | None:
         return self._kernel_integration
     
     def is_capability_registered(self, capability_id: str) -> bool:
-        """
-        Check if a capability is registered with the kernel.
-        
-        Args:
-            capability_id: The ID of the capability to check.
-            
-        Returns:
-            True if capability is registered, False otherwise.
-        """
         if not self._kernel_integration:
             return False
         return self._kernel_integration.is_capability_registered(capability_id)
