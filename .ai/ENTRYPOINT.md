@@ -19,6 +19,15 @@ Model AI wajib memuat berkas-berkas di bawah ini secara sekuensial sebelum melak
 [Mulai Sesi]
      │
      ▼
+Phase 0: IDE Rule Injection & State Retrieval
+- Baca mandat di `.cursorrules` / `.windsurfrules` / `.agents/AGENTS.md`
+- Periksa `.ai/NEXT_TASK_STATE.md` (Wajib resume dari status ini jika berkas terisi)
+     │
+     ▼
+Phase 0.7: Tool Discovery & Binding
+- Validasi ketersediaan perintah/CLI bawaan dari `gsd-core` di lingkungan lokal sebelum menyusun eksekusi.
+     │
+     ▼
 Phase 1: Pemuatan Konstitusi
 - /01_constitution/repository_constitution.md (Hukum Arsitektur)
 - /01_constitution/ai_constitution.md (Etika Kerja AI)
@@ -53,10 +62,18 @@ Phase 4: Resolusi Kapabilitas & Tanggung Jawab
 2. **Dilarang Menebak Lokasi Berkas**: Gunakan `/02_context/discovery.md` untuk menemukan letak berkas.
 3. **Dilarang Melanggar Dependensi**: Impor dependensi murni horizontal atau top-down dilarang (patuhi ADR-0025).
 4. **Dilarang Melakukan Scope Creep**: Kerjakan tugas murni berdasarkan templat kontrak penugasan dan patuhi bagian *Non-Goals*.
+5. **Dilarang Menyerah Saat Error**: Dilarang menghentikan operasi jika menemui kegagalan logika (*Zero-Surrender Policy*). Evaluasi log, perbaiki mandiri, dan selesaikan.
+6. **Dilarang Menjalankan Runtime di Host**: Wajib mutlak menggunakan lingkungan *container* (Docker-First) jika konfigurasi (seperti `Dockerfile`) tersedia.
 
 ---
 
-## 🚦 Cara Melanjutkan & Kapan Harus Berhenti
+## 🚦 Cara Melanjutkan & Mekanisme Estafet (Autonomous Execution)
 
-- **Cara Melanjutkan**: Jika instruksi sudah jelas dan prasyarat terpenuhi, AI harus bertindak di bawah status daur hidup `PLANNING` menuju `IMPLEMENTING`.
-- **Kapan Harus Berhenti (Stop Triggers)**: Jika terdapat ketidakjelasan arsitektur (LEVEL 3) atau konflik arsitektur fatal (LEVEL 4), AI wajib menghentikan eksekusi dan mengevaluasi status kesehatannya menjadi `STOPPED` atau `FAILED` serta melapor kepada Chief Architect.
+- **Zero-Question Policy**: AI **dilarang** menanyakan pertanyaan klarifikasi seperti "apa yang harus dilakukan" atau "bagaimana aplikasi bekerja". Semua informasi wajib didapat mandiri dengan mengeksplorasi direktori `docs/`.
+- **Cara Melanjutkan**: AI harus bertindak otonom, membuat keputusan berdasarkan dokumentasi (Autonomous Confidence), dan mengeksekusi di background tanpa persetujuan manusia.
+- **Relay Handoff (Estafet)**: Jika AI mencapai batas konteks (token), menghadapi ancaman *timeout*, atau merampungkan sebuah tahap krusial, **wajib** melakukan *handover*:
+  1. Pastikan kode tidak *broken*, kompilabel, tanpa `console.log` tidak perlu atau komentar kabur.
+  2. Tulis state terkini secara presisi ke `.ai/NEXT_TASK_STATE.md`.
+  3. Lakukan fallback version control jika diperlukan.
+  4. Hentikan arus dengan output terminal: `PAUSED: Estafet Task - Continue execution from .ai/NEXT_TASK_STATE.md`
+- **Kapan Harus Berhenti Mutlak (Anti-Hallucination)**: Hentikan paksa seketika HANYA JIKA rincian esensial, kredensial, atau alur logika yang wajib ada tidak ditemukan di `docs/`. **Dilarang menebak!** Berhenti dan cetak: `HALTED: Missing documentation in /docs/[topic]`.

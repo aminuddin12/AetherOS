@@ -43,6 +43,7 @@ Pemahaman kognitif mengenai sejarah dan peta repositori:
 - **[02_context/repository_memory.md](02_context/repository_memory.md)**: Log memori status hidup dan risiko arsitektural aktif.
 - **[repository_manifest.md](repository_manifest.md)**: Matrix status pembekuan subsistem (*Architecture Freeze Matrix*).
 - **[knowledge_index.md](knowledge_index.md)**: Jalur cepat temuan referensi.
+- **[NEXT_TASK_STATE.md](NEXT_TASK_STATE.md)**: Berkas status *relay/estafet* otonom antar-AI.
 
 ### 4. Lapisan Protokol & Siklus Hidup (Protocols Layer)
 Jalur alur kerja operasional dinamis:
