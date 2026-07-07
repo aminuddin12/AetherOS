@@ -28,19 +28,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Create and set working directory
 WORKDIR /workspace
 COPY . .
+RUN pip install --no-cache-dir uv hatch
 
-# Install Python dependencies using pip
-RUN pip install --no-cache-dir \
+RUN uv pip install --system \
     -e . \
-    && rm -rf /root/.cache/pip
-
-# Install development dependencies
-RUN pip install --no-cache-dir \
+    -e cli \
+    -e runtime \
+    -e workspace \
+    -e storage \
+    -e repository \
+    -e artifact \
+    -e workspace-app \
+    -e organization \
     -e .[dev] \
-    uv \
-    hatch \
-    pre-commit \
-    && rm -rf /root/.cache/pip
+    pre-commit
 
 # Set up entrypoint
 COPY docker-entrypoint.sh /docker-entrypoint.sh

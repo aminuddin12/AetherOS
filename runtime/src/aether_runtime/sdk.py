@@ -87,7 +87,7 @@ class AetherRuntime:
         await self.session.stop()
         await event_dispatcher.dispatch("RuntimeShutdown", session_id=self.context.correlation_id)
     
-    def register_with_kernel(self) -> List[str]:
+    def register_with_kernel(self) -> list[str]:
         """
         Register runtime capabilities with the kernel.
         

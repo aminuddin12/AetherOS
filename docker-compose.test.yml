@@ -32,7 +32,7 @@ services:
       test-redis:
         condition: service_healthy
       test-qdrant:
-        condition: service_healthy
+        condition: service_started
     networks:
       - test-network
     command: ["pytest", "/workspace/tests", "-v", "--tb=short"]
@@ -74,12 +74,6 @@ services:
     container_name: aetheros-test-qdrant
     networks:
       - test-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:6333/readyz"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 20s
 
 # Networks
 networks:
