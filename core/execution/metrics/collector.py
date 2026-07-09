@@ -83,6 +83,13 @@ class MetricsCollector:
             "execution_count": len(self.get_metrics("execution")),
             "average_duration": self.get_average_duration()
         }
-        result = dict(self._counters)
-        result["average_duration_ms"] = self.get_average_duration()
-        return result
+
+
+class ExecutionMetricsCollector(MetricsCollector):
+    """Backward-compatible alias for MetricsCollector used by execution subsystems."""
+
+    def record_execution(self, status: str, duration_ms: float = 0.0, retries: int = 0) -> None:
+        """Record an execution with status, duration, and retry count."""
+        self.collect("execution", 1, {"status": status, "type": "execution"})
+        self.collect("execution_duration", duration_ms, {"status": status})
+        self.collect("execution_retries", retries, {"status": status})

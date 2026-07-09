@@ -5,6 +5,7 @@ from datetime import datetime, UTC
 
 
 class ExecutionStatus(StrEnum):
+    PENDING = "pending"
     SUCCESS = "success"
     FAILURE = "failure"
     TIMEOUT = "timeout"

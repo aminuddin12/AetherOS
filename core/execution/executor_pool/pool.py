@@ -13,7 +13,7 @@ from core.execution.spi.executor import (
 )
 from core.execution.cancellation.token import CancellationToken
 from core.execution.metrics.collector import MetricsCollector
-from core.execution.execution_result.result import ExecutionResult
+from core.execution.execution_result.result import ExecutionResult, ExecutionStatus
 from core.execution.execution_context.context import ExecutionContext
 from core.execution.internal.exceptions import ExecutorError, ExecutorNotFoundError, ExecutorAllocationError
 
@@ -43,7 +43,7 @@ class BaseExecutorPool:
     def __init__(self):
         self._executors: Dict[str, Executor] = {}
         self._allocated: Dict[str, str] = {}
-        self._lock = threading.Lock()
+        self._lock = threading.RLock()
 
     def register(self, executor_id: str, executor: Executor) -> None:
         """Register an executor with the pool."""
@@ -172,9 +172,8 @@ class ExecutorPool(Executor, BaseExecutorPool):
         try:
             future = self._pool.submit(task, *args, **kwargs)
             result = ExecutionResult(
-                result=future,
-                status="PENDING",
-                executor=self.name
+                output=future,
+                status=ExecutionStatus.PENDING,
             )
             self._metrics.active_tasks += 1
             self._update_metrics()

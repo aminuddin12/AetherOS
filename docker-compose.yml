@@ -9,7 +9,7 @@ services:
       dockerfile: Dockerfile.dev
     container_name: aetheros-app
     restart: unless-stopped
-    command: bash
+    command: bash -c "cd /workspace && PYTHONPATH=runtime/src:core python3 web/server.py"
     tty: true
     stdin_open: true
     environment:
@@ -41,6 +41,12 @@ services:
         condition: service_started
     networks:
       - aetheros-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   # PostgreSQL Database
   postgres:

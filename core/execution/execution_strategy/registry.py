@@ -13,3 +13,12 @@ class StrategyRegistry:
 
     def get(self, name: str) -> ExecutionStrategy | None:
         return self._strategies.get(name)
+
+    def list_strategies(self) -> list[str]:
+        return list(self._strategies.keys())
+
+    def unregister(self, name: str) -> None:
+        self._strategies.pop(name, None)
+
+    def clear(self) -> None:
+        self._strategies.clear()

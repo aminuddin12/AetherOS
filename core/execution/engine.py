@@ -1,6 +1,7 @@
 # AetherOS Execution Engine
 # Core execution engine implementation (ADR-0006)
 
+import asyncio
 from typing import Dict, List, Optional, Callable, Any, Union
 from enum import Enum
 from dataclasses import dataclass
@@ -9,7 +10,7 @@ from core.execution.executor_pool.pool import ExecutorPool, PoolType
 from core.execution.execution_context.context import ExecutionContext
 from core.execution.execution_result.result import ExecutionResult
 from core.execution.execution_plan.plan import ExecutionPlan
-from core.execution.execution_strategy.registry import ExecutionStrategyRegistry
+from core.execution.execution_strategy.registry import StrategyRegistry as ExecutionStrategyRegistry
 from core.execution.metrics.collector import MetricsCollector
 from core.execution.cancellation.token import CancellationToken
 from core.execution.internal.exceptions import ExecutionError
@@ -63,14 +64,6 @@ class ExecutionEngine:
             )
             self._default_pool.initialize(self._context)
             self.register_executor("default-thread-pool", self._default_pool)
-            
-            # Register process pool
-            process_pool = ExecutorPool(
-                pool_type=PoolType.PROCESS,
-                name="default-process-pool"
-            )
-            process_pool.initialize(self._context)
-            self.register_executor("default-process-pool", process_pool)
             
             self.status = EngineStatus.INITIALIZED
             
@@ -141,7 +134,7 @@ class ExecutionEngine:
         if not executor:
             raise ExecutionError(f"Executor '{executor_id}' not found")
             
-        return executor.execute_async(task, *args, **kwargs)
+        return asyncio.run(executor.execute_async(task, *args, **kwargs))
 
     def cancel(self, token: CancellationToken) -> bool:
         """Cancel ongoing execution."""

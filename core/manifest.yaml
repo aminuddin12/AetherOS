@@ -1,0 +1,28 @@
+runtime:
+  name: aether-core
+  version: 1.0.0
+  description: AetherOS Core Kernel, Execution Engine, and Contracts
+  lifecycle:
+    auto_initialize: true
+  provides:
+    - id: core.kernel
+      name: AI Kernel
+      version: 1.0.0
+      criticality: required
+      contract:
+        input: KernelRequest
+        output: KernelResponse
+    - id: core.execution
+      name: Execution Engine
+      version: 1.0.0
+      criticality: required
+      contract:
+        input: ExecutableTask
+        output: ExecutionResult
+  requires:
+    - id: storage.postgres
+      criticality: optional
+      description: Optional durable persistence for execution history
+    - id: storage.redis
+      criticality: optional
+      description: Optional cache for execution metrics

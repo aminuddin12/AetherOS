@@ -12,7 +12,7 @@ from core.execution.spi.executor import (
 from core.execution.executor_pool.pool import ExecutorPool, PoolType
 from core.execution.cancellation.token import CancellationToken
 from core.execution.metrics.collector import MetricsCollector
-from core.execution.execution_result.result import ExecutionResult
+from core.execution.execution_result.result import ExecutionResult, ExecutionStatus
 from core.execution.execution_context.context import ExecutionContext
 from core.execution.internal.exceptions import ExecutorError
 
@@ -42,9 +42,8 @@ class MockExecutor(Executor):
         self.execute_async_called = True
         result = task(*args, **kwargs)
         return ExecutionResult(
-            result=result,
-            status="COMPLETED",
-            executor=self.name
+            output=result,
+            status=ExecutionStatus.SUCCESS,
         )
 
     def cancel(self, token: CancellationToken) -> bool:
@@ -124,6 +123,7 @@ def test_executor_lifecycle():
 
 def test_executor_execution():
     """Test executor execution methods."""
+    import asyncio
     executor = MockExecutor()
     executor.initialize()
     
@@ -136,9 +136,9 @@ def test_executor_execution():
     assert executor.execute_called
     
     # Test asynchronous execution
-    async_result = executor.execute_async(test_task, 4, 5)
-    assert async_result.status == "COMPLETED"
-    assert async_result.result == 9
+    async_result = asyncio.run(executor.execute_async(test_task, 4, 5))
+    assert async_result.status == ExecutionStatus.SUCCESS
+    assert async_result.output == 9
     assert executor.execute_async_called
 
 
@@ -169,12 +169,13 @@ def test_executor_pool_execution():
     assert result == 12
     
     # Test asynchronous execution
-    async_result = pool.execute_async(test_task, 5, 6)
-    assert async_result.status == "PENDING"
+    import asyncio
+    async_result = asyncio.run(pool.execute_async(test_task, 5, 6))
+    assert async_result.status == ExecutionStatus.PENDING
     
     # Wait for completion
     time.sleep(0.1)
-    assert async_result.result.result() == 30
+    assert async_result.output.result() == 30
 
 
 def test_executor_pool_metrics():

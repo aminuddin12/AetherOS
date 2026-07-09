@@ -1,3 +1,3 @@
-from .collector import MetricsCollector
+from .collector import MetricsCollector, ExecutionMetricsCollector
 
-__all__ = ["ExecutionMetricsCollector"]
+__all__ = ["MetricsCollector", "ExecutionMetricsCollector"]

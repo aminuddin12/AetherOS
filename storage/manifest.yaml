@@ -1,0 +1,35 @@
+runtime:
+  name: aether-storage
+  version: 1.0.0
+  description: AetherOS Agnostic Storage Platform with PostgreSQL and Redis adapters
+  lifecycle:
+    auto_initialize: true
+  provides:
+    - id: storage.postgres
+      name: PostgreSQL Storage Provider
+      version: 1.0.0
+      criticality: required
+      contract:
+        input: ResourceURI
+        output: StorageHandle
+    - id: storage.redis
+      name: Redis Storage Provider
+      version: 1.0.0
+      criticality: required
+      contract:
+        input: ResourceURI
+        output: StorageHandle
+    - id: storage.memory
+      name: In-Memory Storage Provider
+      version: 1.0.0
+      criticality: optional
+      contract:
+        input: ResourceURI
+        output: StorageHandle
+  requires:
+    - id: infrastructure.postgres
+      criticality: required
+      description: PostgreSQL 16 database for durable persistence
+    - id: infrastructure.redis
+      criticality: required
+      description: Redis 7 cache for ephemeral state

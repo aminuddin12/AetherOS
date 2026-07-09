@@ -1,0 +1,38 @@
+runtime:
+  name: aether-runtime
+  version: 1.0.0
+  description: AetherOS Organization Runtime, Company Brain, and Provider Router
+  lifecycle:
+    auto_initialize: true
+  provides:
+    - id: runtime.organization
+      name: Organization Runtime
+      version: 1.0.0
+      criticality: required
+      contract:
+        input: RuntimeCommand
+        output: RuntimeResponse
+    - id: runtime.company_brain
+      name: Company Brain
+      version: 1.0.0
+      criticality: required
+      contract:
+        input: KnowledgeQuery
+        output: KnowledgeResult
+    - id: runtime.provider_router
+      name: Provider Router
+      version: 1.0.0
+      criticality: required
+      contract:
+        input: ModelRequest
+        output: ModelResponse
+  requires:
+    - id: storage.postgres
+      criticality: required
+      description: PostgreSQL for Company Brain knowledge persistence
+    - id: storage.redis
+      criticality: required
+      description: Redis for Company Brain cache and sessions
+    - id: infrastructure.qdrant
+      criticality: optional
+      description: Qdrant for vector similarity search

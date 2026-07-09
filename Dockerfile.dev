@@ -41,6 +41,7 @@ RUN uv pip install --system \
     -e workspace-app \
     -e organization \
     -e .[dev] \
+    -r web/requirements.txt \
     pre-commit
 
 # Set up entrypoint
